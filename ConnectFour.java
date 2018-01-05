@@ -81,4 +81,8 @@ public class ConnectFour{
     }
     return yIndex;
   }
+
+    public void hasWon(Piece p){
+	return;
+    }
 }
