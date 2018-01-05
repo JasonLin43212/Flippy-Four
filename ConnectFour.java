@@ -1,9 +1,48 @@
 public class ConnectFour{
 
   public static void main(String[]args){
-    ConnectFour c = new ConnectFour(4,5,"blue","red");
-    System.out.println(c);
+    ConnectFour c = new ConnectFour(7,6,"blue","red");
+    /*
+    c.addPiece(6);
+    c.addPiece(0);
+
+    c.addPiece(0);
+    c.addPiece(1);
+
+    c.addPiece(0);
+    c.addPiece(1);
+
+    c.addPiece(0);
+    c.addPiece(1);
+
+    c.addPiece(5);
+    c.addPiece(3);
+
+    c.addPiece(3);
+    c.addPiece(1);
+
+    c.addPiece(5);
+    c.addPiece(4);
+
+    c.addPiece(1);
+    c.addPiece(5);
+    */
+    c.addPiece(3);
     c.addPiece(2);
+    c.addPiece(2);
+    c.addPiece(1);
+    c.addPiece(1);
+    c.addPiece(3);
+    c.addPiece(1);
+    c.addPiece(1);
+    c.addPiece(2);
+    c.addPiece(2);
+    c.addPiece(0);
+    c.addPiece(4);
+    c.addPiece(0);
+    c.addPiece(0);
+    c.addPiece(0);
+    c.addPiece(3);
     c.addPiece(3);
     System.out.println(c);
   }
@@ -15,8 +54,7 @@ public class ConnectFour{
   private Piece Player2;
   private int width;
   private int height;
-  private boolean win;
-  private boolean draw;
+  private String winState;
   private boolean isFirstPlayerTurn;
 
   //----------Other Variables------------
@@ -40,15 +78,8 @@ public class ConnectFour{
     this.height = height;
     this.width = width;
 
+    winState = "Continue Game";
     isFirstPlayerTurn = true;
-  }
-
-  public boolean hasWon (){
-    return win;
-  }
-
-  public boolean hasDraw (){
-    return draw;
   }
 
   public void addPiece (int index){
@@ -82,45 +113,55 @@ public class ConnectFour{
     return yIndex;
   }
 
-  public void hasWon(Piece p){
+  private void hasWon(Piece p){
     //checking vertical wins
     for (int i=0; i<width; i++){
       for (int j=0; j<height-4; j++){
         if (checkWin(p,i,j,0,1)){
-
+          winState = "Player " + p.getId() + " wins";
+          return;
         }
       }
     }
 
     //checking horizontal wins
-    for (int i=0; i<width; i++){
-      for (int j=0; j<height-4; j++){
-        if (checkWin(p,i,j,0,1)){
-
+    for (int i=0; i<width-4; i++){
+      for (int j=0; j<height; j++){
+        if (checkWin(p,i,j,1,0)){
+          winState = "Player " + p.getId() + " wins";
+          return;
         }
       }
     }
 
     //checking diagonal // wins
-    for (int i=0; i<width; i++){
+    for (int i=0; i<width-4; i++){
       for (int j=0; j<height-4; j++){
-        if (checkWin(p,i,j,0,1)){
-
+        if (checkWin(p,i,j,1,1)){
+          winState = "Player " + p.getId() + " wins";
+          return;
         }
       }
     }
 
     //checking diagonal \\ wins
     for (int i=0; i<width; i++){
-      for (int j=0; j<height-4; j++){
-        if (checkWin(p,i,j,0,1)){
-
+      for (int j=height-1; j>2; j--){
+        if (checkWin(p,i,j,1,-1)){
+          winState = "Player " + p.getId() + " wins";
+          return;
         }
       }
     }
   }
 
-  public boolean checkWin(Piece p, int x, int y, int xIncrement, int yIncrement){
+  private boolean checkWin(Piece p, int x, int y, int xIncrement, int yIncrement){
+    //might change the i<4 to something else for connect 5
+    for (int i=0; i<4; i++){
+      if (!data[x+xIncrement*i][y+yIncrement*i].equals(p)){
+        return false;
+      }
+    }
     return true;
   }
 }
