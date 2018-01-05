@@ -83,6 +83,7 @@ public class ConnectFour{
   }
 
     public void rotate(String direction){
+	private Piece[][] temp;
 	if (direction.equals("left")){
 	    
 	}
@@ -95,6 +96,6 @@ public class ConnectFour{
     }
 
     public void drop(){
-
+	
     }
 }
