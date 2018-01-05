@@ -3,20 +3,23 @@ public class Piece{
   //------Instance Variables--------
 
   private String color;
-  private int Id;
+  private int id;
 
   //------Methods------
-  public Piece (int Id, String color) {
+  public Piece (int id, String color) {
     this.color = color;
-    this.Id = Id;
+    this.id = id;
   }
 
   public int getId () {
-    return Id;
+    return id;
   }
 
   public String toString () {
-    return "" + Id;
+    return "" + id;
   }
 
+  public boolean equals (Piece other) {
+    return id == other.getId();
+  }
 }
