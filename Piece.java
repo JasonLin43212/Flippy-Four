@@ -1,4 +1,4 @@
-public class Piece{
+public class Piece extends RotatableObject{
 
     //------Instance Variables--------
 
