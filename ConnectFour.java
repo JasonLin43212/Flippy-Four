@@ -82,17 +82,45 @@ public class ConnectFour{
     return yIndex;
   }
 
-    public void hasWon(Piece p){
-	//checking vertical wins
-	for (int i=0; i<width; i++){
-	    for (int j=0; j<height-4; j++){
-		if (checkWin(p,i,j,0,1)){
-		    return true;
-		}
-	    }
-	}
-	
+  public void hasWon(Piece p){
+    //checking vertical wins
+    for (int i=0; i<width; i++){
+      for (int j=0; j<height-4; j++){
+        if (checkWin(p,i,j,0,1)){
+
+        }
+      }
     }
 
-    public 
+    //checking horizontal wins
+    for (int i=0; i<width; i++){
+      for (int j=0; j<height-4; j++){
+        if (checkWin(p,i,j,0,1)){
+
+        }
+      }
+    }
+
+    //checking diagonal // wins
+    for (int i=0; i<width; i++){
+      for (int j=0; j<height-4; j++){
+        if (checkWin(p,i,j,0,1)){
+
+        }
+      }
+    }
+
+    //checking diagonal \\ wins
+    for (int i=0; i<width; i++){
+      for (int j=0; j<height-4; j++){
+        if (checkWin(p,i,j,0,1)){
+
+        }
+      }
+    }
+  }
+
+  public boolean checkWin(Piece p, int x, int y, int xIncrement, int yIncrement){
+    return true;
+  }
 }
