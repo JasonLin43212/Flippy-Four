@@ -81,4 +81,20 @@ public class ConnectFour{
     }
     return yIndex;
   }
+
+    public void rotate(String direction){
+	if (direction.equals("left")){
+	    
+	}
+
+	if (direction.equals("right")){
+
+	}
+
+	isFirstPlayerTurn = !isFirstPlayerTurn;
+    }
+
+    public void drop(){
+
+    }
 }
