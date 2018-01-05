@@ -83,6 +83,16 @@ public class ConnectFour{
   }
 
     public void hasWon(Piece p){
-	return; 
+	//checking vertical wins
+	for (int i=0; i<width; i++){
+	    for (int j=0; j<height-4; j++){
+		if (checkWin(p,i,j,0,1)){
+		    return true;
+		}
+	    }
+	}
+	
     }
+
+    public 
 }
