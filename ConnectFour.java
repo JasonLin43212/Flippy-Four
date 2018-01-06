@@ -60,6 +60,8 @@ public class ConnectFour{
     System.out.println(c);
     c.dropOne();
     System.out.println(c);
+    c.dropAll();
+    System.out.println(c);
     
     
   }
@@ -228,17 +230,6 @@ public class ConnectFour{
   }
 
 
-    public boolean floating(){
-	for (int x = 0; x <  width; x++){
-	    for (int y = 1; y < height; y++){
-		if (data[x][y-1].equals(emptyPiece)){
-		    return true;
-		}
-	    }
-	}
-	return false;
-    }
-    
 
   public void dropOne(){
       for (int x = 0; x < width; x++){
@@ -253,5 +244,10 @@ public class ConnectFour{
       }
   }
 
- 
+    public void dropAll(){
+	for (int i = 0; i < height; i ++){
+	    dropOne();
+	}
+    }
+
 }
