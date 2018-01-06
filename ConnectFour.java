@@ -27,6 +27,7 @@ public class ConnectFour{
     c.addPiece(1);
     c.addPiece(5);
     */
+
     c.addPiece(3);
     c.addPiece(2);
     c.addPiece(2);
@@ -113,13 +114,16 @@ public class ConnectFour{
     return yIndex;
   }
 
-  private void hasWon(Piece p){
+  public void updateWin() {
+
+  }
+
+  private boolean hasWon(Piece p){
     //checking vertical wins
     for (int i=0; i<width; i++){
       for (int j=0; j<height-4; j++){
         if (checkWin(p,i,j,0,1)){
-          winState = "Player " + p.getId() + " wins";
-          return;
+          return true;
         }
       }
     }
@@ -128,8 +132,7 @@ public class ConnectFour{
     for (int i=0; i<width-4; i++){
       for (int j=0; j<height; j++){
         if (checkWin(p,i,j,1,0)){
-          winState = "Player " + p.getId() + " wins";
-          return;
+          return true;
         }
       }
     }
@@ -138,8 +141,7 @@ public class ConnectFour{
     for (int i=0; i<width-4; i++){
       for (int j=0; j<height-4; j++){
         if (checkWin(p,i,j,1,1)){
-          winState = "Player " + p.getId() + " wins";
-          return;
+          return true;
         }
       }
     }
@@ -148,11 +150,11 @@ public class ConnectFour{
     for (int i=0; i<width; i++){
       for (int j=height-1; j>2; j--){
         if (checkWin(p,i,j,1,-1)){
-          winState = "Player " + p.getId() + " wins";
-          return;
+          return true;
         }
       }
     }
+    return false;
   }
 
   private boolean checkWin(Piece p, int x, int y, int xIncrement, int yIncrement){
