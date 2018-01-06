@@ -3,52 +3,57 @@ public class ConnectFour{
   public static void main(String[]args){
     ConnectFour c = new ConnectFour(7,6,"blue","red");
     /*
-    c.addPiece(6);
-    c.addPiece(0);
+      c.addPiece(6);
+      c.addPiece(0);
 
-    c.addPiece(0);
-    c.addPiece(1);
+      c.addPiece(0);
+      c.addPiece(1);
 
-    c.addPiece(0);
-    c.addPiece(1);
+      c.addPiece(0);
+      c.addPiece(1);
 
-    c.addPiece(0);
-    c.addPiece(3);
+      c.addPiece(0);
+      c.addPiece(3);
 
-    c.addPiece(5);
-    c.addPiece(3);
+      c.addPiece(5);
+      c.addPiece(3);
 
-    c.addPiece(3);
-    c.addPiece(1);
+      c.addPiece(3);
+      c.addPiece(1);
 
-    c.addPiece(5);
-    c.addPiece(4);
+      c.addPiece(5);
+      c.addPiece(4);
 
-    c.addPiece(1);
-    c.addPiece(5);
+      c.addPiece(1);
+      c.addPiece(5);
 
-    c.addPiece(0);
+      c.addPiece(0);
     */
 
     /*
-    c.addPiece(3);
-    c.addPiece(2);
-    c.addPiece(2);
-    c.addPiece(1);
-    c.addPiece(1);
-    c.addPiece(3);
-    c.addPiece(1);
-    c.addPiece(1);
-    c.addPiece(2);
-    c.addPiece(2);
-    c.addPiece(0);
-    c.addPiece(4);
-    c.addPiece(0);
-    c.addPiece(0);
-    c.addPiece(0);
-    c.addPiece(3);
-    c.addPiece(3);
+      c.addPiece(3);
+      c.addPiece(2);
+
+      c.addPiece(2);
+      c.addPiece(1);
+      c.addPiece(1);
+      c.addPiece(3);
+      c.addPiece(1);
+      c.addPiece(1);
+      c.addPiece(2);
+      c.addPiece(2);
+      c.addPiece(0);
+      c.addPiece(4);
+      c.addPiece(0);
+      c.addPiece(0);
+      c.addPiece(0);
+      c.addPiece(3);
+      c.addPiece(3);
     */
+    System.out.println(c);
+    c.rotate("left");
+    System.out.println(c);
+    c.rotate("right");
     System.out.println(c);
   }
 
@@ -181,5 +186,36 @@ public class ConnectFour{
       }
     }
     return true;
+  }
+
+
+
+  public void rotate(String direction){
+    Piece[][] temp = new Piece[height][width];
+    if (direction.equals("right")){
+	    for(int x = 0; x < height; x ++){
+        for (int y = 0; y < width; y++)
+          temp[x][y] = data[width-y-1][x];
+		
+	    }
+	    data = temp;
+    }
+    if (direction.equals("left")){
+	    for(int x = 0; x < height; x ++){
+        for (int y = 0; y < width; y++)
+          temp[x][y] = data[y][height-x-1];
+        
+      }
+	    data = temp;
+
+    }
+
+    height = width;
+    width = data.length;
+    isFirstPlayerTurn = !isFirstPlayerTurn;
+  }
+
+  public void drop(){
+
   }
 }
