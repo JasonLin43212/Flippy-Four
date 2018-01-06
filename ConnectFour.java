@@ -2,6 +2,7 @@ public class ConnectFour{
 
   public static void main(String[]args){
     ConnectFour c = new ConnectFour(7,6,"blue","red");
+
     /*
       c.addPiece(6);
       c.addPiece(0);
@@ -28,15 +29,17 @@ public class ConnectFour{
       c.addPiece(5);
 
       c.addPiece(0);
-    */
+      */
+    
 
-    /*
+    
       c.addPiece(3);
       c.addPiece(2);
 
       c.addPiece(2);
       c.addPiece(1);
       c.addPiece(1);
+      c.restartData();
       c.addPiece(3);
       c.addPiece(1);
       c.addPiece(1);
@@ -49,16 +52,15 @@ public class ConnectFour{
       c.addPiece(0);
       c.addPiece(3);
       c.addPiece(3);
-    
-      System.out.println(c);
-      c.rotate("left");
-      System.out.println(c);
-      c.rotate("right");
-      System.out.println(c);
-      c.restartData();
-      System.out.println(c);
-    */
-    
+    System.out.println(c);
+    c.rotate("left");
+    System.out.println(c);
+    c.rotate("left");
+    System.out.println(c);
+    c.dropOne();
+    System.out.println(c);
+    c.dropAll();
+    System.out.println(c);
   }
 
   //----------Instance Variables--------------
@@ -221,7 +223,25 @@ public class ConnectFour{
     isFirstPlayerTurn = !isFirstPlayerTurn;
   }
 
-  public void drop(){
 
+
+  public void dropOne(){
+      for (int x = 0; x < width; x++){
+	  for (int y = 1; y < height; y++){
+	      
+	      if (data[x][y-1].equals(emptyPiece)){
+		  data[x][y-1] = data[x][y];
+		  data[x][y] = emptyPiece;
+		  
+	      }
+	  }
+      }
   }
+
+    public void dropAll(){
+	for (int i = 0; i < height; i ++){
+	    dropOne();
+	}
+    }
+
 }
