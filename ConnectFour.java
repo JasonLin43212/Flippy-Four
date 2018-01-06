@@ -30,7 +30,7 @@ public class ConnectFour{
       c.addPiece(0);
     */
 
-    /*
+    
       c.addPiece(3);
       c.addPiece(2);
 
@@ -49,7 +49,7 @@ public class ConnectFour{
       c.addPiece(0);
       c.addPiece(3);
       c.addPiece(3);
-    */
+    
     System.out.println(c);
     c.rotate("left");
     System.out.println(c);
