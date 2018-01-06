@@ -13,7 +13,7 @@ public class ConnectFour{
     c.addPiece(1);
 
     c.addPiece(0);
-    c.addPiece(1);
+    c.addPiece(3);
 
     c.addPiece(5);
     c.addPiece(3);
@@ -26,8 +26,11 @@ public class ConnectFour{
 
     c.addPiece(1);
     c.addPiece(5);
+
+    c.addPiece(0);
     */
 
+    /*
     c.addPiece(3);
     c.addPiece(2);
     c.addPiece(2);
@@ -45,6 +48,7 @@ public class ConnectFour{
     c.addPiece(0);
     c.addPiece(3);
     c.addPiece(3);
+    */
     System.out.println(c);
   }
 
