@@ -55,7 +55,7 @@ public class ConnectFour{
   private Piece Player2;
   private int width;
   private int height;
-  private String winState;
+  public String winState;
   private boolean isFirstPlayerTurn;
 
   //----------Other Variables------------
@@ -91,6 +91,18 @@ public class ConnectFour{
       data[index][findNextColumn(index)] = Player2;
     }
     isFirstPlayerTurn = !isFirstPlayerTurn;
+    updateWin();
+    System.out.println(winState);
+  }
+
+  public int findNextColumn (int xIndex) {
+    int yIndex = 0;
+    for (int i=0; i<height; i++){
+      if (!data[xIndex][i].equals(emptyPiece)){
+        yIndex++;
+      }
+    }
+    return yIndex;
   }
 
   public String toString () {
@@ -104,18 +116,18 @@ public class ConnectFour{
     return output;
   }
 
-  public int findNextColumn (int xIndex) {
-    int yIndex = 0;
-    for (int i=0; i<height; i++){
-      if (!data[xIndex][i].equals(emptyPiece)){
-        yIndex++;
-      }
-    }
-    return yIndex;
-  }
-
   public void updateWin() {
-
+    boolean one = hasWon(Player1);
+    boolean two = hasWon(Player2);
+    if (one && two) {
+      winState = "Draw";
+    }
+    else if (one) {
+      winState = "Player 1 Wins";
+    }
+    else if (two) {
+      winState = "Player 2 Wins";
+    }
   }
 
   private boolean hasWon(Piece p){
