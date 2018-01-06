@@ -5,8 +5,8 @@ public class ConnectFour{
     System.out.println(c);
     c.addPiece(2);
     c.addPiece(3);
-    // System.out.println(c);
-    // c.rotate("left");
+    System.out.println(c);
+     c.rotate("left");
     System.out.println(c);
     c.rotate("right");
     System.out.println(c);
@@ -98,7 +98,15 @@ public class ConnectFour{
 	    }
 	    data = temp;
 	}
+	if (direction.equals("left")){
+	    for(int x = 0; x < height; x ++){
+		for (int y = 0; y < width; y++)
+		    temp[x][y] = data[y][height-x-1];
+		
+	    }
+	    data = temp;
 
+	}
 
 	height = width;
 	width = data.length;
