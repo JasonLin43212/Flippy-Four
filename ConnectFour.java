@@ -1,10 +1,14 @@
 public class ConnectFour{
 
   public static void main(String[]args){
-    ConnectFour c = new ConnectFour(4,5,"blue","red");
+    ConnectFour c = new ConnectFour(7,6,"blue","red");
     System.out.println(c);
     c.addPiece(2);
     c.addPiece(3);
+    // System.out.println(c);
+    // c.rotate("left");
+    System.out.println(c);
+    c.rotate("right");
     System.out.println(c);
   }
 
@@ -82,20 +86,26 @@ public class ConnectFour{
     return yIndex;
   }
 
+
+
     public void rotate(String direction){
-	private Piece[][] temp;
-	if (direction.equals("left")){
-	    
-	}
-
+	Piece[][] temp = new Piece[height][width];
 	if (direction.equals("right")){
-
+	    for(int x = 0; x < height; x ++){
+		for (int y = 0; y < width; y++)
+		    temp[x][y] = data[width-y-1][x];
+		
+	    }
+	    data = temp;
 	}
 
+
+	height = width;
+	width = data.length;
 	isFirstPlayerTurn = !isFirstPlayerTurn;
     }
 
     public void drop(){
-	
+
     }
 }
