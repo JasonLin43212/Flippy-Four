@@ -30,7 +30,7 @@ public class ConnectFour{
       c.addPiece(0);
     */
 
-    
+    /*
       c.addPiece(3);
       c.addPiece(2);
 
@@ -55,6 +55,10 @@ public class ConnectFour{
     System.out.println(c);
     c.rotate("right");
     System.out.println(c);
+    c.restartData();
+    System.out.println(c);
+    */
+    
   }
 
   //----------Instance Variables--------------
@@ -75,12 +79,6 @@ public class ConnectFour{
 
   public ConnectFour (int width, int height, String playerOneColor, String playerTwoColor){
 
-    data = new Piece[width][height];
-    for (int i=0; i<width; i++){
-      for (int j=0; j<height; j++){
-        data[i][j] = emptyPiece;
-      }
-    }
 
     Player1 = new Piece(1, playerOneColor);
     Player2 = new Piece(2, playerTwoColor);
@@ -88,9 +86,20 @@ public class ConnectFour{
     this.height = height;
     this.width = width;
 
+    data = new Piece[width][height];
+    restartData();
+
     winState = "Continue Game";
     isFirstPlayerTurn = true;
   }
+
+    public void restartData(){
+	for (int i=0; i<width; i++){
+	    for (int j=0; j<height; j++){
+		data[i][j] = emptyPiece;
+	    }
+	}
+    }
 
   public void addPiece (int index){
     if (isFirstPlayerTurn){
