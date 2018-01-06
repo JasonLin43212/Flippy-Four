@@ -224,7 +224,7 @@ public class ConnectFour{
     isFirstPlayerTurn = !isFirstPlayerTurn;
   }
 
-  public void drop(){
+  public void gravity(){
 
   }
 }
