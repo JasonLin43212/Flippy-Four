@@ -50,13 +50,13 @@ public class ConnectFour{
       c.addPiece(3);
       c.addPiece(3);
     
-    System.out.println(c);
-    c.rotate("left");
-    System.out.println(c);
-    c.rotate("right");
-    System.out.println(c);
-    c.restartData();
-    System.out.println(c);
+      System.out.println(c);
+      c.rotate("left");
+      System.out.println(c);
+      c.rotate("right");
+      System.out.println(c);
+      c.restartData();
+      System.out.println(c);
     */
     
   }
@@ -93,13 +93,13 @@ public class ConnectFour{
     isFirstPlayerTurn = true;
   }
 
-    public void restartData(){
-	for (int i=0; i<width; i++){
+  public void restartData(){
+    for (int i=0; i<width; i++){
 	    for (int j=0; j<height; j++){
-		data[i][j] = emptyPiece;
+        data[i][j] = emptyPiece;
 	    }
-	}
     }
+  }
 
   public void addPiece (int index){
     if (isFirstPlayerTurn){
@@ -205,7 +205,6 @@ public class ConnectFour{
 	    for(int x = 0; x < height; x ++){
         for (int y = 0; y < width; y++)
           temp[x][y] = data[width-y-1][x];
-		
 	    }
 	    data = temp;
     }
@@ -213,10 +212,8 @@ public class ConnectFour{
 	    for(int x = 0; x < height; x ++){
         for (int y = 0; y < width; y++)
           temp[x][y] = data[y][height-x-1];
-        
       }
 	    data = temp;
-
     }
 
     height = width;
