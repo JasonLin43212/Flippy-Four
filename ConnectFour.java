@@ -29,33 +29,30 @@ public class ConnectFour{
       c.addPiece(5);
 
       c.addPiece(0);
-      */
-    
+    */
+    c.addPiece(3);
+    c.addPiece(2);
 
-    
-      c.addPiece(3);
-      c.addPiece(2);
-
-      c.addPiece(2);
-      c.addPiece(1);
-      c.addPiece(1);
-      c.restartData();
-      c.addPiece(3);
-      c.addPiece(1);
-      c.addPiece(1);
-      c.addPiece(2);
-      c.addPiece(2);
-      c.addPiece(0);
-      c.addPiece(4);
-      c.addPiece(0);
-      c.addPiece(0);
-      c.addPiece(0);
-      c.addPiece(3);
-      c.addPiece(3);
+    c.addPiece(2);
+    c.addPiece(1);
+    c.addPiece(1);
+    c.restartData();
+    c.addPiece(3);
+    c.addPiece(1);
+    c.addPiece(1);
+    c.addPiece(2);
+    c.addPiece(2);
+    c.addPiece(0);
+    c.addPiece(4);
+    c.addPiece(0);
+    c.addPiece(0);
+    c.addPiece(0);
+    c.addPiece(3);
+    c.addPiece(3);
     System.out.println(c);
     c.rotate("left");
     System.out.println(c);
-    c.rotate("left");
+    c.rotate("right");
     System.out.println(c);
     c.dropOne();
     System.out.println(c);
@@ -105,24 +102,14 @@ public class ConnectFour{
 
   public void addPiece (int index){
     if (isFirstPlayerTurn){
-      data[index][findNextColumn(index)] = Player1;
+      data[index][height-1] = Player1;
     }
     else {
-      data[index][findNextColumn(index)] = Player2;
+      data[index][height-1] = Player2;
     }
     isFirstPlayerTurn = !isFirstPlayerTurn;
     updateWin();
     System.out.println(winState);
-  }
-
-  public int findNextColumn (int xIndex) {
-    int yIndex = 0;
-    for (int i=0; i<height; i++){
-      if (!data[xIndex][i].equals(emptyPiece)){
-        yIndex++;
-      }
-    }
-    return yIndex;
   }
 
   public String toString () {
@@ -226,22 +213,20 @@ public class ConnectFour{
 
 
   public void dropOne(){
-      for (int x = 0; x < width; x++){
-	  for (int y = 1; y < height; y++){
-	      
+    for (int x = 0; x < width; x++){
+      for (int y = 1; y < height; y++){
 	      if (data[x][y-1].equals(emptyPiece)){
-		  data[x][y-1] = data[x][y];
-		  data[x][y] = emptyPiece;
-		  
+          data[x][y-1] = data[x][y];
+          data[x][y] = emptyPiece;
 	      }
-	  }
       }
+    }
   }
 
-    public void dropAll(){
-	for (int i = 0; i < height; i ++){
+  public void dropAll(){
+    for (int i = 0; i < height; i ++){
 	    dropOne();
-	}
     }
+  }
 
 }
