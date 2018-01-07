@@ -14,8 +14,8 @@ public class ConnectFour extends JFrame /*implements ActionListener, KeyListener
   private Piece[][] data;
   private Piece Player1;
   private Piece Player2;
-  private int width;
-  private int height;
+  public int width;
+  public int height;
   private String winState;
   private boolean isFirstPlayerTurn;
   private Animation animation;
@@ -48,14 +48,13 @@ public class ConnectFour extends JFrame /*implements ActionListener, KeyListener
 
     //For Gui
     this.setTitle("Flippy Four");
-    this.setSize(600,400);
+    this.setSize(200+width*50,200+width*50);
     this.setLocation(100,100);
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     this.setResizable(false);
 
-    animation = new Animation(this);
-
     pane = this.getContentPane();
+    animation = new Animation(this);
     pane.add(animation);
   }
 
@@ -67,7 +66,7 @@ public class ConnectFour extends JFrame /*implements ActionListener, KeyListener
     }
   }
 
-  public void addPiece (int index){
+  private void addPiece (int index){
     if (isFirstPlayerTurn){
       data[index][height-1] = Player1;
     }
@@ -91,7 +90,7 @@ public class ConnectFour extends JFrame /*implements ActionListener, KeyListener
     return output;
   }
 
-  public void updateWin() {
+  private void updateWin() {
     boolean one = hasWon(Player1);
     boolean two = hasWon(Player2);
     if (one && two) {
@@ -153,9 +152,7 @@ public class ConnectFour extends JFrame /*implements ActionListener, KeyListener
     }
     return true;
   }
-
-
-
+  
   public void rotate(String direction){
     Piece[][] temp = new Piece[height][width];
     if (direction.equals("right")){
@@ -180,7 +177,7 @@ public class ConnectFour extends JFrame /*implements ActionListener, KeyListener
 
 
 
-  public void dropOne(){
+  private void dropOne(){
     for (int x = 0; x < width; x++){
       for (int y = 1; y < height; y++){
 	      if (data[x][y-1].equals(emptyPiece)){
@@ -191,10 +188,17 @@ public class ConnectFour extends JFrame /*implements ActionListener, KeyListener
     }
   }
 
-  public void dropAll(){
+  private void dropAll(){
     for (int i = 0; i < height; i ++){
 	    dropOne();
     }
   }
 
+  public int getBoardHeight() {
+    return height;
+  }
+
+  public int getBoardWidth() {
+    return width;
+  }
 }
