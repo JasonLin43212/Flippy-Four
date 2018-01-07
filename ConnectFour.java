@@ -5,8 +5,10 @@ import java.awt.event.*;
 public class ConnectFour extends JFrame /*implements ActionListener, KeyListener*/{
 
   public static void main(String[]args){
-    ConnectFour c = new ConnectFour(7,6,"blue","red");
+    ConnectFour c = new ConnectFour(5,5,"blue","red");
     c.setVisible(true);
+    System.out.println(c.getHeight());
+    System.out.println(c.getWidth());
   }
 
   //----------Instance Variables For Game--------------
@@ -48,7 +50,7 @@ public class ConnectFour extends JFrame /*implements ActionListener, KeyListener
 
     //For Gui
     this.setTitle("Flippy Four");
-    this.setSize(200+width*50,200+width*50);
+    this.setSize(240+width*60,240+height*60);
     this.setLocation(100,100);
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     this.setResizable(false);
