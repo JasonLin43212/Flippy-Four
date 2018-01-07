@@ -5,19 +5,21 @@ import java.awt.event.*;
 public class ConnectFour extends JFrame /*implements ActionListener, KeyListener*/{
 
   public static void main(String[]args){
-    ConnectFour c = new ConnectFour(12,12,Color.RED,Color.BLUE);
+    ConnectFour c = new ConnectFour(7,6,Color.RED,Color.BLUE);
     c.setVisible(true);
+    
     System.out.println(c.getHeight());
     System.out.println(c.getWidth());
+    System.out.println(c);
   }
 
   //----------Instance Variables For Game--------------
 
   private Piece[][] data;
-  private Piece Player1;
-  private Piece Player2;
   public int width;
   public int height;
+  private Color playerOneColor;
+  private Color playerTwoColor;
   private String winState;
   private boolean isFirstPlayerTurn;
   private Animation animation;
@@ -26,21 +28,21 @@ public class ConnectFour extends JFrame /*implements ActionListener, KeyListener
 
   private Container pane;
   private JButton newGame;
+  private Board board;
 
   //----------Other Variables------------
 
-  Piece emptyPiece = new Piece(0, Color.WHITE);
-
+  Color emptyColor = Color.YELLOW;
+  
   //----------Methods------------
 
   public ConnectFour (int width, int height, Color playerOneColor, Color playerTwoColor){
 
     //For game
-    Player1 = new Piece(1, playerOneColor);
-    Player2 = new Piece(2, playerTwoColor);
-
     this.height = height;
     this.width = width;
+    this.playerOneColor = playerOneColor;
+    this.playerTwoColor = playerTwoColor;
 
     data = new Piece[width][height];
     restartData();
@@ -52,29 +54,45 @@ public class ConnectFour extends JFrame /*implements ActionListener, KeyListener
     int sideLength = 200 + (Math.max(width,height))*50;
     this.setTitle("Flippy Four");
     this.setSize(sideLength,sideLength);
-    this.setLocation(100,100);
+    this.setLocation(100,0);
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     this.setResizable(false);
+
+    int[] boardXCor = new int[4];
+    int[] boardYCor = new int[4];
+    int endWidth = 100+width*50;
+    int endHeight = 100+height*50;
+
+    boardXCor[0] = 100;
+    boardXCor[1] = endWidth;
+    boardXCor[2] = endWidth;
+    boardXCor[3] = 100;
+    boardYCor[0] = 100;
+    boardYCor[1] = 100;
+    boardYCor[2] = endHeight;
+    boardYCor[3] = endHeight;
+
+    board = new Board(boardXCor,boardYCor);
 
     pane = this.getContentPane();
     animation = new Animation(this);
     pane.add(animation);
   }
 
-  public void restartData(){
+  private void restartData(){
     for (int i=0; i<width; i++){
 	    for (int j=0; j<height; j++){
-        data[i][j] = emptyPiece;
+        data[i][j] = makePiece(9,emptyColor,i,j);
 	    }
     }
   }
 
   private void addPiece (int index){
     if (isFirstPlayerTurn){
-      data[index][height-1] = Player1;
+      data[index][height-1] = makePiece(1,playerOneColor,index,height-1);
     }
     else {
-      data[index][height-1] = Player2;
+      data[index][height-1] = makePiece(2,playerTwoColor,index,height-1);
     }
     isFirstPlayerTurn = !isFirstPlayerTurn;
     dropAll();
@@ -94,8 +112,8 @@ public class ConnectFour extends JFrame /*implements ActionListener, KeyListener
   }
 
   private void updateWin() {
-    boolean one = hasWon(Player1);
-    boolean two = hasWon(Player2);
+    boolean one = hasWon(1);
+    boolean two = hasWon(2);
     if (one && two) {
       winState = "Draw";
     }
@@ -107,11 +125,11 @@ public class ConnectFour extends JFrame /*implements ActionListener, KeyListener
     }
   }
 
-  private boolean hasWon(Piece p){
+  private boolean hasWon(int id){
     //checking vertical wins
     for (int i=0; i<width; i++){
       for (int j=0; j<height-4; j++){
-        if (checkWin(p,i,j,0,1)){
+        if (checkWin(id,i,j,0,1)){
           return true;
         }
       }
@@ -120,7 +138,7 @@ public class ConnectFour extends JFrame /*implements ActionListener, KeyListener
     //checking horizontal wins
     for (int i=0; i<width-4; i++){
       for (int j=0; j<height; j++){
-        if (checkWin(p,i,j,1,0)){
+        if (checkWin(id,i,j,1,0)){
           return true;
         }
       }
@@ -129,7 +147,7 @@ public class ConnectFour extends JFrame /*implements ActionListener, KeyListener
     //checking diagonal // wins
     for (int i=0; i<width-4; i++){
       for (int j=0; j<height-4; j++){
-        if (checkWin(p,i,j,1,1)){
+        if (checkWin(id,i,j,1,1)){
           return true;
         }
       }
@@ -138,7 +156,7 @@ public class ConnectFour extends JFrame /*implements ActionListener, KeyListener
     //checking diagonal \\ wins
     for (int i=0; i<width; i++){
       for (int j=height-1; j>2; j--){
-        if (checkWin(p,i,j,1,-1)){
+        if (checkWin(id,i,j,1,-1)){
           return true;
         }
       }
@@ -146,17 +164,17 @@ public class ConnectFour extends JFrame /*implements ActionListener, KeyListener
     return false;
   }
 
-  private boolean checkWin(Piece p, int x, int y, int xIncrement, int yIncrement){
+  private boolean checkWin(int id, int x, int y, int xIncrement, int yIncrement){
     //might change the i<4 to something else for connect 5
     for (int i=0; i<4; i++){
-      if (!data[x+xIncrement*i][y+yIncrement*i].equals(p)){
+      if (!(data[x+xIncrement*i][y+yIncrement*i].getId() == id)){
         return false;
       }
     }
     return true;
   }
   
-  public void rotate(String direction){
+  private void rotate(String direction){
     Piece[][] temp = new Piece[height][width];
     if (direction.equals("right")){
 	    for(int x = 0; x < height; x ++){
@@ -178,17 +196,17 @@ public class ConnectFour extends JFrame /*implements ActionListener, KeyListener
     isFirstPlayerTurn = !isFirstPlayerTurn;
   }
 
-
-
   private void dropOne(){
     for (int x = 0; x < width; x++){
       for (int y = 1; y < height; y++){
-	      if (data[x][y-1].equals(emptyPiece)){
+	      if (data[x][y-1].getId() == 9){
           data[x][y-1] = data[x][y];
-          data[x][y] = emptyPiece;
+          data[x][y-1].drop();
+          data[x][y] = makePiece(9,emptyColor,x,y);
 	      }
       }
     }
+    animation.repaint();
   }
 
   private void dropAll(){
@@ -203,5 +221,21 @@ public class ConnectFour extends JFrame /*implements ActionListener, KeyListener
 
   public int getBoardWidth() {
     return width;
+  }
+
+  public Board getBoard(){
+    return board;
+  }
+
+  private Piece makePiece(int id, Color color, int x, int y) {
+    int[] xCor = new int[1];
+    int[] yCor = new int[1];
+    xCor[0] = 104 + 50*x;
+    yCor[0] = 104 + 50*(height-1-y);
+    return new Piece(id,color,xCor,yCor);
+  }
+
+  public Piece getPieceAt(int x, int y) {
+    return data[x][y];
   }
 }

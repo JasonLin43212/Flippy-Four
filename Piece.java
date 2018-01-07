@@ -1,32 +1,33 @@
-import java.awt.Color;
+import java.awt.*;
 
 public class Piece extends RotatableObject{
 
-    //------Instance Variables--------
+  //------Instance Variables--------
 
-    private Color color;
-    private int id;
+  private Color color;
+  private int id;
 
-    //------Methods------
-    public Piece (int id, Color color) {
-	this.color = color;
-	this.id = id;
-    }
+  //------Methods------
+  public Piece (int id, Color color, int[] x, int[] y) {
+    super(x,y);
+    this.color = color;
+    this.id = id;
+  }
 
-    public int getId () {
-	return id;
-    }
+  public int getId () {
+    return id;
+  }
 
-    public String toString () {
-	return "" + id;
-    }
+  public String toString () {
+    return "" + id;
+  }
 
-    public boolean equals (Piece other) {
-	return id == other.getId();
-    }
+  public void drawObject(Graphics g) {
+    g.setColor(color);
+    g.fillOval(xGui[0],yGui[0],40,40);
+  }
 
-    public static void main(String[] args){
-	//Piece x = new Piece(0, "red");
-	//System.out.println(x.getId());
-    }
+  public void drop() {
+    yGui[0] += 50;
+  }
 }

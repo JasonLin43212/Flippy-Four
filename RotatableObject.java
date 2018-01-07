@@ -4,19 +4,19 @@ public abstract class RotatableObject{
 
   //---------Instance Variables--------
 
-  int[] x;
-  int[] y;
-  double[] xGui;
-  double[] yGui;
+  public double[] x;
+  public double[] y;
+  public int[] xGui;
+  public int[] yGui;
 
   //-------------Methods--------------
 
   public RotatableObject (int[] x, int[] y) {
     int numOfPoints = x.length;
-    this.x = new int[numOfPoints];
-    this.y = new int[numOfPoints];
-    this.xGui = new double[numOfPoints];
-    this.yGui = new double[numOfPoints];
+    this.x = new double[numOfPoints];
+    this.y = new double[numOfPoints];
+    this.xGui = new int[numOfPoints];
+    this.yGui = new int[numOfPoints];
 
     for (int i=0; i<numOfPoints; i++){
       this.x[i] = x[i];
@@ -25,4 +25,6 @@ public abstract class RotatableObject{
       yGui[i] = y[i];
     }
   }
+
+  public abstract void drawObject(Graphics g);
 }
