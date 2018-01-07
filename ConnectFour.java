@@ -5,7 +5,7 @@ import java.awt.event.*;
 public class ConnectFour extends JFrame /*implements ActionListener, KeyListener*/{
 
   public static void main(String[]args){
-    ConnectFour c = new ConnectFour(12,12,"blue","red");
+    ConnectFour c = new ConnectFour(12,12,Color.RED,Color.BLUE);
     c.setVisible(true);
     System.out.println(c.getHeight());
     System.out.println(c.getWidth());
@@ -29,11 +29,11 @@ public class ConnectFour extends JFrame /*implements ActionListener, KeyListener
 
   //----------Other Variables------------
 
-  Piece emptyPiece = new Piece(0, "white");
+  Piece emptyPiece = new Piece(0, Color.WHITE);
 
   //----------Methods------------
 
-  public ConnectFour (int width, int height, String playerOneColor, String playerTwoColor){
+  public ConnectFour (int width, int height, Color playerOneColor, Color playerTwoColor){
 
     //For game
     Player1 = new Piece(1, playerOneColor);

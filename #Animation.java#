@@ -22,6 +22,7 @@ public class Animation extends JPanel{
     int[] boardYCor = new int[4];
     int endWidth = 100+game.getBoardWidth()*50;
     int endHeight = 100+game.getBoardHeight()*50;
+    
     boardXCor.add(100);
     boardXCor.add(endWidth);
     boardXCor.add(endWidth);
@@ -31,6 +32,7 @@ public class Animation extends JPanel{
     boardYCor.add(100);
     boardYCor.add(endHeight);
     boardYCor.add(endHeight);
+    
     board = new Board(boardXCor,boardYCor);
   }
 

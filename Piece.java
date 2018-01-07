@@ -1,12 +1,14 @@
+import java.awt.Color;
+
 public class Piece extends RotatableObject{
 
     //------Instance Variables--------
 
-    private String color;
+    private Color color;
     private int id;
 
     //------Methods------
-    public Piece (int id, String color) {
+    public Piece (int id, Color color) {
 	this.color = color;
 	this.id = id;
     }
