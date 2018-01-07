@@ -5,7 +5,7 @@ import java.awt.event.*;
 public class ConnectFour extends JFrame /*implements ActionListener, KeyListener*/{
 
   public static void main(String[]args){
-    ConnectFour c = new ConnectFour(5,5,"blue","red");
+    ConnectFour c = new ConnectFour(12,12,"blue","red");
     c.setVisible(true);
     System.out.println(c.getHeight());
     System.out.println(c.getWidth());
@@ -49,8 +49,9 @@ public class ConnectFour extends JFrame /*implements ActionListener, KeyListener
     isFirstPlayerTurn = true;
 
     //For Gui
+    int sideLength = 200 + (Math.max(width,height))*50;
     this.setTitle("Flippy Four");
-    this.setSize(240+width*60,240+height*60);
+    this.setSize(sideLength,sideLength);
     this.setLocation(100,100);
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     this.setResizable(false);

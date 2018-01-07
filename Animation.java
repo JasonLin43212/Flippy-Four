@@ -24,7 +24,7 @@ public class Animation extends JPanel{
     super.paintComponent(g);
     for (int x=0; x<game.getBoardWidth(); x++){
       for (int y=game.getBoardHeight()-1; y>=0; y--){
-        int cellSize = 60;
+        int cellSize = 50;
         g.drawRect(2*cellSize+x*cellSize,2*cellSize+y*cellSize,cellSize,cellSize);
       }
     }
