@@ -108,6 +108,7 @@ public class ConnectFour{
       data[index][height-1] = Player2;
     }
     isFirstPlayerTurn = !isFirstPlayerTurn;
+    dropAll();
     updateWin();
     System.out.println(winState);
   }
@@ -204,9 +205,9 @@ public class ConnectFour{
       }
 	    data = temp;
     }
-
     height = width;
     width = data.length;
+    dropAll();
     isFirstPlayerTurn = !isFirstPlayerTurn;
   }
 
