@@ -1,74 +1,29 @@
-public class ConnectFour{
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class ConnectFour extends JFrame /*implements ActionListener, KeyListener*/{
 
   public static void main(String[]args){
     ConnectFour c = new ConnectFour(7,6,"blue","red");
-
-    /*
-      c.addPiece(6);
-      c.addPiece(0);
-
-      c.addPiece(0);
-      c.addPiece(1);
-
-      c.addPiece(0);
-      c.addPiece(1);
-
-      c.addPiece(0);
-      c.addPiece(3);
-
-      c.addPiece(5);
-      c.addPiece(3);
-
-      c.addPiece(3);
-      c.addPiece(1);
-
-      c.addPiece(5);
-      c.addPiece(4);
-
-      c.addPiece(1);
-      c.addPiece(5);
-
-      c.addPiece(0);
-    */
-    c.addPiece(3);
-    c.addPiece(2);
-
-    c.addPiece(2);
-    c.addPiece(1);
-    c.addPiece(1);
-    c.restartData();
-    c.addPiece(3);
-    c.addPiece(1);
-    c.addPiece(1);
-    c.addPiece(2);
-    c.addPiece(2);
-    c.addPiece(0);
-    c.addPiece(4);
-    c.addPiece(0);
-    c.addPiece(0);
-    c.addPiece(0);
-    c.addPiece(3);
-    c.addPiece(3);
-    System.out.println(c);
-    c.rotate("left");
-    System.out.println(c);
-    c.rotate("right");
-    System.out.println(c);
-    c.dropOne();
-    System.out.println(c);
-    c.dropAll();
-    System.out.println(c);
+    c.setVisible(true);
   }
 
-  //----------Instance Variables--------------
+  //----------Instance Variables For Game--------------
 
   private Piece[][] data;
   private Piece Player1;
   private Piece Player2;
   private int width;
   private int height;
-  public String winState;
+  private String winState;
   private boolean isFirstPlayerTurn;
+  private Animation animation;
+
+  //----------Instance Variables for GUI--------------
+
+  private Container pane;
+  private JButton newGame;
 
   //----------Other Variables------------
 
@@ -78,7 +33,7 @@ public class ConnectFour{
 
   public ConnectFour (int width, int height, String playerOneColor, String playerTwoColor){
 
-
+    //For game
     Player1 = new Piece(1, playerOneColor);
     Player2 = new Piece(2, playerTwoColor);
 
@@ -90,6 +45,18 @@ public class ConnectFour{
 
     winState = "Continue Game";
     isFirstPlayerTurn = true;
+
+    //For Gui
+    this.setTitle("Flippy Four");
+    this.setSize(600,400);
+    this.setLocation(100,100);
+    this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+    this.setResizable(false);
+
+    animation = new Animation(this);
+
+    pane = this.getContentPane();
+    pane.add(animation);
   }
 
   public void restartData(){
