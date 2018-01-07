@@ -1,1 +1,0 @@
-kachi@kachi-Lenovo-ideapad-720S-14IKB.1692:1515340902
