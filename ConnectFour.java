@@ -5,26 +5,8 @@ import java.awt.event.*;
 public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListener{
 
   public static void main(String[]args){
-    ConnectFour c = new ConnectFour(13,13,Color.RED,Color.BLUE);
+    ConnectFour c = new ConnectFour(7,6,Color.RED,Color.GREEN);
     c.setVisible(true);
-
-    c.addPiece(2);
-    c.addPiece(1);
-    c.addPiece(0);
-    c.addPiece(3);
-    c.addPiece(1);
-    c.addPiece(5);
-    c.addPiece(4);
-    c.addPiece(6);
-    c.addPiece(5);
-    c.addPiece(4);
-    c.addPiece(2);
-    c.addPiece(3);
-    c.addPiece(0);
-    c.addPiece(1);
-    System.out.println(c.getHeight());
-    System.out.println(c.getWidth());
-    System.out.println(c);
   }
 
   //----------Instance Variables For Game--------------
@@ -93,6 +75,7 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
     pane = this.getContentPane();
     animation = new Animation(this);
     pane.add(animation);
+    addKeyListener(this);
   }
 
   private void restartData(){
@@ -113,7 +96,7 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
     isFirstPlayerTurn = !isFirstPlayerTurn;
     dropAll();
     updateWin();
-    System.out.println(winState);
+    animation.repaint();
   }
 
   public String toString () {
@@ -168,9 +151,9 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
         }
       }
     }
-
+    
     //checking diagonal \\ wins
-    for (int i=0; i<width; i++){
+    for (int i=0; i<width-4; i++){
       for (int j=height-1; j>2; j--){
         if (checkWin(id,i,j,1,-1)){
           return true;
@@ -183,6 +166,9 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
   private boolean checkWin(int id, int x, int y, int xIncrement, int yIncrement){
     //might change the i<4 to something else for connect 5
     for (int i=0; i<4; i++){
+      System.out.println(x+xIncrement*i);
+      System.out.println(y+yIncrement*i);
+      System.out.println("------");
       if (!(data[x+xIncrement*i][y+yIncrement*i].getId() == id)){
         return false;
       }
@@ -272,6 +258,9 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
       if (selectorIndex <width-1){
         selectorIndex++;
       }
+    }
+    if (key == KeyEvent.VK_SPACE) {
+      addPiece(selectorIndex);
     }
 
     animation.repaint();
