@@ -195,6 +195,7 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
     height = width;
     width = data.length;
     dropAll();
+    //animation.repaint();
     isFirstPlayerTurn = !isFirstPlayerTurn;
   }
 
@@ -261,6 +262,12 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
     }
     if (key == KeyEvent.VK_SPACE) {
       addPiece(selectorIndex);
+    }
+    if (key == KeyEvent.VK_Q){
+      rotate("left");
+    }
+    if (key == KeyEvent.VK_E){
+      rotate("right");
     }
 
     animation.repaint();
