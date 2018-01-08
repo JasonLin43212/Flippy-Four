@@ -2,12 +2,26 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class ConnectFour extends JFrame /*implements ActionListener, KeyListener*/{
+public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListener{
 
   public static void main(String[]args){
-    ConnectFour c = new ConnectFour(7,6,Color.RED,Color.BLUE);
+    ConnectFour c = new ConnectFour(13,13,Color.RED,Color.BLUE);
     c.setVisible(true);
-    
+
+    c.addPiece(2);
+    c.addPiece(1);
+    c.addPiece(0);
+    c.addPiece(3);
+    c.addPiece(1);
+    c.addPiece(5);
+    c.addPiece(4);
+    c.addPiece(6);
+    c.addPiece(5);
+    c.addPiece(4);
+    c.addPiece(2);
+    c.addPiece(3);
+    c.addPiece(0);
+    c.addPiece(1);
     System.out.println(c.getHeight());
     System.out.println(c.getWidth());
     System.out.println(c);
@@ -23,6 +37,7 @@ public class ConnectFour extends JFrame /*implements ActionListener, KeyListener
   private String winState;
   private boolean isFirstPlayerTurn;
   private Animation animation;
+  private int selectorIndex;
 
   //----------Instance Variables for GUI--------------
 
@@ -32,7 +47,7 @@ public class ConnectFour extends JFrame /*implements ActionListener, KeyListener
 
   //----------Other Variables------------
 
-  Color emptyColor = Color.YELLOW;
+  Color emptyColor = Color.WHITE;
   
   //----------Methods------------
 
@@ -43,6 +58,7 @@ public class ConnectFour extends JFrame /*implements ActionListener, KeyListener
     this.width = width;
     this.playerOneColor = playerOneColor;
     this.playerTwoColor = playerTwoColor;
+    selectorIndex = width/2;
 
     data = new Piece[width][height];
     restartData();
@@ -238,4 +254,29 @@ public class ConnectFour extends JFrame /*implements ActionListener, KeyListener
   public Piece getPieceAt(int x, int y) {
     return data[x][y];
   }
+
+  public int getSelectorIndex() {
+    return selectorIndex;
+  }
+
+  //----------For Key Listener-----------
+  public void keyPressed(KeyEvent e){
+    int key = e.getKeyCode();
+
+    if (key == KeyEvent.VK_LEFT){
+      if (selectorIndex > 0) {
+        selectorIndex--;
+      }
+    }
+    if (key == KeyEvent.VK_RIGHT){
+      if (selectorIndex <width-1){
+        selectorIndex++;
+      }
+    }
+
+    animation.repaint();
+  }
+
+  public void keyTyped(KeyEvent e){}
+  public void keyReleased(KeyEvent e){}
 }
