@@ -20,9 +20,8 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
 		    h = Integer.parseInt(next);
 
 		} catch (NumberFormatException e) {
-		    System.out.println("Enter the HEIGHT of your board. \nThis should be an integer between 5 and 11, inclusive. ");
 		}
-		if(h == (int)h && h >= 5 && h <= 11){
+		if(h >= 5 && h <= 11){
 		    parameters.add(next);
 		}
 	    }
