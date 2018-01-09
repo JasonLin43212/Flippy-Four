@@ -28,7 +28,15 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
 	    if (parameters.size() == 1){
 		System.out.println("Enter the WIDTH of your board. \nThis should be an integer between 5 and 11, inclusive. ");
 		String next = scan.next();
-	        parameters.add(next);
+		int w = 0;
+		try {
+		    w = Integer.parseInt(next);
+
+		} catch (NumberFormatException e) {
+		}
+		if(w >= 5 && w <= 11){
+		    parameters.add(next);
+		}
 	    }
 
 	    if (parameters.size() == 2){
