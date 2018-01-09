@@ -57,8 +57,8 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
 
 	}
 	
-	//ConnectFour c = new ConnectFour(7,6,Color.RED,Color.GREEN);
-	//c.setVisible(true);
+	ConnectFour c = new ConnectFour(7,6,Color.RED,Color.GREEN);
+        c.setVisible(true);
     }
 
     //----------Instance Variables For Game--------------
