@@ -53,6 +53,12 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
 
 	    if (parameters.size() == 4){
 		stop = true;
+		System.out.println("You are done setting up! \n Now for some instructions: \n\n [<-]: moves arrow left \n" +
+                                    "[->]: moves arrow right \n" +
+                                    "[space]: drops piece\n" +
+                                    "[l]: rotates board left \n" +
+                                    "[r]: rotates board right \n"
+				   );
 	    }
 
 	}
