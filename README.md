@@ -30,5 +30,5 @@ java ConnectFour
 ```
 
 ## Contributors
-Made by JacKeL
+Made by JacKeL_
 Jason Lin and Karen Li
