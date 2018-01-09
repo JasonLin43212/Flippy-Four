@@ -12,15 +12,24 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
 
 
 	while (!stop){
-	    if (parameters.size() == 0){
-		System.out.println("Enter the height of your board. \n This should be an integer between 5 and 11, inclusive. ");
+	    while (parameters.size() == 0){
+		System.out.println("Enter the HEIGHT of your board. \nThis should be an integer between 5 and 11, inclusive. ");
 		String next = scan.next();
-		parameters.add(next);
+		int h = 0;
+		try {
+		    h = Integer.parseInt(next);
+
+		} catch (NumberFormatException e) {
+		    System.out.println("Enter the HEIGHT of your board. \nThis should be an integer between 5 and 11, inclusive. ");
+		}
+		if(h == (int)h && h >= 5 && h <= 11){
+		    parameters.add(next);
+		}
 	    }
 	    if (parameters.size() == 1){
-		System.out.println("Enter the width of your board. \n This should be an integer between 5 and 11, inclusive. ");
+		System.out.println("Enter the WIDTH of your board. \nThis should be an integer between 5 and 11, inclusive. ");
 		String next = scan.next();
-		parameters.add(next);
+	        parameters.add(next);
 	    }
 
 	    if (parameters.size() == 2){
