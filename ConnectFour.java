@@ -216,7 +216,7 @@ public class ConnectFour{
   public void dropOne(){
     for (int x = 0; x < width; x++){
       for (int y = 1; y < height; y++){
-	      if (data[x][y-1].equals(emptyPiece)){
+	  if (!data[x][y].equals(emptyPiece) && data[x][y-1].equals(emptyPiece)){
           data[x][y-1] = data[x][y];
           data[x][y] = emptyPiece;
 	      }
