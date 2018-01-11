@@ -27,14 +27,18 @@ public class Animation extends JPanel implements ActionListener{
 
   public void paintComponent(Graphics g){
     super.paintComponent(g);
+
+    //Drawing the board
     game.getBoard().drawObject(g);
 
+    //Drawing the Pieces
     for (int x=0; x<game.getBoardWidth(); x++){
       for (int y=game.getBoardHeight()-1; y>=0; y--){
         game.getPieceAt(x,y).drawObject(g);
       }
     }
 
+    // Drawing the arrow
     if (!isRotating) {
       int[] arrowXCor = new int[3];
       int[] arrowYCor = new int[3];
