@@ -29,6 +29,18 @@ Finally, run the code, following the instructions and have fun!
 java ConnectFour
 ```
 
+## Development Log
+
+### Accomplished Features
+
+### Planned Features
+
+#### hello
+
+### Milestone
+
+### Bugs
+
 ## Contributors
 Made by JacKeL  
 Jason Lin and Karen Li
