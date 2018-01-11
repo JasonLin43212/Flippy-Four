@@ -10,7 +10,6 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
 	Scanner scan = new Scanner(System.in);
 	ArrayList<String> parameters = new ArrayList<String>();
 
-	System.out.println((char)27 + "[33mYELLOW" + "testing: should be yellow");
 	while (!stop){
 	    while (parameters.size() == 0){
 		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n----------------------------\n"+
