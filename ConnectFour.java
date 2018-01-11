@@ -20,6 +20,7 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
   private boolean isFirstPlayerTurn;
   private Animation animation;
   private int selectorIndex;
+  private boolean isRotated;
 
   //----------Instance Variables for GUI--------------
 
@@ -45,6 +46,7 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
     this.width = width;
     this.playerOneColor = playerOneColor;
     this.playerTwoColor = playerTwoColor;
+    isRotated = false;
     selectorIndex = width/2;
 
     int adjustment = (Math.max(width,height));
@@ -201,6 +203,7 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
     data = temp;
     height = width;
     width = data.length;
+    isRotated = !isRotated;
     isFirstPlayerTurn = !isFirstPlayerTurn;
   }
 
@@ -245,8 +248,15 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
   private Piece makePiece(int id, Color color, int x, int y) {
     int[] xCor = new int[1];
     int[] yCor = new int[1];
-    xCor[0] = startWidth + 4 + 50*x;
-    yCor[0] = startHeight + 4 + 50*(height-1-y);
+    if (isRotated) {
+      xCor[0] = startHeight + 4 + 50*x;
+      yCor[0] = startWidth + 4 + 50*(height-1-y);
+    }
+    else {
+      xCor[0] = startWidth + 4 + 50*x;
+      yCor[0] = startHeight + 4 + 50*(height-1-y);
+
+    }
     return new Piece(id,color,xCor,yCor);
   }
 
