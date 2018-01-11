@@ -5,7 +5,7 @@ import java.awt.event.*;
 public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListener{
 
   public static void main(String[]args){
-    ConnectFour c = new ConnectFour(8,7,Color.RED,Color.GREEN);
+    ConnectFour c = new ConnectFour(7,11,Color.RED,Color.GREEN);
     c.setVisible(true);
   }
 
@@ -239,6 +239,14 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
 
   public int getYCenter() {
     return yCenter;
+  }
+
+  public int getStartWidth() {
+    return startWidth;
+  }
+
+  public int getStartHeight() {
+    return startHeight;
   }
 
   public Board getBoard(){
