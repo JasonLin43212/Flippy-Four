@@ -29,7 +29,7 @@ public abstract class RotatableObject{
   public abstract void drawObject(Graphics g);
 
   public void rotate(String direction, int xCenter, int yCenter) {
-    int degrees = 15;
+    int degrees = 1;
     if (direction.equals("left")) {
       degrees *= -1;
     }

@@ -11,18 +11,19 @@ public class Animation extends JPanel implements ActionListener{
   private boolean isRotating;
   private int dropInt;
   private int rotateInt;
+  private String rotationalDirection;
 
   //---------Other Variables---------
 
-  Timer timer = new Timer(1000,this);
+  Timer timer = new Timer(10,this);
   //-------------Methods-----------
 
   public Animation (ConnectFour game) {
     this.game = game;
+    timer.start();
   }
 
   public void paintComponent(Graphics g){
-    System.out.println("painting");
     super.paintComponent(g);
     game.getBoard().drawObject(g);
 
@@ -31,9 +32,6 @@ public class Animation extends JPanel implements ActionListener{
         game.getPieceAt(x,y).drawObject(g);
       }
     }
-
-    g.setColor(Color.RED);
-    g.drawRect(game.getXCenter(),game.getYCenter(),2,2);
 
     int[] arrowXCor = new int[3];
     int[] arrowYCor = new int[3];
@@ -63,19 +61,20 @@ public class Animation extends JPanel implements ActionListener{
   public void actionPerformed(ActionEvent e){
     if (isRotating){
       rotateOnce(rotationalDirection);
-      rotationInt++;
+      rotateInt++;
     }
-    if (rotationInt == 6) {
+    if (rotateInt == 90) {
       isRotating = false;
-      animateDrop();
+      //animateDrop();
     }
+    /*
     if (isDropping) {
       game.dropOne();
       dropInt++;
     }
     if (dropInt == game.getHeight()-1){
       isDropping = false;
-    }
+      }*/
   }
 
   public void animateRotate(String direction){

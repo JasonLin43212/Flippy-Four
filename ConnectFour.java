@@ -5,7 +5,7 @@ import java.awt.event.*;
 public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListener{
 
   public static void main(String[]args){
-    ConnectFour c = new ConnectFour(11,6,Color.RED,Color.GREEN);
+    ConnectFour c = new ConnectFour(8,7,Color.RED,Color.GREEN);
     c.setVisible(true);
   }
 
@@ -31,11 +31,11 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
   private int startWidth;
   private int startHeight;
 
-  
+
   //----------Other Variables------------
 
   Color emptyColor = Color.BLUE;
-  
+
   //----------Methods------------
 
   public ConnectFour (int width, int height, Color playerOneColor, Color playerTwoColor){
@@ -59,14 +59,14 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
 
     //For Gui
     this.setTitle("Flippy Four");
-    this.setSize(adjustment*75,adjustment*75);
+    this.setSize(adjustment*78,adjustment*78);
     this.setLocation(100,0);
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     this.setResizable(false);
 
     xCenter = startWidth + 4 +(int)((width-1)/2.*50);
     yCenter = startHeight + 4  +(int)((height-1)/2.*50);
-    
+
     int[] boardXCor = new int[4];
     int[] boardYCor = new int[4];
     int endWidth = startWidth+width*50;
@@ -107,7 +107,6 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
     isFirstPlayerTurn = !isFirstPlayerTurn;
     dropAll();
     updateWin();
-    animation.repaint();
   }
 
   public String toString () {
@@ -163,7 +162,7 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
         }
       }
     }
-    
+
     //checking diagonal \\ wins
     for (int i=0; i<width-4; i++){
       for (int j=height-1; j>2; j--){
@@ -184,7 +183,7 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
     }
     return true;
   }
-  
+
   private void rotate(String direction){
     Piece[][] temp = new Piece[height][width];
     if (direction.equals("right")){
@@ -192,33 +191,29 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
         for (int y = 0; y < width; y++)
           temp[x][y] = data[width-y-1][x];
 	    }
-	    data = temp;
     }
     if (direction.equals("left")){
 	    for(int x = 0; x < height; x ++){
         for (int y = 0; y < width; y++)
           temp[x][y] = data[y][height-x-1];
       }
-	    data = temp;
     }
+    data = temp;
     height = width;
     width = data.length;
-    dropAll();
-    //animation.repaint();
     isFirstPlayerTurn = !isFirstPlayerTurn;
   }
 
-  private void dropOne(){
+  public void dropOne(){
     for (int x = 0; x < width; x++){
       for (int y = 1; y < height; y++){
-	      if (data[x][y-1].getId() == 9){
+	      if (data[x][y-1].getId() == 0){
           data[x][y-1] = data[x][y];
           data[x][y-1].drop();
           data[x][y] = makePiece(0,emptyColor,x,y);
 	      }
       }
     }
-    animation.repaint();
   }
 
   private void dropAll(){
@@ -242,7 +237,7 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
   public int getYCenter() {
     return yCenter;
   }
-  
+
   public Board getBoard(){
     return board;
   }
@@ -281,14 +276,14 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
       addPiece(selectorIndex);
     }
     if (key == KeyEvent.VK_Q){
-      animation.animateRotate("left");
       rotate("left");
+      animation.animateRotate("left");
     }
     if (key == KeyEvent.VK_E){
+      rotate("right");
       animation.animateRotate("right");
-      rotate("right")
     }
-
+    System.out.println(this);
     animation.repaint();
   }
 
