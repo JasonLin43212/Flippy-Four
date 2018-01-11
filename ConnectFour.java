@@ -2,11 +2,90 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 
 public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListener{
 
   public static void main(String[]args){
-    ConnectFour c = new ConnectFour(7,11,Color.RED,Color.GREEN);
+    boolean stop = false;
+    Scanner scan = new Scanner(System.in);
+    ArrayList<String> parameters = new ArrayList<String>();
+
+
+    while (!stop){
+	    while (parameters.size() == 0){
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n----------------------------\n"+
+                           "Enter the HEIGHT of your board."+
+                           "\n----------------------------\n"+
+                           "**This should be an integer between 5 and 11, inclusive.**\n");
+        String next = scan.next();
+        int h = 0;
+        try {
+          h = Integer.parseInt(next);
+
+        } catch (NumberFormatException e) {
+        }
+        if(h >= 5 && h <= 11){
+          parameters.add(next);
+        }
+	    }
+	    while (parameters.size() == 1){
+        System.out.println("\n\n----------------------------\n"+
+                           "Enter the WIDTH of your board."+
+                           "\n----------------------------\n"+
+                           "**This should be an integer between 5 and 11, inclusive.**\n");
+
+        String next = scan.next();
+        int w = 0;
+        try {
+          w = Integer.parseInt(next);
+
+        } catch (NumberFormatException e) {
+        }
+        if(w >= 5 && w <= 11){
+          parameters.add(next);
+        }
+	    }
+
+	    while (parameters.size() == 2){
+        System.out.println("\n\n----------------------------\n"+
+                           "Player 1: Enter your color"+
+                           "\n----------------------------\n");
+        String next = scan.next();
+        parameters.add(next);
+	    }
+
+	    while (parameters.size() == 3){
+        System.out.println("\n\n----------------------------\n"+
+                           "Player 2: Enter your color"+
+                           "\n----------------------------\n");
+        String next = scan.next();
+        parameters.add(next);
+	    }
+	    while (parameters.size() == 4){
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nYou are done setting up! \nNow for some instructions: \n\n" +
+                           "[<-]: moves arrow left \n" +
+                           "[->]: moves arrow right \n" +
+                           "[space]: drops piece\n" +
+                           "[q]: rotates board left \n" +
+                           "[e]: rotates board right \n" +
+                           "\n\n\n Enter \"OK\" to start!"
+
+                           );
+        String next = scan.next();
+        if (next.toLowerCase().equals("ok")){
+          parameters.add(next);
+        }
+	    }
+
+	    if (parameters.size() == 5){
+        stop = true;
+	    }
+
+
+    }
+
+    ConnectFour c = new ConnectFour(7,6,Color.RED,Color.GREEN);
     c.setVisible(true);
   }
 
@@ -22,7 +101,6 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
   private Animation animation;
   private int selectorIndex;
   private boolean isRotated;
-
   //----------Instance Variables for GUI--------------
 
   private Container pane;
@@ -33,8 +111,7 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
   private int startWidth;
   private int startHeight;
 
-
-  //----------Other Variables------------
+  //---------------Other Variables-------------
 
   Color emptyColor = Color.BLUE;
 
@@ -96,6 +173,7 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
     for (int i=0; i<width; i++){
 	    for (int j=0; j<height; j++){
         data[i][j] = makePiece(0,emptyColor,i,j);
+
 	    }
     }
   }
@@ -123,22 +201,8 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
     return output;
   }
 
-  private void updateWin() {
-    boolean one = hasWon(1);
-    boolean two = hasWon(2);
-    if (one && two) {
-      winState = "Draw";
-    }
-    else if (one) {
-      winState = "Player 1 Wins";
-    }
-    else if (two) {
-      winState = "Player 2 Wins";
-    }
-    System.out.println(winState);
-  }
 
-  private boolean hasWon(int id){
+private boolean hasWon(int id){
     //checking vertical wins
     for (int i=0; i<width; i++){
       for (int j=0; j<height-4; j++){
@@ -177,9 +241,27 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
     return false;
   }
 
+
+  private void updateWin() {
+    boolean one = hasWon(1);
+    boolean two = hasWon(2);
+    if (one && two) {
+      winState = "Draw";
+    }
+    else if (one) {
+      winState = "Player 1 Wins";
+    }
+    else if (two) {
+      winState = "Player 2 Wins";
+    }
+  }
+
   private boolean checkWin(int id, int x, int y, int xIncrement, int yIncrement){
     //might change the i<4 to something else for connect 5
     for (int i=0; i<4; i++){
+      System.out.println(x+xIncrement*i);
+      System.out.println(y+yIncrement*i);
+      System.out.println("------");
       if (!(data[x+xIncrement*i][y+yIncrement*i].getId() == id)){
         return false;
       }
@@ -190,13 +272,13 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
   private void rotate(String direction){
     Piece[][] temp = new Piece[height][width];
     if (direction.equals("right")){
-	    for(int x = 0; x < height; x ++){
+      for(int x = 0; x < height; x ++){
         for (int y = 0; y < width; y++)
           temp[x][y] = data[width-y-1][x];
-	    }
+      }
     }
     if (direction.equals("left")){
-	    for(int x = 0; x < height; x ++){
+      for(int x = 0; x < height; x ++){
         for (int y = 0; y < width; y++)
           temp[x][y] = data[y][height-x-1];
       }
@@ -211,18 +293,19 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
   public void dropOne(){
     for (int x = 0; x < width; x++){
       for (int y = 1; y < height; y++){
-	      if (data[x][y-1].getId() == 0){
+        if (data[x][y-1].getId() == 0){
           data[x][y-1] = data[x][y];
           data[x][y-1].drop();
           data[x][y] = makePiece(0,emptyColor,x,y);
-	      }
+        }
       }
     }
   }
 
+
   private void dropAll(){
     for (int i = 0; i < height; i ++){
-	    dropOne();
+      dropOne();
     }
   }
 
@@ -269,35 +352,43 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
     return new Piece(id,color,xCor,yCor);
   }
 
-  public Piece getPieceAt(int x, int y) {
-    return data[x][y];
-  }
 
   public int getSelectorIndex() {
     return selectorIndex;
   }
 
-  //----------For Key Listener-----------
+  public Piece getPieceAt(int x, int y) {
+    return data[x][y];
+  }
+
+  //------------For Key Listener------------
   public void keyPressed(KeyEvent e){
     int key = e.getKeyCode();
+    System.out.println(key);
 
     if (key == KeyEvent.VK_LEFT){
       if (selectorIndex > 0) {
         selectorIndex--;
       }
     }
+
     if (key == KeyEvent.VK_RIGHT){
+      System.out.println("might go right");
       if (selectorIndex <width-1){
+        System.out.println("going right");
         selectorIndex++;
       }
     }
+
     if (key == KeyEvent.VK_SPACE) {
       addPiece(selectorIndex);
     }
+
     if (key == KeyEvent.VK_Q){
       rotate("left");
       animation.animateRotate("left");
     }
+
     if (key == KeyEvent.VK_E){
       rotate("right");
       animation.animateRotate("right");
@@ -306,6 +397,7 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
     animation.repaint();
   }
 
-  public void keyTyped(KeyEvent e){}
-  public void keyReleased(KeyEvent e){}
+
+    public void keyTyped(KeyEvent e){}
+    public void keyReleased(KeyEvent e){}
 }
