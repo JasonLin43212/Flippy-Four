@@ -33,31 +33,31 @@ java ConnectFour
 
 ### Accomplished Features
 
-Displaying the board in GUI
+*Displaying the board in GUI
 
-Inserting pieces into the board
+*Inserting pieces into the board
 
-Able to check whether there is a win or a draw
+*Able to check whether there is a win or a draw
 
-Have a way to restart the game
+*Have a way to restart the game
 
-Ability to choose the size of board and color of pieces
+*Ability to choose the size of board and color of pieces
 
 ### Planned Features
 
-An arrow that changes depending on the board
+*An arrow that changes depending on the board
 
-Non-broken rotation of board
+*Non-broken rotation of board
 
-Animation of pieces dropping
+*Animation of pieces dropping
 
-Bombs
+*Bombs
 
-A way to save and load games
+*A way to save and load games
 
-A congratulations at the end when the player finishes
+*A congratulations at the end when the player finishes
 
-A singleplayer mode
+*A singleplayer mode
 
 ### Milestone
 
