@@ -39,7 +39,7 @@ java ConnectFour
 
 * Able to check whether there is a win or a draw
 
-* Have a way to restart the game
+* Have a way to restart the game in terminal
 
 * Ability to choose the size of board and color of pieces
 
@@ -58,6 +58,10 @@ java ConnectFour
 * A congratulations at the end when the player finishes
 
 * A singleplayer mode
+
+* Restart game in GUI
+
+* Colorful instruction screen
 
 ### Milestone
 
