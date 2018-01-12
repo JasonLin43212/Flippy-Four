@@ -85,7 +85,7 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
 
     }
 
-    ConnectFour c = new ConnectFour(7,6,Color.RED,Color.GREEN);
+    ConnectFour c = new ConnectFour(9,8,Color.RED,Color.GREEN);
     c.setVisible(true);
   }
 
@@ -110,13 +110,13 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
   private int yCenter;
   private int startWidth;
   private int startHeight;
-    private int dropInt;
-    private boolean isDropping;
+  private int dropInt;
+  private boolean isDropping;
 
   //---------------Other Variables-------------
 
   Color emptyColor = Color.BLUE;
-    Timer timer = new Timer(200,this);
+  Timer timer = new Timer(200,this);
 
   //----------Methods------------
 
@@ -186,7 +186,7 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
   }
 
   private void addPiece (int index){
-    if (isFirstPlayerTurn){
+    if (isFirstPlayerTurn) {
       data[index][height-1] = makePiece(1,playerOneColor,index,height-1);
     }
     else {
@@ -266,9 +266,6 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
   private boolean checkWin(int id, int x, int y, int xIncrement, int yIncrement){
     //might change the i<4 to something else for connect 5
     for (int i=0; i<4; i++){
-      System.out.println(x+xIncrement*i);
-      System.out.println(y+yIncrement*i);
-      System.out.println("------");
       if (!(data[x+xIncrement*i][y+yIncrement*i].getId() == id)){
         return false;
       }
@@ -373,26 +370,39 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
     
   public void animateDrop() {
     dropInt = 0;
+    System.out.println("dropping");
     isDropping = true;
   }
 
-    public void actionPerformed(ActionEvent e) {
-	if (isDropping & !animation.getIsRotating()) {
+  public void actionPerformed(ActionEvent e) {
+    if (isDropping & !animation.getIsRotating()) {
       dropOne();
       dropInt++;
+      System.out.println("drop");
     }
     if (dropInt == height){
       isDropping = false;
-      }
-
+      System.out.println("done dropping");
     }
+
+  }
+
+  public boolean getIsDropping(){
+    return isDropping;
+  }
+
+  public boolean isFull(int index) {
+    return !(data[index][height-1].getId() == 0);
+  }
    
   //------------For Key Listener------------
   public void keyPressed(KeyEvent e){
     int key = e.getKeyCode();
     System.out.println(key);
+    System.out.println(isDropping);
+    System.out.println(animation.getIsRotating());
     if (isDropping || animation.getIsRotating()){
-	key = -1;
+      key = -1;
     }
     
     if (key == KeyEvent.VK_LEFT){
@@ -402,14 +412,12 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
     }
 
     if (key == KeyEvent.VK_RIGHT){
-      System.out.println("might go right");
       if (selectorIndex <width-1){
-        System.out.println("going right");
         selectorIndex++;
       }
     }
 
-    if (key == KeyEvent.VK_SPACE) {
+    if (key == KeyEvent.VK_SPACE && !isFull(selectorIndex)) {
       addPiece(selectorIndex);
     }
 

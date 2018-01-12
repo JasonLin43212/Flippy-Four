@@ -37,7 +37,7 @@ public class Animation extends JPanel implements ActionListener{
     }
 
     // Drawing the arrow
-    if (!isRotating) {
+    if (!(isRotating || game.getIsDropping())) {
       int[] arrowXCor = new int[3];
       int[] arrowYCor = new int[3];
       int arrowAdjustment = game.getSelectorIndex()*50;
@@ -82,8 +82,10 @@ public class Animation extends JPanel implements ActionListener{
       rotateInt++;
     }
     if (rotateInt == 90) {
+      rotateInt = 0;
       isRotating = false;
       game.animateDrop();
+      System.out.println("done rotating");
     }
   }
 
@@ -93,7 +95,7 @@ public class Animation extends JPanel implements ActionListener{
     isRotating = true;
     isRotated = !isRotated;
   }
-    public boolean getIsRotating(){
-	return isRotating;
-    }
+  public boolean getIsRotating(){
+    return isRotating;
+  }
 }
