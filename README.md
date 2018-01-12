@@ -63,6 +63,16 @@ java ConnectFour
 
 ### Bugs
 
+Fixed
+
+*GUI rotation
+
+
+Not fixed
+
+*
+
+
 ## Contributors
 Made by JacKeL  
 Jason Lin and Karen Li
