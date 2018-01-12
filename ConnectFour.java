@@ -1,4 +1,3 @@
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -202,7 +201,7 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
   }
 
 
-private boolean hasWon(int id){
+  private boolean hasWon(int id){
     //checking vertical wins
     for (int i=0; i<width; i++){
       for (int j=0; j<height-4; j++){
@@ -398,6 +397,6 @@ private boolean hasWon(int id){
   }
 
 
-    public void keyTyped(KeyEvent e){}
-    public void keyReleased(KeyEvent e){}
+  public void keyTyped(KeyEvent e){}
+  public void keyReleased(KeyEvent e){}
 }
