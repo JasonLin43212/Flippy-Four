@@ -1,9 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
-public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListener{
+public class ConnectFour extends JFrame implements ActionListener, KeyListener{
 
   public static void main(String[]args){
     boolean stop = false;
@@ -109,10 +110,13 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
   private int yCenter;
   private int startWidth;
   private int startHeight;
+    private int dropInt;
+    private boolean isDropping;
 
   //---------------Other Variables-------------
 
   Color emptyColor = Color.BLUE;
+    Timer timer = new Timer(200,this);
 
   //----------Methods------------
 
@@ -126,6 +130,9 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
     isRotated = false;
     selectorIndex = width/2;
 
+    dropInt = height - 1;
+    isDropping = false;
+    
     int adjustment = (Math.max(width,height));
     startWidth = (75*adjustment-width*50)/2;
     startHeight = (75*adjustment-height*50)/2;
@@ -166,6 +173,7 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
     animation = new Animation(this);
     pane.add(animation);
     addKeyListener(this);
+    timer.start();
   }
 
   private void restartData(){
@@ -185,7 +193,7 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
       data[index][height-1] = makePiece(2,playerTwoColor,index,height-1);
     }
     isFirstPlayerTurn = !isFirstPlayerTurn;
-    dropAll();
+    animateDrop();
     updateWin();
   }
 
@@ -300,6 +308,7 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
         }
       }
     }
+    animation.repaint();
   }
 
 
@@ -361,11 +370,31 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
     return data[x][y];
   }
 
+    
+  public void animateDrop() {
+    dropInt = 0;
+    isDropping = true;
+  }
+
+    public void actionPerformed(ActionEvent e) {
+	if (isDropping & !animation.getIsRotating()) {
+      dropOne();
+      dropInt++;
+    }
+    if (dropInt == height){
+      isDropping = false;
+      }
+
+    }
+   
   //------------For Key Listener------------
   public void keyPressed(KeyEvent e){
     int key = e.getKeyCode();
     System.out.println(key);
-
+    if (isDropping || animation.getIsRotating()){
+	key = -1;
+    }
+    
     if (key == KeyEvent.VK_LEFT){
       if (selectorIndex > 0) {
         selectorIndex--;

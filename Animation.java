@@ -7,9 +7,7 @@ public class Animation extends JPanel implements ActionListener{
   //---------Instance Variables--------
 
   private ConnectFour game;
-  private boolean isDropping;
   private boolean isRotating;
-  private int dropInt;
   private int rotateInt;
   private String rotationalDirection;
   private boolean isRotated;
@@ -85,16 +83,8 @@ public class Animation extends JPanel implements ActionListener{
     }
     if (rotateInt == 90) {
       isRotating = false;
-      //animateDrop();
+      game.animateDrop();
     }
-    /*
-    if (isDropping) {
-      game.dropOne();
-      dropInt++;
-    }
-    if (dropInt == game.getHeight()-1){
-      isDropping = false;
-      }*/
   }
 
   public void animateRotate(String direction){
@@ -103,9 +93,7 @@ public class Animation extends JPanel implements ActionListener{
     isRotating = true;
     isRotated = !isRotated;
   }
-
-  public void animateDrop() {
-    dropInt = 0;
-    isDropping = true;
-  }
+    public boolean getIsRotating(){
+	return isRotating;
+    }
 }
