@@ -103,4 +103,8 @@ public class Animation extends JPanel implements ActionListener{
   public boolean getIsRotating(){
     return isRotating;
   }
+
+  public boolean getIsRotated() {
+    return isRotated;
+  }
 }
