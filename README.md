@@ -43,11 +43,12 @@ java ConnectFour
 
 * Ability to choose the size of board and color of pieces
 
-### Planned Features
-
 * An arrow that changes depending on the board
 
 * Non-broken rotation of board
+
+
+### Planned Features
 
 * Animation of pieces dropping
 
@@ -60,6 +61,8 @@ java ConnectFour
 * A singleplayer mode
 
 ### Milestone
+
+* Getting the board and arrow to be in the right position, even after rotation (1/11/18)
 
 ### Bugs
 
