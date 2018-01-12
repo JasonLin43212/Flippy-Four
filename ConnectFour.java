@@ -115,8 +115,8 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
 
   //---------------Other Variables-------------
 
-  Color emptyColor = Color.BLUE;
-  Timer timer = new Timer(200,this);
+  Color emptyColor = Color.WHITE;
+  Timer timer = new Timer(100,this);
 
   //----------Methods------------
 
@@ -343,6 +343,14 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
     return board;
   }
 
+  public Color getFirstColor() {
+    return playerOneColor;
+  }
+
+  public Color getSecondColor() {
+    return playerTwoColor;
+  }
+
   private Piece makePiece(int id, Color color, int x, int y) {
     int[] xCor = new int[1];
     int[] yCor = new int[1];
@@ -389,6 +397,10 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
 
   public boolean getIsDropping(){
     return isDropping;
+  }
+
+  public boolean getIsFirstPlayerTurn() {
+    return isFirstPlayerTurn;
   }
 
   public boolean isFull(int index) {

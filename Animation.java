@@ -52,13 +52,18 @@ public class Animation extends JPanel implements ActionListener{
         startHeight = game.getStartHeight();
       }
 
+      if (game.getIsFirstPlayerTurn()){
+        g.setColor(game.getFirstColor());
+      }
+      else {
+        g.setColor(game.getSecondColor());
+      }
       arrowXCor[0] = startWidth + 15 + arrowAdjustment;
       arrowXCor[1] = startWidth + 35 + arrowAdjustment;
       arrowXCor[2] = startWidth + 25 + arrowAdjustment;
       arrowYCor[0] = startHeight - 20;
       arrowYCor[1] = startHeight - 20;
       arrowYCor[2] = startHeight - 10;
-      g.setColor(Color.MAGENTA);
       g.fillPolygon(arrowXCor,arrowYCor,3);
 
     }
