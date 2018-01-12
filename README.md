@@ -69,7 +69,7 @@ java ConnectFour
 
 Fixed
 
-*GUI rotation
+* GUI rotation
 
 
 Not fixed
