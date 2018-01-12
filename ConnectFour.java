@@ -286,6 +286,7 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
     height = width;
     width = data.length;
     isRotated = !isRotated;
+    selectorIndex = width/2;
     isFirstPlayerTurn = !isFirstPlayerTurn;
   }
 
