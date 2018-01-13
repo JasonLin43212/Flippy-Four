@@ -318,12 +318,12 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     int[] xCor = new int[1];
     int[] yCor = new int[1];
     if (isRotated) {
-      xCor[0] = startHeight + 4 + 50*x;
-      yCor[0] = startWidth + 4 + 50*(height-1-y);
+      xCor[0] = startHeight + 5 + 50*x;
+      yCor[0] = startWidth + 5 + 50*(height-1-y);
     }
     else {
-      xCor[0] = startWidth + 4 + 50*x;
-      yCor[0] = startHeight + 4 + 50*(height-1-y);
+      xCor[0] = startWidth + 5 + 50*x;
+      yCor[0] = startHeight + 5 + 50*(height-1-y);
     }
     return new Piece(id,color,xCor,yCor);
   }
