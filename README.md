@@ -41,7 +41,7 @@ java ConnectFour
 
 * Inserting pieces into the board in GUI
 
-* Able to check whether there is a win or a draw 
+* Able to check whether there is a win or a draw
 
 * Restart the game in terminal
 
@@ -59,14 +59,13 @@ java ConnectFour
 
 * Non-broken rotation of board
 
-
-### Planned Features
+* Restart game in GUI
 
 * Animation of pieces dropping
 
-* A congratulations at the end when the player finishes
+### Planned Features
 
-* Restart game in GUI
+* A congratulations at the end when the player finishes
 
 * Bombs
 
@@ -76,9 +75,19 @@ java ConnectFour
 
 * Colorful instruction screen
 
+* Start Screen with all features implemented
+
+* Choosing colors for pieces
+
+* Having instructions on playing in gui
+
+* Different rotation modes
+
+* Different bomb modes
+
 ### Milestone
 
-* Getting the board and arrow to be in the right position, even after rotation (1/11/18)
+* Game is playable on Gui (1/12/18)
 
 ### Bugs
 
