@@ -6,7 +6,7 @@ public class Animation extends JPanel implements ActionListener{
 
   //---------Instance Variables--------
 
-  private ConnectFour game;
+  private FlippyFour game;
   private boolean isRotating;
   private int rotateInt;
   private String rotationalDirection;
@@ -16,7 +16,7 @@ public class Animation extends JPanel implements ActionListener{
   Timer timer = new Timer(10,this);
   //-------------Methods-----------
 
-  public Animation (ConnectFour game) {
+  public Animation (FlippyFour game) {
     this.game = game;
     timer.start();
   }

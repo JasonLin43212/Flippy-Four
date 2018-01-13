@@ -4,7 +4,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class ConnectFour extends JFrame implements ActionListener, KeyListener{
+public class FlippyFour extends JFrame implements ActionListener, KeyListener{
 
   public static void main(String[]args){
     boolean stop = false;
@@ -85,7 +85,7 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
 
     }
 
-    ConnectFour c = new ConnectFour(7,6,Color.RED,Color.GREEN);
+    FlippyFour c = new FlippyFour(7,6,Color.RED,Color.GREEN);
     c.setVisible(true);
   }
 
@@ -121,7 +121,7 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
 
   //----------Methods------------
 
-  public ConnectFour (int width, int height, Color playerOneColor, Color playerTwoColor){
+  public FlippyFour (int width, int height, Color playerOneColor, Color playerTwoColor){
 
     //For game
     this.height = height;
