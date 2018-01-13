@@ -7,15 +7,16 @@ public class StartScreen{
     
 
     public StartScreen(){
-	parameters.add( heightInput());
-	parameters.add( widthInput());
-	parameters.add( color1Input());
-	parameters.add( color2Input());
-	
+         heightInput();
+         widthInput();
+        color1Input();
+         color2Input();
+	 instructions();
+
 
     }
 
-    public String heightInput() {
+    public void heightInput() {
 	int h = 0;
 	while (parameters.size() == 0){
 	    System.out.println(
@@ -33,11 +34,10 @@ public class StartScreen{
 		parameters.add(next);
 	    }
 	}
-	return "" + h;
     }
 
 
-    public String  widthInput() {
+    public void  widthInput() {
 	int w =0;
 	    while (parameters.size() == 1){
 		System.out.println("\n\n----------------------------\n"+
@@ -55,37 +55,34 @@ public class StartScreen{
 		    parameters.add(next);
 		}
 	    }
-	return "" + w;
     }
 
-    public String color1Input(){
-	String c = "";
+    public void  color1Input(){
+
 	while (parameters.size() == 2){
 	    System.out.println("\n\n----------------------------\n"+
 			       "Player 1: Enter your color"+
 			       "\n----------------------------\n");
 	    String next = scan.next();
 	    parameters.add(next);
-	    c = next;
+
 	}
-	return c;
+
     }
     
-    public String color2Input(){
-	String c = "";
+    public void color2Input(){
 	while (parameters.size() == 3){
 	    System.out.println("\n\n----------------------------\n"+
 			       "Player 2: Enter your color"+
 			       "\n----------------------------\n");
 	    String next = scan.next();
 	    parameters.add(next);
-	    c = next;
 	}
-	return c;
+
     }
 
-    public String instructions(){
-	String s = "";
+    public void instructions(){
+
 	    while (parameters.size() == 4){
 		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nYou are done setting up! \nNow for some instructions: \n\n" +
 				   "[<-]: moves arrow left \n" +
@@ -99,13 +96,14 @@ public class StartScreen{
 		String next = scan.next();
 		if (next.toLowerCase().equals("ok")){
 		    parameters.add(next);
-		    s = next;
+
 		}
 	    }
-	return s;
     }
 
     
-
+    public boolean startGame(){
+	return(parameters.size() == 5);
+    }
     
 }
