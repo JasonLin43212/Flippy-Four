@@ -10,7 +10,6 @@ public class Animation extends JPanel implements ActionListener{
   private boolean isRotating;
   private int rotateInt;
   private String rotationalDirection;
-  private boolean isRotated;
 
   //---------Other Variables---------
 
@@ -19,7 +18,6 @@ public class Animation extends JPanel implements ActionListener{
 
   public Animation (ConnectFour game) {
     this.game = game;
-    isRotated = false;
     timer.start();
   }
 
@@ -43,7 +41,7 @@ public class Animation extends JPanel implements ActionListener{
       int arrowAdjustment = game.getSelectorIndex()*50;
       int startWidth;
       int startHeight;
-      if (isRotated) {
+      if (game.getIsRotated()) {
         startWidth = game.getStartHeight();
         startHeight = game.getStartWidth();
       }
@@ -98,13 +96,8 @@ public class Animation extends JPanel implements ActionListener{
     rotationalDirection = direction;
     rotateInt = 0;
     isRotating = true;
-    isRotated = !isRotated;
   }
   public boolean getIsRotating(){
     return isRotating;
-  }
-
-  public boolean getIsRotated() {
-    return isRotated;
   }
 }

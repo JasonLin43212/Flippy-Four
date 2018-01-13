@@ -101,6 +101,7 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
   private Animation animation;
   private int selectorIndex;
   private boolean isRotated;
+
   //----------Instance Variables for GUI--------------
 
   private Container pane;
@@ -313,13 +314,6 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
     animation.repaint();
   }
 
-
-  private void dropAll(){
-    for (int i = 0; i < height; i ++){
-      dropOne();
-    }
-  }
-
   public int getBoardHeight() {
     return height;
   }
@@ -380,6 +374,10 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
     return data[x][y];
   }
 
+  public boolean getIsRotated() {
+    return isRotated;
+  }
+
   public void animateDrop() {
     dropInt = 0;
     System.out.println("dropping");
@@ -391,10 +389,11 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
     if (s == "New Game" && !isDropping && !animation.getIsRotating()) {
       restartData();
       animation.repaint();
-      if (animation.getIsRotated()) {
+      if (isRotated) {  
         animation.animateRotate("left");
         rotate("left");
       }
+      isRotated = false;
       selectorIndex = width/2;
       isFirstPlayerTurn = true;
     }
@@ -457,7 +456,7 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
     animation.repaint();
   }
 
-
+  //Just so the file can compile
   public void keyTyped(KeyEvent e){}
   public void keyReleased(KeyEvent e){}
 }
