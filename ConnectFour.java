@@ -10,7 +10,7 @@ public class ConnectFour extends JFrame implements /*ActionListener,*/ KeyListen
 
       if ( input.startGame()){
 	  
-	  ConnectFour c = new ConnectFour(7,6,Color.RED,Color.GREEN);
+	  ConnectFour c = new ConnectFour(input.getHeight(), input.getWidth(), Color.RED,Color.GREEN);
 	  c.setVisible(true);
       }
   }
