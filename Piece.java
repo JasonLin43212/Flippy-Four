@@ -25,7 +25,6 @@ public class Piece extends RotatableObject{
   public void drawObject(Graphics g) {
     g.setColor(color);
     g.fillOval(xGui[0],yGui[0],40,40);
-    //System.out.println(xGui[0] + "," + yGui[0] + "||" + x[0]+ ","+y[0]);
   }
 
   public void drop() {

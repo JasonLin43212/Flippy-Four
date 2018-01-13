@@ -7,9 +7,7 @@ public class Animation extends JPanel implements ActionListener{
   //---------Instance Variables--------
 
   private ConnectFour game;
-  private boolean isDropping;
   private boolean isRotating;
-  private int dropInt;
   private int rotateInt;
   private String rotationalDirection;
   private boolean isRotated;
@@ -39,7 +37,7 @@ public class Animation extends JPanel implements ActionListener{
     }
 
     // Drawing the arrow
-    if (!isRotating) {
+    if (!(isRotating || game.getIsDropping())) {
       int[] arrowXCor = new int[3];
       int[] arrowYCor = new int[3];
       int arrowAdjustment = game.getSelectorIndex()*50;
@@ -54,13 +52,18 @@ public class Animation extends JPanel implements ActionListener{
         startHeight = game.getStartHeight();
       }
 
+      if (game.getIsFirstPlayerTurn()){
+        g.setColor(game.getFirstColor());
+      }
+      else {
+        g.setColor(game.getSecondColor());
+      }
       arrowXCor[0] = startWidth + 15 + arrowAdjustment;
       arrowXCor[1] = startWidth + 35 + arrowAdjustment;
       arrowXCor[2] = startWidth + 25 + arrowAdjustment;
       arrowYCor[0] = startHeight - 20;
       arrowYCor[1] = startHeight - 20;
       arrowYCor[2] = startHeight - 10;
-      g.setColor(Color.MAGENTA);
       g.fillPolygon(arrowXCor,arrowYCor,3);
 
     }
@@ -84,17 +87,11 @@ public class Animation extends JPanel implements ActionListener{
       rotateInt++;
     }
     if (rotateInt == 90) {
+      rotateInt = 0;
       isRotating = false;
-      //animateDrop();
+      game.animateDrop();
+      System.out.println("done rotating");
     }
-    /*
-    if (isDropping) {
-      game.dropOne();
-      dropInt++;
-    }
-    if (dropInt == game.getHeight()-1){
-      isDropping = false;
-      }*/
   }
 
   public void animateRotate(String direction){
@@ -103,9 +100,11 @@ public class Animation extends JPanel implements ActionListener{
     isRotating = true;
     isRotated = !isRotated;
   }
+  public boolean getIsRotating(){
+    return isRotating;
+  }
 
-  public void animateDrop() {
-    dropInt = 0;
-    isDropping = true;
+  public boolean getIsRotated() {
+    return isRotated;
   }
 }
