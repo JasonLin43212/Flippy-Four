@@ -7,13 +7,28 @@ public class StartScreen{
     
 
     public StartScreen(){
-         heightInput();
-         widthInput();
+	heightInput();
+	widthInput();
         color1Input();
-         color2Input();
-	 instructions();
+	color2Input();
+	instructions();
+	
+    }
 
+    public int getHeight(){
+	return Integer.parseInt(parameters.get(0));
+    }
 
+    public int getWidth(){
+	return Integer.parseInt(parameters.get(1));
+    }
+
+    public String getColor1(){
+	return parameters.get(2);
+    }
+
+    public String getColor2(){
+	return parameters.get(3);
     }
 
     public void heightInput() {
