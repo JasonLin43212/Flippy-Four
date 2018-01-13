@@ -85,7 +85,7 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
 
     }
 
-    ConnectFour c = new ConnectFour(9,8,Color.RED,Color.GREEN);
+    ConnectFour c = new ConnectFour(7,6,Color.RED,Color.GREEN);
     c.setVisible(true);
   }
 
@@ -94,13 +94,13 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
   private Piece[][] data;
   private int width;
   private int height;
+  private int selectorIndex;
   private Color playerOneColor;
   private Color playerTwoColor;
   private String winState;
   private boolean isFirstPlayerTurn;
-  private Animation animation;
-  private int selectorIndex;
   private boolean isRotated;
+  private Animation animation;
 
   //----------Instance Variables for GUI--------------
 
@@ -182,6 +182,17 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
     timer.start();
   }
 
+  public String toString () {
+    String output = "";
+    for (int y=height-1; y>=0; y--){
+      for (int x=0; x<width; x++){
+        output += data[x][y] + " ";
+      }
+      output += "\n";
+    }
+    return output;
+  }
+
   private void restartData(){
     for (int i=0; i<width; i++){
 	    for (int j=0; j<height; j++){
@@ -203,18 +214,6 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
     updateWin();
   }
 
-  public String toString () {
-    String output = "";
-    for (int y=height-1; y>=0; y--){
-      for (int x=0; x<width; x++){
-        output += data[x][y] + " ";
-      }
-      output += "\n";
-    }
-    return output;
-  }
-
-
   private boolean hasWon(int id){
     //checking vertical wins
     for (int i=0; i<width; i++){
@@ -224,7 +223,6 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
         }
       }
     }
-
     //checking horizontal wins
     for (int i=0; i<width-4; i++){
       for (int j=0; j<height; j++){
@@ -233,7 +231,6 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
         }
       }
     }
-
     //checking diagonal // wins
     for (int i=0; i<width-4; i++){
       for (int j=0; j<height-4; j++){
@@ -242,7 +239,6 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
         }
       }
     }
-
     //checking diagonal \\ wins
     for (int i=0; i<width-4; i++){
       for (int j=height-1; j>2; j--){
@@ -254,6 +250,15 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
     return false;
   }
 
+  private boolean checkWin(int id, int x, int y, int xIncrement, int yIncrement){
+    //might change the i<4 to something else for connect 5
+    for (int i=0; i<4; i++){
+      if (!(data[x+xIncrement*i][y+yIncrement*i].getId() == id)){
+        return false;
+      }
+    }
+    return true;
+  }
 
   private void updateWin() {
     boolean one = hasWon(1);
@@ -267,16 +272,6 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
     else if (two) {
       winState = "Player 2 Wins";
     }
-  }
-
-  private boolean checkWin(int id, int x, int y, int xIncrement, int yIncrement){
-    //might change the i<4 to something else for connect 5
-    for (int i=0; i<4; i++){
-      if (!(data[x+xIncrement*i][y+yIncrement*i].getId() == id)){
-        return false;
-      }
-    }
-    return true;
   }
 
   private void rotate(String direction){
@@ -301,7 +296,7 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
     isFirstPlayerTurn = !isFirstPlayerTurn;
   }
 
-  public void dropOne(){
+  private void dropOnce(){
     for (int x = 0; x < width; x++){
       for (int y = 1; y < height; y++){
         if (data[x][y-1].getId() == 0){
@@ -313,6 +308,88 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
     }
     animation.repaint();
   }
+
+  public void animateDrop() {
+    dropInt = 0;
+    isDropping = true;
+  }
+
+  private Piece makePiece(int id, Color color, int x, int y) {
+    int[] xCor = new int[1];
+    int[] yCor = new int[1];
+    if (isRotated) {
+      xCor[0] = startHeight + 4 + 50*x;
+      yCor[0] = startWidth + 4 + 50*(height-1-y);
+    }
+    else {
+      xCor[0] = startWidth + 4 + 50*x;
+      yCor[0] = startHeight + 4 + 50*(height-1-y);
+    }
+    return new Piece(id,color,xCor,yCor);
+  }
+
+  //------------------Action Listener------------------------
+  public void actionPerformed(ActionEvent e) {
+    String s = e.getActionCommand();
+    if (s == "New Game" && !isDropping && !animation.getIsRotating()) {
+      restartData();
+      animation.repaint();
+      if (isRotated) {  
+        animation.animateRotate("left");
+        rotate("left");
+      }
+      isRotated = false;
+      selectorIndex = width/2;
+      isFirstPlayerTurn = true;
+    }
+    if (isDropping) {
+      dropOnce();
+      dropInt++;
+    }
+    if (dropInt == height){
+      isDropping = false;
+    }
+  }
+   
+  //------------Key Listener------------
+  public void keyPressed(KeyEvent e){
+    int key = e.getKeyCode();
+    if (isDropping || animation.getIsRotating()){
+      key = -1;
+    }
+    if (key == KeyEvent.VK_LEFT){
+      if (selectorIndex > 0) {
+        selectorIndex--;
+      }
+    }
+    if (key == KeyEvent.VK_RIGHT){
+      if (selectorIndex <width-1){
+        selectorIndex++;
+      }
+    }
+    if (key == KeyEvent.VK_SPACE && !isFull(selectorIndex)) {
+      addPiece(selectorIndex);
+    }
+    if (key == KeyEvent.VK_Q){
+      rotate("left");
+      animation.animateRotate("left");
+    }
+    if (key == KeyEvent.VK_E){
+      rotate("right");
+      animation.animateRotate("right");
+    }
+    animation.repaint();
+  }
+
+  private boolean isFull(int index) {
+    return !(data[index][height-1].getId() == 0);
+  }
+
+  //Just so the file can compile
+  public void keyTyped(KeyEvent e){}
+  public void keyReleased(KeyEvent e){}
+
+  // ----------------Assessor Methods--------------
 
   public int getBoardHeight() {
     return height;
@@ -350,21 +427,13 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
     return playerTwoColor;
   }
 
-  private Piece makePiece(int id, Color color, int x, int y) {
-    int[] xCor = new int[1];
-    int[] yCor = new int[1];
-    if (isRotated) {
-      xCor[0] = startHeight + 4 + 50*x;
-      yCor[0] = startWidth + 4 + 50*(height-1-y);
-    }
-    else {
-      xCor[0] = startWidth + 4 + 50*x;
-      yCor[0] = startHeight + 4 + 50*(height-1-y);
-
-    }
-    return new Piece(id,color,xCor,yCor);
+  public boolean getIsDropping(){
+    return isDropping;
   }
 
+  public boolean getIsFirstPlayerTurn() {
+    return isFirstPlayerTurn;
+  }
 
   public int getSelectorIndex() {
     return selectorIndex;
@@ -377,86 +446,4 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
   public boolean getIsRotated() {
     return isRotated;
   }
-
-  public void animateDrop() {
-    dropInt = 0;
-    System.out.println("dropping");
-    isDropping = true;
-  }
-
-  public void actionPerformed(ActionEvent e) {
-    String s = e.getActionCommand();
-    if (s == "New Game" && !isDropping && !animation.getIsRotating()) {
-      restartData();
-      animation.repaint();
-      if (isRotated) {  
-        animation.animateRotate("left");
-        rotate("left");
-      }
-      isRotated = false;
-      selectorIndex = width/2;
-      isFirstPlayerTurn = true;
-    }
-    
-    if (isDropping & !animation.getIsRotating()) {
-      dropOne();
-      dropInt++;
-    }
-    if (dropInt == height){
-      isDropping = false;
-    }
-
-  }
-
-  public boolean getIsDropping(){
-    return isDropping;
-  }
-
-  public boolean getIsFirstPlayerTurn() {
-    return isFirstPlayerTurn;
-  }
-
-  public boolean isFull(int index) {
-    return !(data[index][height-1].getId() == 0);
-  }
-   
-  //------------For Key Listener------------
-  public void keyPressed(KeyEvent e){
-    int key = e.getKeyCode();
-    if (isDropping || animation.getIsRotating()){
-      key = -1;
-    }
-    
-    if (key == KeyEvent.VK_LEFT){
-      if (selectorIndex > 0) {
-        selectorIndex--;
-      }
-    }
-
-    if (key == KeyEvent.VK_RIGHT){
-      if (selectorIndex <width-1){
-        selectorIndex++;
-      }
-    }
-
-    if (key == KeyEvent.VK_SPACE && !isFull(selectorIndex)) {
-      addPiece(selectorIndex);
-    }
-
-    if (key == KeyEvent.VK_Q){
-      rotate("left");
-      animation.animateRotate("left");
-    }
-
-    if (key == KeyEvent.VK_E){
-      rotate("right");
-      animation.animateRotate("right");
-    }
-    System.out.println(this);
-    animation.repaint();
-  }
-
-  //Just so the file can compile
-  public void keyTyped(KeyEvent e){}
-  public void keyReleased(KeyEvent e){}
 }

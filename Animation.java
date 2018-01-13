@@ -67,7 +67,7 @@ public class Animation extends JPanel implements ActionListener{
     }
   }
 
-  public void rotateOnce(String direction) {
+  private void rotateOnce(String direction) {
     int xCenter = game.getXCenter();
     int yCenter = game.getYCenter();
     for (int x=0; x<game.getBoardWidth(); x++){
@@ -88,7 +88,6 @@ public class Animation extends JPanel implements ActionListener{
       rotateInt = 0;
       isRotating = false;
       game.animateDrop();
-      System.out.println("done rotating");
     }
   }
 
