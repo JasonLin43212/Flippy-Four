@@ -135,8 +135,8 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     isDropping = false;
     
     int adjustment = (Math.max(width,height));
-    startWidth = (75*adjustment-width*50)/2;
-    startHeight = (75*adjustment-height*50)/2;
+    startWidth = (78*adjustment-width*50)/2;
+    startHeight = (78*adjustment-height*50)/2;
 
     data = new Piece[width][height];
     restartData();
