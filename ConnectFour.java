@@ -168,10 +168,15 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
     boardYCor[3] = endHeight;
 
     board = new Board(boardXCor,boardYCor);
+    
+    newGame = new JButton("New Game");
+    newGame.addActionListener(this);
+    newGame.setFocusable(false);
 
     pane = this.getContentPane();
     animation = new Animation(this);
     pane.add(animation);
+    animation.add(newGame);
     addKeyListener(this);
     timer.start();
   }
@@ -383,22 +388,23 @@ public class ConnectFour extends JFrame implements ActionListener, KeyListener{
 
   public void actionPerformed(ActionEvent e) {
     String s = e.getActionCommand();
-    if (s == "New Game") {
+    if (s == "New Game" && !isDropping && !animation.getIsRotating()) {
       restartData();
+      animation.repaint();
       if (animation.getIsRotated()) {
         animation.animateRotate("left");
         rotate("left");
       }
-      
+      selectorIndex = width/2;
+      isFirstPlayerTurn = true;
     }
+    
     if (isDropping & !animation.getIsRotating()) {
       dropOne();
       dropInt++;
-      System.out.println("drop");
     }
     if (dropInt == height){
       isDropping = false;
-      System.out.println("done dropping");
     }
 
   }
