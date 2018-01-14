@@ -221,7 +221,12 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
   }
 
   private boolean isFull(int index) {
-    return !(data[index][height-1].getId() == 0);
+    for (int i=0; i<height; i++) {
+      if (data[index][i].getId() == 0) {
+        return false;
+      }
+    }
+    return true;
   }
 
   private void rotate(String direction){

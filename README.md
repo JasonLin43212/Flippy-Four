@@ -95,8 +95,9 @@ java FlippyFour
 
 Fixed
 
-* GUI rotation
+* GUI rotation being weird
 
+* Rotating makes the game a draw
 
 Not fixed
 
