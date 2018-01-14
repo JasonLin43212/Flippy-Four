@@ -35,7 +35,8 @@ public class Animation extends JPanel implements ActionListener{
     }
 
     // Drawing the arrow
-    if (!(isRotating || game.getIsDropping())) {
+    if (!(isRotating || game.getIsDropping()) &&
+        game.getWinState().equals("Continue Game")) {
       int[] arrowXCor = new int[3];
       int[] arrowYCor = new int[3];
       int arrowAdjustment = game.getSelectorIndex()*50;
@@ -56,24 +57,25 @@ public class Animation extends JPanel implements ActionListener{
       else {
         g.setColor(game.getSecondColor());
       }
-      arrowXCor[0] = startWidth + 10 + arrowAdjustment;
-      arrowXCor[1] = startWidth + 40 + arrowAdjustment;
+      arrowXCor[0] = startWidth + 5 + arrowAdjustment;
+      arrowXCor[1] = startWidth + 45 + arrowAdjustment;
       arrowXCor[2] = startWidth + 25 + arrowAdjustment;
-      arrowYCor[0] = startHeight - 24;
-      arrowYCor[1] = startHeight - 24;
+      arrowYCor[0] = startHeight - 30;
+      arrowYCor[1] = startHeight - 30;
       arrowYCor[2] = startHeight - 10;
       g.fillPolygon(arrowXCor,arrowYCor,3);
       g.setColor(Color.BLACK);
       g.drawPolygon(arrowXCor,arrowYCor,3);
+    }
 
-      //Drawing win message
-      if (!game.getWinState().equals("Continue Game")) {
-        g.setFont(new Font("TimesRoman",Font.PLAIN,16));
-        int adjustment = Math.max(game.getBoardWidth(),game.getBoardHeight());
-        g.drawString(game.getWinState(),
-                     adjustment*78/2 - 50,
-                     adjustment*9);
-      }
+    //Drawing win message
+    if (!game.getWinState().equals("Continue Game")) {
+      g.setColor(Color.GREEN);
+      g.setFont(new Font("TimesRoman",Font.BOLD,25));
+      int adjustment = Math.max(game.getBoardWidth(),game.getBoardHeight());
+      g.drawString(game.getWinState(),
+                   adjustment*78/2 - 85,
+                   adjustment*11);
     }
   }
 
