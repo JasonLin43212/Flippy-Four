@@ -65,6 +65,8 @@ java FlippyFour
 
 * A congratulations at the end when the player finishes
 
+* Disable user input except to start a new game after a game ends
+
 ### Planned Features
 
 * Bombs
