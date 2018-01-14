@@ -10,7 +10,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     StartScreen input = new StartScreen();
     
     if (input.startGame()){
-      ConnectFour c = new ConnectFour(input.getHeight(), input.getWidth(), Color.RED,Color.GREEN);
+      FlippyFour c = new FlippyFour(input.getHeight(), input.getWidth(), Color.RED,Color.GREEN);
       c.setVisible(true);
     }
   }
