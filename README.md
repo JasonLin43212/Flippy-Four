@@ -63,9 +63,9 @@ java FlippyFour
 
 * Animation of pieces dropping
 
-### Planned Features
-
 * A congratulations at the end when the player finishes
+
+### Planned Features
 
 * Bombs
 
@@ -88,6 +88,8 @@ java FlippyFour
 ### Milestone
 
 * Game is playable on Gui (1/12/18)
+
+* Game has win messages (1/14/18)
 
 ### Bugs
 
