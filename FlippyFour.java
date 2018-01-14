@@ -50,7 +50,10 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
 
   //----------Methods------------
 
-  public FlippyFour (int width, int height, Color playerOneColor, Color playerTwoColor){
+  public FlippyFour (int width,
+                     int height,
+                     Color playerOneColor,
+                     Color playerTwoColor){
 
     //For game
     this.height = height;
@@ -83,6 +86,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     xCenter = startWidth + 4 +(int)((width-1)/2.*50);
     yCenter = startHeight + 4  +(int)((height-1)/2.*50);
 
+    //Setting up the board
     int[] boardXCor = new int[4];
     int[] boardYCor = new int[4];
     int endWidth = startWidth+width*50;
@@ -98,11 +102,13 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     boardYCor[3] = endHeight;
 
     board = new Board(boardXCor,boardYCor);
-    
+
+    //Setting up the button
     newGame = new JButton("New Game");
     newGame.addActionListener(this);
     newGame.setFocusable(false);
 
+    //Adding everything onto Gui
     pane = this.getContentPane();
     animation = new Animation(this);
     pane.add(animation);
@@ -145,7 +151,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     boolean one = hasWon(1);
     boolean two = hasWon(2);
     if ((one && two) || isBoardFull()) {
-      winState = "Draw";
+      winState = "     Draw";
     }
     else if (one) {
       winState = "Player 1 Wins";
@@ -292,7 +298,6 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
       dropInt++;
     }
     if (dropInt == height){
-      System.out.println("Done dropping");
       isDropping = false;
       animation.repaint();
     }
@@ -329,7 +334,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
       rotate("right");
       animation.animateRotate("right");
     }
-    System.out.println(this);
+    //System.out.println(this);
     animation.repaint();
   }
 

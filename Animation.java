@@ -56,20 +56,23 @@ public class Animation extends JPanel implements ActionListener{
       else {
         g.setColor(game.getSecondColor());
       }
-      arrowXCor[0] = startWidth + 15 + arrowAdjustment;
-      arrowXCor[1] = startWidth + 35 + arrowAdjustment;
+      arrowXCor[0] = startWidth + 10 + arrowAdjustment;
+      arrowXCor[1] = startWidth + 40 + arrowAdjustment;
       arrowXCor[2] = startWidth + 25 + arrowAdjustment;
-      arrowYCor[0] = startHeight - 20;
-      arrowYCor[1] = startHeight - 20;
+      arrowYCor[0] = startHeight - 24;
+      arrowYCor[1] = startHeight - 24;
       arrowYCor[2] = startHeight - 10;
       g.fillPolygon(arrowXCor,arrowYCor,3);
+      g.setColor(Color.BLACK);
+      g.drawPolygon(arrowXCor,arrowYCor,3);
 
       //Drawing win message
       if (!game.getWinState().equals("Continue Game")) {
-        g.setColor(Color.BLACK);
+        g.setFont(new Font("TimesRoman",Font.PLAIN,16));
+        int adjustment = Math.max(game.getBoardWidth(),game.getBoardHeight());
         g.drawString(game.getWinState(),
-                     game.getWidth()/2,
-                     game.getBoardHeight()*10);
+                     adjustment*78/2 - 50,
+                     adjustment*9);
       }
     }
   }
