@@ -45,6 +45,8 @@ java FlippyFour
 
 * Restart the game in terminal
 
+* Restart game in GUI
+
 * Choose the size of board and color of pieces
 
 * Rotation of board in terminal
@@ -55,15 +57,11 @@ java FlippyFour
 
 * Basic user input to initialize GUI
 
-* An arrow that changes depending on the board
-
-* Non-broken rotation of board
-
-* Restart game in GUI
+* Arrow that indicates the next move
 
 * Animation of pieces dropping
 
-* A congratulations at the end when the player finishes
+* Win/draw message
 
 * Disable user input except to start a new game after a game ends
 
