@@ -20,13 +20,13 @@ cd Flippy-Four
 Compile the code.
 
 ```
-javac ConnectFour.java
+javac FlippyFour.java
 ```
 
 Finally, run the code, following the instructions and have fun!
 
 ```
-java ConnectFour
+java FlippyFour
 ```
 
 ## Development Log

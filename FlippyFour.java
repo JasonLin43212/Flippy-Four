@@ -8,10 +8,13 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
 
   public static void main(String[]args){
     StartScreen input = new StartScreen();
-    
+
     if (input.startGame()){
-      FlippyFour c = new FlippyFour(input.getHeight(), input.getWidth(), Color.RED,Color.GREEN);
-      c.setVisible(true);
+      FlippyFour f= new FlippyFour(input.getWidth(),
+                                    input.getHeight(),
+                                    Color.RED,
+                                    Color.GREEN);
+      f.setVisible(true);
     }
   }
 
@@ -123,7 +126,6 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     for (int i=0; i<width; i++){
 	    for (int j=0; j<height; j++){
         data[i][j] = makePiece(0,emptyColor,i,j);
-
 	    }
     }
   }
@@ -137,20 +139,37 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     }
     isFirstPlayerTurn = !isFirstPlayerTurn;
     animateDrop();
-    updateWin();
+  }
+
+  private void updateWin() {
+    boolean one = hasWon(1);
+    boolean two = hasWon(2);
+    if ((one && two) || isBoardFull()) {
+      winState = "Draw";
+    }
+    else if (one) {
+      winState = "Player 1 Wins";
+    }
+    else if (two) {
+      winState = "Player 2 Wins";
+    }
+    else {
+      winState = "Continue Game";
+    }
+    animation.repaint();
   }
 
   private boolean hasWon(int id){
     //checking vertical wins
     for (int i=0; i<width; i++){
-      for (int j=0; j<height-4; j++){
+      for (int j=0; j<height-3; j++){
         if (checkWin(id,i,j,0,1)){
           return true;
         }
       }
     }
     //checking horizontal wins
-    for (int i=0; i<width-4; i++){
+    for (int i=0; i<width-3; i++){
       for (int j=0; j<height; j++){
         if (checkWin(id,i,j,1,0)){
           return true;
@@ -158,15 +177,15 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
       }
     }
     //checking diagonal // wins
-    for (int i=0; i<width-4; i++){
-      for (int j=0; j<height-4; j++){
+    for (int i=0; i<width-3; i++){
+      for (int j=0; j<height-3; j++){
         if (checkWin(id,i,j,1,1)){
           return true;
         }
       }
     }
     //checking diagonal \\ wins
-    for (int i=0; i<width-4; i++){
+    for (int i=0; i<width-3; i++){
       for (int j=height-1; j>2; j--){
         if (checkWin(id,i,j,1,-1)){
           return true;
@@ -186,18 +205,17 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     return true;
   }
 
-  private void updateWin() {
-    boolean one = hasWon(1);
-    boolean two = hasWon(2);
-    if (one && two) {
-      winState = "Draw";
+  private boolean isBoardFull() {
+    for (int i=0; i<width; i++){
+      if (!isFull(i)){
+        return false;
+      }
     }
-    else if (one) {
-      winState = "Player 1 Wins";
-    }
-    else if (two) {
-      winState = "Player 2 Wins";
-    }
+    return true;
+  }
+
+  private boolean isFull(int index) {
+    return !(data[index][height-1].getId() == 0);
   }
 
   private void rotate(String direction){
@@ -264,6 +282,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
         animation.animateRotate("left");
         rotate("left");
       }
+      winState = "Continue Game";
       isRotated = false;
       selectorIndex = width/2;
       isFirstPlayerTurn = true;
@@ -273,7 +292,13 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
       dropInt++;
     }
     if (dropInt == height){
+      System.out.println("Done dropping");
       isDropping = false;
+      animation.repaint();
+    }
+    if (!isDropping) {
+      updateWin();
+      animation.repaint();
     }
   }
    
@@ -304,11 +329,8 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
       rotate("right");
       animation.animateRotate("right");
     }
+    System.out.println(this);
     animation.repaint();
-  }
-
-  private boolean isFull(int index) {
-    return !(data[index][height-1].getId() == 0);
   }
 
   //Just so the file can compile
@@ -371,5 +393,9 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
 
   public boolean getIsRotated() {
     return isRotated;
+  }
+
+  public String getWinState() {
+    return winState;
   }
 }

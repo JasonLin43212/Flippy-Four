@@ -64,6 +64,13 @@ public class Animation extends JPanel implements ActionListener{
       arrowYCor[2] = startHeight - 10;
       g.fillPolygon(arrowXCor,arrowYCor,3);
 
+      //Drawing win message
+      if (!game.getWinState().equals("Continue Game")) {
+        g.setColor(Color.BLACK);
+        g.drawString(game.getWinState(),
+                     game.getWidth()/2,
+                     game.getBoardHeight()*10);
+      }
     }
   }
 
