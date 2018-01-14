@@ -310,7 +310,8 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
   //------------Key Listener------------
   public void keyPressed(KeyEvent e){
     int key = e.getKeyCode();
-    if (isDropping || animation.getIsRotating()){
+    if (isDropping || animation.getIsRotating() ||
+        !winState.equals("Continue Game")){
       key = -1;
     }
     if (key == KeyEvent.VK_LEFT){

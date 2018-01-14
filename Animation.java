@@ -70,7 +70,7 @@ public class Animation extends JPanel implements ActionListener{
 
     //Drawing win message
     if (!game.getWinState().equals("Continue Game")) {
-      g.setColor(Color.GREEN);
+      g.setColor(Color.BLACK);
       g.setFont(new Font("TimesRoman",Font.BOLD,25));
       int adjustment = Math.max(game.getBoardWidth(),game.getBoardHeight());
       g.drawString(game.getWinState(),
