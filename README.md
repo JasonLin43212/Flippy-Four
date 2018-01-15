@@ -69,7 +69,7 @@ java FlippyFour
 
 * Bombs
 
-* A way to save and load games
+* ~~A way to save and load games~~ We believe that this feature is unnecessary since most games do not last that long
 
 * A singleplayer mode
 

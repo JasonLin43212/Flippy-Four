@@ -16,12 +16,8 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
                                     Color.GREEN);
       f.setVisible(true);
 
-      c.setUp1();
-      //c.setUp2();
-      //c.setUp3();
-      //c.setUp4();
-      //c.setUp5();
-      //c.setUp6();
+      //f.setUp1();
+      //f.setUp2();
     }
   }
 
@@ -422,29 +418,69 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
   public void setUp1() {
     addPiece(0);
     addPiece(1);
-    
-    addPiece(3);
-    addPiece(4);
 
     addPiece(2);
+    addPiece(3);
+
+    addPiece(4);
     addPiece(5);
+    try{
+      Thread.sleep(500);
+    }catch(InterruptedException e){}
+
+    addPiece(1);
+    addPiece(5);
+
+    addPiece(2);
+    addPiece(6);
+    
+    try{
+      Thread.sleep(500);
+    }catch(InterruptedException e){}
+
+    addPiece(2);
+    addPiece(1);
+
+    addPiece(0);
+  }
+
+  public void setUp2() {
+    addPiece(0);
+    addPiece(1);
+
+    addPiece(2);
+    addPiece(3);
+
+    addPiece(4);
+    addPiece(6);
+
+    addPiece(5);
+
+    try{
+      Thread.sleep(500);
+    }catch(InterruptedException e){}
 
     addPiece(0);
     addPiece(1);
-    
-    addPiece(3);
-    addPiece(4);
 
-    addPiece(2);
     addPiece(5);
+    addPiece(4);
+    
+    try{
+      Thread.sleep(500);
+    }catch(InterruptedException e){}
 
     addPiece(0);
     addPiece(1);
-    
-    addPiece(3);
-    addPiece(4);
 
-    addPiece(2);
     addPiece(5);
+
+    try{
+      Thread.sleep(500);
+    }catch(InterruptedException e){}
+
+    addPiece(0);
+    addPiece(1);
+
   }
 }
