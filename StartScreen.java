@@ -2,12 +2,34 @@ import java.util.*;
 import java.awt.*;
 
 public class StartScreen{
- 
+
+  //------------Instance Variables--------------
+  public ArrayList<Integer> parameters;
+  public ArrayList<String> colorNames;
+
+  //--------------- Other Variables-------------
+  String dimensionError = " should be an integer between 5 and 11**\n";
+  String firstColor = "";
   boolean stop = false;
   Scanner scan = new Scanner(System.in);
-  ArrayList<String> parameters = new ArrayList<String>();
-    
+
+  //---------------Methods-------------
   public StartScreen(){
+    parameters = new ArrayList<Integer>();
+    colorNames = new ArrayList<String>();
+    
+    colorNames.add("red");
+    colorNames.add("orange");
+    colorNames.add("yellow");
+    colorNames.add("green");
+    colorNames.add("blue");
+    colorNames.add("cyan");
+    colorNames.add("magenta");
+    colorNames.add("purple");
+    colorNames.add("pink");
+    colorNames.add("brown");
+  
+    
     heightInput();
     widthInput();
     color1Input();
@@ -17,37 +39,39 @@ public class StartScreen{
   }
 
   public int getHeight(){
-    return Integer.parseInt(parameters.get(0));
+    return parameters.get(0);
   }
 
   public int getWidth(){
-    return Integer.parseInt(parameters.get(1));
+    return parameters.get(1);
   }
 
-  public String getColor1(){
+  public int getColor1(){
     return parameters.get(2);
   }
 
-  public String getColor2(){
+  public int getColor2(){
     return parameters.get(3);
   }
 
   public void heightInput() {
     int h = 0;
     while (parameters.size() == 0){
-	    System.out.println(
-                         "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n----------------------------\n"+
-                         "Enter the HEIGHT of your board."+
-                         "\n----------------------------\n"+
-                         "**This should be an integer between 5 and 11, inclusive.**\n");
+       System.out.println(
+                       "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" +
+                       "----------------------------\n"+
+                       "Enter the HEIGHT of your board."+
+                       "\n----------------------------\n"+
+                       "**This should be an integer between 5 and 11,"+
+                       " inclusive.**\n");
+    
 	    String next = scan.next();
 	    try {
         h = Integer.parseInt(next);
 
-	    } catch (NumberFormatException e) {
-	    }
+	    } catch (NumberFormatException e) {}
 	    if(h >= 5 && h <= 11){
-        parameters.add(next);
+        parameters.add(h);
 	    }
     }
   }
@@ -59,7 +83,8 @@ public class StartScreen{
       System.out.println("\n\n----------------------------\n"+
                          "Enter the WIDTH of your board."+
                          "\n----------------------------\n"+
-                         "**This should be an integer between 5 and 11, inclusive.**\n");
+                         "**This should be an integer between 5 and 11,"+
+                         " inclusive.**\n");
 
       String next = scan.next();
       try {
@@ -68,7 +93,7 @@ public class StartScreen{
       } catch (NumberFormatException e) {
       }
       if(w >= 5 && w <= 11){
-		    parameters.add(next);
+		    parameters.add(w);
       }
     }
   }
@@ -77,11 +102,19 @@ public class StartScreen{
 
     while (parameters.size() == 2){
 	    System.out.println("\n\n----------------------------\n"+
-                         "Player 1: Enter your color"+
-                         "\n----------------------------\n");
+                         "Player 1: Enter your color\n"+
+                         "Choose one of the following colors:\n");
+      for (int i=0; i<colorNames.size(); i++) {
+        String name = colorNames.get(i);
+        System.out.print(name.substring(0,1).toUpperCase() +
+                         name.substring(1) + "  ");
+      }
+      System.out.println("\n----------------------------\n");
 	    String next = scan.next();
-	    parameters.add(next);
-
+      if (colorNames.contains(next.toLowerCase())){
+        parameters.add(colorNames.indexOf(next));
+        firstColor = next;
+      }
     }
 
   }
@@ -91,8 +124,19 @@ public class StartScreen{
 	    System.out.println("\n\n----------------------------\n"+
                          "Player 2: Enter your color"+
                          "\n----------------------------\n");
+      for (int i=0; i<colorNames.size(); i++) {
+        String name = colorNames.get(i);
+        if (!name.equals(firstColor)) {
+          System.out.print(name.substring(0,1).toUpperCase() +
+                           name.substring(1) + "  ");
+        }
+      }
+      System.out.println("\n----------------------------\n");
 	    String next = scan.next();
-	    parameters.add(next);
+      if (colorNames.contains(next.toLowerCase()) &&
+          !next.equals(firstColor)) {
+        parameters.add(colorNames.indexOf(next));
+      }
     }
 
   }
@@ -100,26 +144,33 @@ public class StartScreen{
   public void instructions(){
 
     while (parameters.size() == 4){
-      System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nYou are done setting up! \nNow for some instructions: \n\n" +
+      System.out.println("\n\n\n\n"+
+                         "Please wait while we set up your game!");
+      for (int i=0; i<10; i++) {
+        try{
+          Thread.sleep(300);
+        }catch(InterruptedException e){}
+        System.out.print("░░░░░░░");
+      }
+      System.out.println("\n\nDone setting up!\nNow for some instructions:"+
+                         " \n\n" +
                          "[<-]: moves arrow left \n" +
                          "[->]: moves arrow right \n" +
                          "[space]: drops piece\n" +
                          "[q]: rotates board left \n" +
                          "[e]: rotates board right \n" +
-                         "\n\n\n Enter \"OK\" to start!"
+                         "\n\n\nEnter \"OK\" to start!"
 
                          );
       String next = scan.next();
       if (next.toLowerCase().equals("ok")){
-		    parameters.add(next);
+		    parameters.add(-1);
 
       }
     }
   }
 
-    
   public boolean startGame(){
     return(parameters.size() == 5);
   }
-    
 }

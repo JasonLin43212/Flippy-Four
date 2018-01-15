@@ -9,11 +9,24 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
   public static void main(String[]args){
     StartScreen input = new StartScreen();
 
+    ArrayList<Color> colors = new ArrayList<Color>();
+    
+    colors.add(Color.RED);
+    colors.add(new Color(255,165,0));
+    colors.add(Color.YELLOW);
+    colors.add(new Color(0,128,0));
+    colors.add(Color.BLUE);
+    colors.add(Color.CYAN);
+    colors.add(Color.MAGENTA);
+    colors.add(new Color(138,43,226));
+    colors.add(new Color(255,20,147));
+    colors.add(new Color(139,69,19));
+
     if (input.startGame()){
       FlippyFour f= new FlippyFour(input.getWidth(),
-                                    input.getHeight(),
-                                    Color.RED,
-                                    Color.GREEN);
+                                   input.getHeight(),
+                                   colors.get(input.getColor1()),
+                                   colors.get(input.getColor2()));
       f.setVisible(true);
 
       //f.setUp1();
