@@ -15,6 +15,13 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
                                     Color.RED,
                                     Color.GREEN);
       f.setVisible(true);
+
+      c.setUp1();
+      //c.setUp2();
+      //c.setUp3();
+      //c.setUp4();
+      //c.setUp5();
+      //c.setUp6();
     }
   }
 
@@ -408,5 +415,36 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
 
   public String getWinState() {
     return winState;
+  }
+
+  //-------------Some positions for demo--------
+
+  public void setUp1() {
+    addPiece(0);
+    addPiece(1);
+    
+    addPiece(3);
+    addPiece(4);
+
+    addPiece(2);
+    addPiece(5);
+
+    addPiece(0);
+    addPiece(1);
+    
+    addPiece(3);
+    addPiece(4);
+
+    addPiece(2);
+    addPiece(5);
+
+    addPiece(0);
+    addPiece(1);
+    
+    addPiece(3);
+    addPiece(4);
+
+    addPiece(2);
+    addPiece(5);
   }
 }
