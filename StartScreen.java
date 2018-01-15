@@ -4,8 +4,8 @@ import java.awt.*;
 public class StartScreen{
 
   //------------Instance Variables--------------
-  public ArrayList<Integer> parameters;
-  public ArrayList<String> colorNames;
+  private ArrayList<Integer> parameters;
+  private ArrayList<String> colorNames;
 
   //--------------- Other Variables-------------
   String dimensionError = " should be an integer between 5 and 11**\n";
@@ -54,7 +54,7 @@ public class StartScreen{
     return parameters.get(3);
   }
 
-  public void heightInput() {
+  private void heightInput() {
     int h = 0;
     while (parameters.size() == 0){
        System.out.println(
@@ -77,7 +77,7 @@ public class StartScreen{
   }
 
 
-  public void widthInput() {
+  private void widthInput() {
     int w =0;
     while (parameters.size() == 1){
       System.out.println("\n\n----------------------------\n"+
@@ -98,7 +98,7 @@ public class StartScreen{
     }
   }
 
-  public void color1Input(){
+  private void color1Input(){
 
     while (parameters.size() == 2){
 	    System.out.println("\n\n----------------------------\n"+
@@ -119,7 +119,7 @@ public class StartScreen{
 
   }
     
-  public void color2Input(){
+  private void color2Input(){
     while (parameters.size() == 3){
 	    System.out.println("\n\n----------------------------\n"+
                          "Player 2: Enter your color"+
@@ -141,7 +141,7 @@ public class StartScreen{
 
   }
 
-  public void instructions(){
+  private void instructions(){
 
     while (parameters.size() == 4){
       System.out.println("\n\n\n\n"+
