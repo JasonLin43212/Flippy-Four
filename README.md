@@ -23,7 +23,7 @@ Compile the code.
 javac FlippyFour.java
 ```
 
-Finally, run the code, following the instructions and have fun!
+Finally, run the code, follow the instructions and have fun!
 
 ```
 java FlippyFour
