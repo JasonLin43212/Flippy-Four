@@ -110,8 +110,8 @@ public class StartScreen{
                          name.substring(1) + "  ");
       }
       System.out.println("\n----------------------------\n");
-	    String next = scan.next();
-      if (colorNames.contains(next.toLowerCase())){
+	    String next = scan.next().toLowerCase();
+      if (colorNames.contains(next)){
         parameters.add(colorNames.indexOf(next));
         firstColor = next;
       }
@@ -126,14 +126,14 @@ public class StartScreen{
                          "\n----------------------------\n");
       for (int i=0; i<colorNames.size(); i++) {
         String name = colorNames.get(i);
-        if (!name.equals(firstColor)) {
+        if (!name.toLowerCase().equals(firstColor)) {
           System.out.print(name.substring(0,1).toUpperCase() +
                            name.substring(1) + "  ");
         }
       }
       System.out.println("\n----------------------------\n");
-	    String next = scan.next();
-      if (colorNames.contains(next.toLowerCase()) &&
+	    String next = scan.next().toLowerCase();
+      if (colorNames.contains(next) &&
           !next.equals(firstColor)) {
         parameters.add(colorNames.indexOf(next));
       }
