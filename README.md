@@ -65,6 +65,8 @@ java FlippyFour
 
 * Disable user input except to start a new game after a game ends
 
+* Choosing colors for pieces
+
 ### Planned Features
 
 * Bombs
@@ -77,8 +79,6 @@ java FlippyFour
 
 * Start Screen with all features implemented
 
-* Choosing colors for pieces
-
 * Having instructions on playing in gui
 
 * Different rotation modes
@@ -90,6 +90,8 @@ java FlippyFour
 * Game is playable on Gui (1/12/18)
 
 * Game has win messages (1/14/18)
+
+* More COLORS (1/16/18)
 
 ### Bugs
 
