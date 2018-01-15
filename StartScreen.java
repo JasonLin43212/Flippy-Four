@@ -145,20 +145,13 @@ public class StartScreen{
 
     while (parameters.size() == 4){
       System.out.println("\n\n\n\n"+
-                         "Please wait while we set up your game!");
-      for (int i=0; i<10; i++) {
-        try{
-          Thread.sleep(300);
-        }catch(InterruptedException e){}
-        System.out.print("░░░░░░░");
-      }
-      System.out.println("\n\nDone setting up!\nNow for some instructions:"+
+                         "You are done setting up! \nNow for some instructions:"+
                          " \n\n" +
-                         "[<-]: moves arrow left \n" +
-                         "[->]: moves arrow right \n" +
-                         "[space]: drops piece\n" +
-                         "[q]: rotates board left \n" +
-                         "[e]: rotates board right \n" +
+                         "[<-]: Moves arrow left \n" +
+                         "[->]: Moves arrow right \n" +
+                         "[space]: Drops piece\n" +
+                         "[q]: Rotates board left \n" +
+                         "[e]: Rotates board right \n" +
                          "\n\n\nEnter \"OK\" to start!"
 
                          );
