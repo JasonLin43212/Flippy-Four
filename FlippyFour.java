@@ -46,6 +46,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
   private boolean isFirstPlayerTurn;
   private boolean isRotated;
   private Animation animation;
+  private String rotationMode;
 
   //----------Instance Variables for GUI--------------
 
