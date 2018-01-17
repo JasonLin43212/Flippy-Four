@@ -60,14 +60,14 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	Object c2 = colors2.getSelectedItem();
 	String color2 = c2.toString();
 
-	//Object w = widthInput.getSelectedItem();
-	//int width = (int)w;
+	Object w = widthInput.getSelectedItem();
+	int width = (int)w;
+
+	Object h = heightInput.getSelectedItem();
+	int height = (int)h;
 	
 	String str = e.getActionCommand();
-
-	if (str.equals("START")){
-
-	    }	
+	
     }
   
 	
