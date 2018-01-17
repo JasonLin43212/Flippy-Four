@@ -78,12 +78,13 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	widthInput.setSelectedIndex(2);
 	pane.add(widthInput);
 
-        INSTRUCTIONS = new JLabel(
-				  "[<-]: Moves arrow left \n" +
-				  "[->]: Moves arrow right \n" +
-				  "[space]: Drops piece\n" +
-				  "[q]: Rotates board left \n" +
-				  "[e]: Rotates board right \n" );
+        INSTRUCTIONS = new JLabel("<html>"+
+				  "[<-]: Moves arrow left <br/>" +
+				  "[->]: Moves arrow right <br/>" +
+				  "[space]: Drops piece <br/>" +
+				  "[q]: Rotates board left <br/>" +
+				  "[e]: Rotates board right <br/>" +
+				  "</html>" );
 	pane.add(INSTRUCTIONS);
         INSTRUCTIONS.setVisible(true);
 	
