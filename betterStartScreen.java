@@ -11,6 +11,10 @@ public class betterStartScreen extends JFrame implements ActionListener{
     private JComboBox<String> colors1;
     private JComboBox<String> colors2;
     private String[] colorsList = new String[] {"red", "orange", "yellow", "green", "blue", "cyan", "magenta", "purple", "pink", "brown"};
+    
+    private JComboBox<Integer> height;
+    private JComboBox<Integer> width;
+    private Integer[] dimensions = new Integer[] {5,6,7,8,9,10};
 
     
     public betterStartScreen(){
@@ -29,6 +33,16 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	colors2 = new JComboBox<String>(colorsList);
 	colors2.addActionListener(this);
 	pane.add(colors2);
+
+	height = new JComboBox<Integer>(dimensions);
+	height.addActionListener(this);
+	pane.add(height);
+	
+	width = new JComboBox<Integer>(dimensions);
+	width.addActionListener(this);
+	pane.add(width);
+
+	
 	
 	START = new JButton("START");
 	START.addActionListener(this);
