@@ -17,6 +17,7 @@ public class betterStartScreen extends JFrame implements ActionListener{
     private JComboBox<Integer> widthInput;
     private Integer[] dimensions = new Integer[] {5,6,7,8,9,10};
 
+    private JLabel WELCOME;
     private JLabel error;
     private JLabel COLOR1;
     private JLabel COLOR2;
@@ -41,6 +42,10 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	
 	pane = this.getContentPane();
 	pane.setLayout(new FlowLayout());
+
+        WELCOME = new JLabel("<html> Welcome to Flippy-Four! <br/></html>");
+	pane.add(WELCOME);
+	WELCOME.setVisible(true);
 
         COLOR1 = new JLabel("Player 1: Choose your color");
 	pane.add(COLOR1);
