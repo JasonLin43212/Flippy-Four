@@ -34,6 +34,10 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	colors1.addActionListener(this);
 	pane.add(colors1);
 
+	colors2 = new JComboBox<String>(colorsList);
+	colors2.addActionListener(this);
+	pane.add(colors2);
+
 	
 	
     }
