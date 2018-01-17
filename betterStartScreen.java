@@ -7,7 +7,6 @@ public class betterStartScreen extends JFrame implements ActionListener{
     private ArrayList<Integer> parameters;
     
     private Container pane;
-    private JTextField text;
     private JButton START;
 
     private JComboBox<String> colors1;
@@ -17,6 +16,8 @@ public class betterStartScreen extends JFrame implements ActionListener{
     private JComboBox<Integer> heightInput;
     private JComboBox<Integer> widthInput;
     private Integer[] dimensions = new Integer[] {5,6,7,8,9,10};
+
+    private JLabel label;
 
     
     public betterStartScreen(){
@@ -29,26 +30,28 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	pane.setLayout(new FlowLayout());
 
 	colors1 = new JComboBox<String>(colorsList);
-	colors1.addActionListener(this);
+	//colors1.addActionListener(this);
 	pane.add(colors1);
 
 	colors2 = new JComboBox<String>(colorsList);
-	colors2.addActionListener(this);
+	//colors2.addActionListener(this);
 	pane.add(colors2);
 
 	heightInput = new JComboBox<Integer>(dimensions);
-	heightInput.addActionListener(this);
+	//heightInput.addActionListener(this);
 	pane.add(heightInput);
 	
 	widthInput = new JComboBox<Integer>(dimensions);
-	widthInput.addActionListener(this);
+	//widthInput.addActionListener(this);
 	pane.add(widthInput);	
 	
 	START = new JButton("START");
 	START.addActionListener(this);
 	pane.add(START);
 
-	
+        label = new JLabel("Please choose two different colors.");
+	pane.add(label);
+	label.setVisible(false);
 	
     }
 
@@ -60,13 +63,15 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	Object c2 = colors2.getSelectedItem();
 	String color2 = c2.toString();
 
-	Object w = widthInput.getSelectedItem();
-	int width = (int)w;
-
 	Object h = heightInput.getSelectedItem();
 	int height = (int)h;
-	
-	String str = e.getActionCommand();
+
+	Object w = widthInput.getSelectedItem();
+	int width = (int)w;	
+
+	if (color1.equals(color2)){
+	    label.setVisible(true);
+	}
 	
     }
   
