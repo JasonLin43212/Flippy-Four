@@ -8,6 +8,10 @@ public class betterStartScreen extends JFrame implements ActionListener{
     private JTextField text;
     private JButton START;
 
+    private JComboBox<String> colors1 = new JComboBox<String>();
+    private JComboBox<String> colors2 = new JComboBox<String>();
+    private String[] colorsList = new String[] {"red", "orange", "yellow"};
+
     
     public betterStartScreen(){
 	this.setTitle("Flippy Four");
@@ -26,22 +30,24 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	START.addActionListener(this);
 	pane.add(START);
 
-    }
-
-    public void actionPerformed(ActionEvent e){
-	String str = e.getActionCommand();
-	System.out.println(str); 
-
-	if (str.equals("START")){
-	    //double result = FC(Double.parseDouble(text.getText()));
-	    //text.setText(result + "");
+	colors1 = new JComboBox<String>(colorsList);
+	colors1.addActionListener(this);
+	pane.add(colors1);
 	
-	}
     }
 
 
+   public void actionPerformed(ActionEvent e){
+	String str = e.getActionCommand();
+	System.out.println(str);
+	
+	
+    }
+  
+	
     public static void main(String[]args){
 	betterStartScreen x = new betterStartScreen();
+
 	x.setVisible(true);
 	
     }
