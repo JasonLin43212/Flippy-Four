@@ -39,10 +39,12 @@ public class betterStartScreen extends JFrame implements ActionListener{
 
 	heightInput = new JComboBox<Integer>(dimensions);
 	//heightInput.addActionListener(this);
+	heightInput.setSelectedIndex(1);
 	pane.add(heightInput);
 	
 	widthInput = new JComboBox<Integer>(dimensions);
 	//widthInput.addActionListener(this);
+	widthInput.setSelectedIndex(7);
 	pane.add(widthInput);	
 	
 	START = new JButton("START");
