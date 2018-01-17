@@ -17,7 +17,14 @@ public class betterStartScreen extends JFrame implements ActionListener{
     private JComboBox<Integer> widthInput;
     private Integer[] dimensions = new Integer[] {5,6,7,8,9,10};
 
-    private JLabel label;
+    private JLabel error;
+
+    String color1;
+    String color2;
+    int height;
+    int width;
+
+    private boolean StartGame = false;
 
     
     public betterStartScreen(){
@@ -53,31 +60,50 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	START.addActionListener(this);
 	pane.add(START);
 
-        label = new JLabel("Please choose two different colors.");
-	pane.add(label);
-	label.setVisible(false);
-	
+        error = new JLabel("Please choose two different colors.");
+	pane.add(error);
+	error.setVisible(false);
+
+	color1 = "red";
+	color2 = "yellow";
+
+	height = 6;
+	width = 7;
     }
 
 
     public void actionPerformed(ActionEvent e){
 	Object c1 = colors1.getSelectedItem();
-	String color1 = c1.toString();
+	color1 = c1.toString();
 
 	Object c2 = colors2.getSelectedItem();
-	String color2 = c2.toString();
+	color2 = c2.toString();
 
 	Object h = heightInput.getSelectedItem();
-	int height = (int)h;
+	height = (int)h;
 
 	Object w = widthInput.getSelectedItem();
-	int width = (int)w;	
+	width = (int)w;	
 
 	if (color1.equals(color2)){
-	    label.setVisible(true);
+	    error.setVisible(true);
+	}
+
+	else {
+	    StartGame = true;	    
 	}
 	
     }
+
+    public boolean ready(){return StartGame;}
+    
+    public String P1_color(){return color1;}
+
+    public String P2_color(){return color2;}
+
+    public int boardHeight(){return height;}
+
+    public int boardWidth(){return width;}
   
 	
     public static void main(String[]args){
