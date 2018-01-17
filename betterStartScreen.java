@@ -22,14 +22,6 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	pane = this.getContentPane();
 	pane.setLayout(new FlowLayout());
 
-	text = new JTextField(5);
-	text.addActionListener(this);
-	pane.add(text);
-
-	START = new JButton("START");
-	START.addActionListener(this);
-	pane.add(START);
-
 	colors1 = new JComboBox<String>(colorsList);
 	colors1.addActionListener(this);
 	pane.add(colors1);
@@ -37,6 +29,10 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	colors2 = new JComboBox<String>(colorsList);
 	colors2.addActionListener(this);
 	pane.add(colors2);
+	
+	START = new JButton("START");
+	START.addActionListener(this);
+	pane.add(START);
 
 	
 	
