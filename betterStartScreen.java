@@ -5,6 +5,7 @@ import java.util.*;
 
 public class betterStartScreen extends JFrame implements ActionListener{
     private ArrayList<Integer> parameters;
+    private ArrayList<String> colorNames;
     
     private Container pane;
     private JButton START;
@@ -106,6 +107,21 @@ public class betterStartScreen extends JFrame implements ActionListener{
 
 	height = 6;
 	width = 7;
+
+	colorNames = new ArrayList<String>();
+    
+	colorNames.add("red");
+	colorNames.add("orange");
+	colorNames.add("yellow");
+	colorNames.add("green");
+	colorNames.add("blue");
+	colorNames.add("cyan");
+	colorNames.add("magenta");
+	colorNames.add("purple");
+	colorNames.add("pink");
+	colorNames.add("brown");
+
+	this.setVisible(true);
     }
 
 
@@ -134,20 +150,14 @@ public class betterStartScreen extends JFrame implements ActionListener{
 
     public boolean ready(){return StartGame;}
     
-    public String P1_color(){return color1;}
-
-    public String P2_color(){return color2;}
+    public int P1_color(){return colorNames.indexOf(color1);}
+    public int P2_color(){return colorNames.indexOf(color2);}
 
     public int boardHeight(){return height;}
 
     public int boardWidth(){return width;}
   
 	
-    public static void main(String[]args){
-	betterStartScreen x = new betterStartScreen();
-
-	x.setVisible(true);
-	
-    }
+ 
 }
 
