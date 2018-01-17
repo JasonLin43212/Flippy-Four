@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class FlippyFour extends JFrame implements ActionListener, KeyListener{
 
   public static void main(String[]args){
-    StartScreen input = new StartScreen();
+    betterStartScreen input = new betterStartScreen();
 
     ArrayList<Color> colors = new ArrayList<Color>();
     
@@ -22,11 +22,11 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     colors.add(new Color(255,20,147));
     colors.add(new Color(139,69,19));
 
-    if (input.startGame()){
-      FlippyFour f= new FlippyFour(input.getWidth(),
-                                   input.getHeight(),
-                                   colors.get(input.getColor1()),
-                                   colors.get(input.getColor2()));
+    if (input.ready()){
+      FlippyFour f= new FlippyFour(input.boardWidth(),
+                                   input.boardHeight(),
+                                   colors.get(input.P1_color()),
+                                   colors.get(input.P2_color()));
       f.setVisible(true);
 
       //f.setUp1();

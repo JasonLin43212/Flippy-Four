@@ -18,6 +18,12 @@ public class betterStartScreen extends JFrame implements ActionListener{
     private Integer[] dimensions = new Integer[] {5,6,7,8,9,10};
 
     private JLabel error;
+    private JLabel COLOR1;
+    private JLabel COLOR2;
+    private JLabel HEIGHT;
+    private JLabel WIDTH;
+    private JLabel INSTRUCTIONS;
+    
 
     String color1;
     String color2;
@@ -29,32 +35,57 @@ public class betterStartScreen extends JFrame implements ActionListener{
     
     public betterStartScreen(){
 	this.setTitle("Flippy Four");
-	this.setSize(400,400);
+	this.setSize(265,400);
 	this.setLocation(100,100);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	
 	pane = this.getContentPane();
 	pane.setLayout(new FlowLayout());
 
+        COLOR1 = new JLabel("Player 1: Choose your color");
+	pane.add(COLOR1);
+	COLOR1.setVisible(true);
+	
 	colors1 = new JComboBox<String>(colorsList);
 	//colors1.addActionListener(this);
 	colors1.setSelectedIndex(0);
 	pane.add(colors1);
+
+	COLOR2 = new JLabel("Player 2: Choose your color");
+	pane.add(COLOR2);
+	COLOR2.setVisible(true);
 
 	colors2 = new JComboBox<String>(colorsList);
 	//colors2.addActionListener(this);
 	colors2.setSelectedIndex(2);
 	pane.add(colors2);
 
+	HEIGHT = new JLabel("Set your board height");
+	pane.add(HEIGHT);
+	HEIGHT.setVisible(true);
+
 	heightInput = new JComboBox<Integer>(dimensions);
 	//heightInput.addActionListener(this);
 	heightInput.setSelectedIndex(1);
 	pane.add(heightInput);
+
+        WIDTH = new JLabel("Set your board width");
+	pane.add(WIDTH);
+	WIDTH.setVisible(true);
 	
 	widthInput = new JComboBox<Integer>(dimensions);
 	//widthInput.addActionListener(this);
 	widthInput.setSelectedIndex(2);
-	pane.add(widthInput);	
+	pane.add(widthInput);
+
+        INSTRUCTIONS = new JLabel(
+				  "[<-]: Moves arrow left \n" +
+				  "[->]: Moves arrow right \n" +
+				  "[space]: Drops piece\n" +
+				  "[q]: Rotates board left \n" +
+				  "[e]: Rotates board right \n" );
+	pane.add(INSTRUCTIONS);
+        INSTRUCTIONS.setVisible(true);
 	
 	START = new JButton("START");
 	START.addActionListener(this);
@@ -113,3 +144,4 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	
     }
 }
+
