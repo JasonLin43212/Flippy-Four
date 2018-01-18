@@ -38,7 +38,7 @@ public class betterStartScreen extends JFrame implements ActionListener{
     
     public betterStartScreen(){
 	this.setTitle("Flippy Four");
-	this.setSize(265,400);
+	this.setSize(265,300);
 	this.setLocation(100,100);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	
