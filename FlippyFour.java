@@ -30,9 +30,6 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
                                    "None",
                                    false);
       f.setVisible(true);
-
-      //f.setUp1();
-      //f.setUp2();
     }
   }
 
