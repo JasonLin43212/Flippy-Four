@@ -27,7 +27,8 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
                                    input.getHeight(),
                                    colors.get(input.getColor1()),
                                    colors.get(input.getColor2()),
-                                   "Set Interval");
+                                   "None",
+                                   false);
       f.setVisible(true);
 
       //f.setUp1();
@@ -49,6 +50,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
   private Animation animation;
   private String rotationMode;
   private int rotationNum;
+  private boolean canPlayerRotate;
 
   //----------Instance Variables for GUI--------------
 
@@ -73,7 +75,8 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
                      int height,
                      Color playerOneColor,
                      Color playerTwoColor,
-                     String rotationMode){
+                     String rotationMode,
+                     boolean canPlayerRotate){
 
     //For game
     this.height = height;
@@ -81,6 +84,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     this.playerOneColor = playerOneColor;
     this.playerTwoColor = playerTwoColor;
     this.rotationMode = rotationMode;
+    this.canPlayerRotate = canPlayerRotate;
     
     isRotated = false;
     selectorIndex = width/2;
@@ -271,7 +275,9 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     width = data.length;
     isRotated = !isRotated;
     selectorIndex = width/2;
-    if (rotationNum%6!=0){
+    if ((rotationMode.equals("Set Interval") && rotationNum%6!=0) ||
+        (rotationMode.equals("Random Rotation") && rotationNum%4!=0) ||
+        rotationMode.equals("None")){
       isFirstPlayerTurn = !isFirstPlayerTurn;
     }
   }
@@ -295,10 +301,11 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
   }
 
   private void randomRotations(){
-    System.out.println("calling here");
     if (rotationMode.equals("Set Interval")){
-      System.out.println("increase");
       rotationNum++;
+    }
+    if (rotationMode.equals("Random Rotation")){
+      rotationNum = (int)(Math.random()*16);
     }
   }
 
@@ -346,6 +353,18 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
          animation.animateRotate("right");
          rotationNum++;
       }
+       if (rotationMode.equals("Random Rotation") && rotationNum%4==0){
+         int randomInt = (int)(Math.random() * 1000);
+         if (randomInt%2==0){
+           rotate("right");
+           animation.animateRotate("right");
+         }
+         else {
+           rotate("left");
+           animation.animateRotate("left");
+         }
+         rotationNum++;
+      }
     }
     if (!isDropping) {
       updateWin();
@@ -373,13 +392,15 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     if (key == KeyEvent.VK_SPACE && !isFull(selectorIndex)) {
       addPiece(selectorIndex);
     }
-    if (key == KeyEvent.VK_Q){
-      rotate("left");
-      animation.animateRotate("left");
-    }
-    if (key == KeyEvent.VK_E){
-      rotate("right");
-      animation.animateRotate("right");
+    if (canPlayerRotate) {
+      if (key == KeyEvent.VK_Q){
+        rotate("left");
+        animation.animateRotate("left");
+      }
+      if (key == KeyEvent.VK_E){
+        rotate("right");
+        animation.animateRotate("right");
+      }
     }
     //System.out.println(this);
     animation.repaint();
