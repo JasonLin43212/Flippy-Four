@@ -73,8 +73,6 @@ java FlippyFour
 
 ### Planned Features
 
-* Bombs
-
 * A singleplayer mode
 
 * Colorful instruction screen
