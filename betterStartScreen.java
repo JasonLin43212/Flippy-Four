@@ -17,6 +17,9 @@ public class betterStartScreen extends JFrame implements ActionListener{
     
     private JComboBox<Integer> heightInput;
     private JComboBox<Integer> widthInput;
+    private JComboBox<String> rotationInput;
+
+    private String[] rotationType = new String[] {"Player only", "Random", "Set interval"};
     private Integer[] dimensions = new Integer[] {5,6,7,8,9,10,11};
 
     private JLabel WELCOME;
@@ -26,6 +29,7 @@ public class betterStartScreen extends JFrame implements ActionListener{
     private JLabel HEIGHT;
     private JLabel WIDTH;
     private JLabel INSTRUCTIONS;
+    private JLabel ROTATION;
     
 
     String color1;
@@ -38,38 +42,34 @@ public class betterStartScreen extends JFrame implements ActionListener{
     
     public betterStartScreen(){
 	this.setTitle("Flippy Four");
-	this.setSize(265,300);
+	this.setSize(275,350);
 	this.setLocation(100,100);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	
 	pane = this.getContentPane();
 	pane.setLayout(new FlowLayout());
 
-        WELCOME = new JLabel("<html> Welcome to Flippy-Four! <br/></html>");
+        WELCOME = new JLabel("<html> <br/> Welcome to Flippy-Four! <br/> </html>");
 	pane.add(WELCOME);
-	WELCOME.setVisible(true);
 
-        COLOR1 = new JLabel("Player 1: Choose your color");
+        COLOR1 = new JLabel("<html> <br/>Player 1: Choose your color <br/> </html>");
 	pane.add(COLOR1);
-	COLOR1.setVisible(true);
 	
 	colors1 = new JComboBox<String>(colorsList);
 	//colors1.addActionListener(this);
 	colors1.setSelectedIndex(0);
 	pane.add(colors1);
 
-	COLOR2 = new JLabel("Player 2: Choose your color");
+	COLOR2 = new JLabel("<html> <br/> Player 2: Choose your color <br/> </html>");
 	pane.add(COLOR2);
-	COLOR2.setVisible(true);
 
 	colors2 = new JComboBox<String>(colorsList);
 	//colors2.addActionListener(this);
 	colors2.setSelectedIndex(2);
 	pane.add(colors2);
 
-	HEIGHT = new JLabel("Set your board height");
+	HEIGHT = new JLabel("<html> <br/> Set your board height </html>");
 	pane.add(HEIGHT);
-	HEIGHT.setVisible(true);
 
 	heightInput = new JComboBox<Integer>(dimensions);
 	//heightInput.addActionListener(this);
@@ -78,12 +78,18 @@ public class betterStartScreen extends JFrame implements ActionListener{
 
         WIDTH = new JLabel("Set your board width");
 	pane.add(WIDTH);
-	WIDTH.setVisible(true);
 	
 	widthInput = new JComboBox<Integer>(dimensions);
 	//widthInput.addActionListener(this);
 	widthInput.setSelectedIndex(2);
 	pane.add(widthInput);
+
+	ROTATION = new JLabel("Choose rotation type");
+	pane.add(ROTATION);
+	
+	rotationInput = new JComboBox<String>(rotationType);
+	pane.add(rotationInput);
+	
 
         INSTRUCTIONS = new JLabel("<html>"+
 				  "[<-]: Moves arrow left <br/>" +
@@ -98,6 +104,8 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	START = new JButton("START");
 	START.addActionListener(this);
 	pane.add(START);
+
+	
 
         error = new JLabel("Please choose two different colors.");
 	pane.add(error);
