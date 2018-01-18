@@ -17,7 +17,7 @@ public class betterStartScreen extends JFrame implements ActionListener{
     
     private JComboBox<Integer> heightInput;
     private JComboBox<Integer> widthInput;
-    private Integer[] dimensions = new Integer[] {5,6,7,8,9,10};
+    private Integer[] dimensions = new Integer[] {5,6,7,8,9,10,11};
 
     private JLabel WELCOME;
     private JLabel error;
@@ -157,6 +157,7 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	else {
 	    FlippyFour f = new FlippyFour(boardWidth(), boardHeight(),colors.get(P1_color()), colors.get(P2_color()));
 	    f.setVisible(true);
+	    error.setVisible(false);
 	}
 	
     }
