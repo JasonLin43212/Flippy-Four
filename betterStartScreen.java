@@ -123,15 +123,15 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	colorNames.add("brown");
 
 	colors.add(Color.RED);
-    colors.add(new Color(255,165,0));
-    colors.add(Color.YELLOW);
-    colors.add(new Color(0,128,0));
-    colors.add(Color.BLUE);
-    colors.add(Color.CYAN);
-    colors.add(Color.MAGENTA);
-    colors.add(new Color(138,43,226));
-    colors.add(new Color(255,20,147));
-    colors.add(new Color(139,69,19));
+	colors.add(new Color(255,165,0));
+	colors.add(Color.YELLOW);
+	colors.add(new Color(0,128,0));
+	colors.add(Color.BLUE);
+	colors.add(Color.CYAN);
+	colors.add(Color.MAGENTA);
+	colors.add(new Color(138,43,226));
+	colors.add(new Color(255,20,147));
+	colors.add(new Color(139,69,19));
 
 	this.setVisible(true);
     }
@@ -155,7 +155,7 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	}
 
 	else {
-	    FlippyFour f = new FlippyFour(width,height,colors.get(P1_color()), colors.get(P2_color()));
+	    FlippyFour f = new FlippyFour(boardWidth(), boardHeight(),colors.get(P1_color()), colors.get(P2_color()));
 	    f.setVisible(true);
 	}
 	
