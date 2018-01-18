@@ -85,9 +85,11 @@ java FlippyFour
 
 #### Remove/Unadded Features
 
-* A way to save and load games "We believe that this feature is unnecessary since most games do not last that long"
+* A way to save and load games
+> We believe that this feature is unnecessary since most games do not last that long
 
-* Bombs "It won't be FlippyFour anymore"- Karen
+* Bombs
+> It won't be FlippyFour anymore - Karen
 
 ### Milestone
 
