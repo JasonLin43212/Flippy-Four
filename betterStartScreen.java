@@ -6,6 +6,7 @@ import java.util.*;
 public class betterStartScreen extends JFrame implements ActionListener{
     private ArrayList<Integer> parameters;
     private ArrayList<String> colorNames;
+    private ArrayList<Color> colors = new ArrayList<Color>();
     
     private Container pane;
     private JButton START;
@@ -121,6 +122,17 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	colorNames.add("pink");
 	colorNames.add("brown");
 
+	colors.add(Color.RED);
+    colors.add(new Color(255,165,0));
+    colors.add(Color.YELLOW);
+    colors.add(new Color(0,128,0));
+    colors.add(Color.BLUE);
+    colors.add(Color.CYAN);
+    colors.add(Color.MAGENTA);
+    colors.add(new Color(138,43,226));
+    colors.add(new Color(255,20,147));
+    colors.add(new Color(139,69,19));
+
 	this.setVisible(true);
     }
 
@@ -143,7 +155,8 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	}
 
 	else {
-	    StartGame = true;	    
+	    FlippyFour f = new FlippyFour(width,height,colors.get(P1_color()), colors.get(P2_color()));
+	    f.setVisible(true);
 	}
 	
     }
