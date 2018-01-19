@@ -8,7 +8,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
 
   public static void main(String[]args){
 
-    betterStartScreen input = new betterStartScreen();
+    StartScreen input = new StartScreen();
   }
 
   //----------Instance Variables For Game--------------

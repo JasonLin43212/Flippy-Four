@@ -1,169 +1,174 @@
-import java.util.*;
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
 
-public class StartScreen{
+public class StartScreen extends JFrame implements ActionListener{
 
-  //------------Instance Variables--------------
-  private ArrayList<Integer> parameters;
-  private ArrayList<String> colorNames;
+  private Container pane;
+    
+  //---------- Lists/ArrayLists for color ---------
+    
+    
+  private ArrayList<Color> colors = new ArrayList<Color>(){{
+	    add(Color.RED);
+	    add(new Color(255,165,0));
+	    add(Color.YELLOW);
+	    add(new Color(0,128,0));
+	    add(Color.BLUE);
+	    add(Color.CYAN);
+	    add(Color.MAGENTA);
+	    add(new Color(138,43,226));
+	    add(new Color(255,20,147));
+	    add(new Color(139,69,19));
+    }}; 
+   
+  private String[] JCBoxColors = new String[] {"red", "orange", "yellow", "green", "blue", "cyan", "magenta", "purple", "pink", "brown"};
+    
 
-  //--------------- Other Variables-------------
-  String dimensionError = " should be an integer between 5 and 11**\n";
-  String firstColor = "";
-  boolean stop = false;
-  Scanner scan = new Scanner(System.in);
+  //---------- insert JComboBox content ---------
+    
+    
+  private JComboBox<String> colors1 = new JComboBox<String>(JCBoxColors);
+  private JComboBox<String> colors2 = new JComboBox<String>(JCBoxColors);
+    
+  private Integer[] dimensions = new Integer[] {5,6,7,8,9,10,11};
+  private JComboBox<Integer> heightInput = new JComboBox<Integer>(dimensions);
+  private JComboBox<Integer> widthInput = new JComboBox<Integer>(dimensions);
 
-  //---------------Methods-------------
+
+  private String[] rotationType = new String[] {"Player Only", "Random Rotation", "Set Interval"};
+  private JComboBox<String> rotationInput = new JComboBox<String>(rotationType);
+
+    
+  //---------- JLabels for clarity---------
+    
+
+  private JLabel WELCOME = new JLabel("<html> <br/> Welcome to Flippy-Four! <br/> <br/> </html>");
+    
+  private JLabel COLOR1 = new JLabel("<html> Player 1: Choose your color  </html>");
+  private JLabel COLOR2 = new JLabel("<html> Player 2: Choose your color </html>");
+  private JLabel HEIGHT = new JLabel("<html> Set your board height </html>");
+  private JLabel WIDTH = new JLabel("Set your board width");
+  private JLabel ROTATION = new JLabel("Choose rotation type");
+  private JLabel ERROR = new JLabel("Please choose two different colors.");
+  private JLabel INSTRUCTIONS = new JLabel("<html>"+
+                                           "[<-]: Moves arrow left <br/>" + 
+                                           "[->]: Moves arrow right <br/>" +
+                                           "[space]: Drops piece <br/>" +
+                                           "[q]: Rotates board left <br/>" +
+                                           "[e]: Rotates board right <br/>" +
+                                           "</html>" );
+    
+      
+  //---------- button to start game ---------
+
+    
+  private JButton START;  
+    
+
+  //---------- instance variables ---------
+  private String color1 = "red";
+  private String color2 = "yellow";
+  private int height = 6;
+  private int width = 7;
+  private String rotation;    
+
+
+  //---------- set up window & add labels/menus/buttons ---------
   public StartScreen(){
-    parameters = new ArrayList<Integer>();
-    colorNames = new ArrayList<String>();
+	   	
+    this.setTitle("Flippy Four");
+    this.setSize(275,350);
+    this.setLocation(100,100);
+    this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+	
+	
+    pane = this.getContentPane();
+    pane.setLayout(new FlowLayout());
+
+        
+    pane.add(WELCOME);
+
+	
+    pane.add(COLOR1);
+    colors1.setSelectedIndex(0);
+    pane.add(colors1);
+
+	
+    pane.add(COLOR2);
+    colors2.setSelectedIndex(2);
+    pane.add(colors2);
+
+	
+    pane.add(HEIGHT);
+    heightInput.setSelectedIndex(1);
+    pane.add(heightInput);
+
+        
+    pane.add(WIDTH);
+    widthInput.setSelectedIndex(2);
+    pane.add(widthInput);
+
+	
+    pane.add(ROTATION);
+    pane.add(rotationInput);
+	
+      
+    pane.add(INSTRUCTIONS);
+    INSTRUCTIONS.setVisible(true);
+	
+	
+    START = new JButton("START");
+    START.addActionListener(this);
+    pane.add(START);
+
+	       
+    pane.add(ERROR);
+    ERROR.setVisible(false);
+	
     
-    colorNames.add("red");
-    colorNames.add("orange");
-    colorNames.add("yellow");
-    colorNames.add("green");
-    colorNames.add("blue");
-    colorNames.add("cyan");
-    colorNames.add("magenta");
-    colorNames.add("purple");
-    colorNames.add("pink");
-    colorNames.add("brown");
-  
-    
-    heightInput();
-    widthInput();
-    color1Input();
-    color2Input();
-    instructions();
+    this.setVisible(true);
+  }
+
+
+  //---------- start game when given valid parameters ---------
+  public void actionPerformed(ActionEvent e){
+    Object c1 = colors1.getSelectedItem();
+    color1 = c1.toString();
+
+    Object c2 = colors2.getSelectedItem();
+    color2 = c2.toString();
+
+    Object h = heightInput.getSelectedItem();
+    height = (int)h;
+
+    Object w = widthInput.getSelectedItem();
+    width = (int)w;
+
+    Object r = rotationInput.getSelectedItem();
+    rotation = r.toString();
+
+    if (color1.equals(color2)){
+	    ERROR.setVisible(true);
+    }
+
+    else {
+	    FlippyFour f = new FlippyFour(boardWidth(), boardHeight(), colors.get(getColor1()), colors.get(getColor2()), rotationChoice(), true);
+	    f.setVisible(true);
+	    ERROR.setVisible(false);
+    }
 	
   }
 
-  public int getHeight(){
-    return parameters.get(0);
-  }
-
-  public int getWidth(){
-    return parameters.get(1);
-  }
-
-  public int getColor1(){
-    return parameters.get(2);
-  }
-
-  public int getColor2(){
-    return parameters.get(3);
-  }
-
-  private void heightInput() {
-    int h = 0;
-    while (parameters.size() == 0){
-       System.out.println(
-                       "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" +
-                       "----------------------------\n"+
-                       "Enter the HEIGHT of your board."+
-                       "\n----------------------------\n"+
-                       "**This should be an integer between 5 and 11,"+
-                       " inclusive.**\n");
     
-	    String next = scan.next();
-	    try {
-        h = Integer.parseInt(next);
+  //---------- getters ---------
+  public int getColor1(){return Arrays.asList(JCBoxColors).indexOf(color1);}
+  public int getColor2(){return Arrays.asList(JCBoxColors).indexOf(color2);}
+  public int boardHeight(){return height;}
+  public int boardWidth(){return width;}
+  public String rotationChoice(){return rotation;}
 
-	    } catch (NumberFormatException e) {}
-	    if(h >= 5 && h <= 11){
-        parameters.add(h);
-	    }
-    }
-  }
-
-
-  private void widthInput() {
-    int w =0;
-    while (parameters.size() == 1){
-      System.out.println("\n\n----------------------------\n"+
-                         "Enter the WIDTH of your board."+
-                         "\n----------------------------\n"+
-                         "**This should be an integer between 5 and 11,"+
-                         " inclusive.**\n");
-
-      String next = scan.next();
-      try {
-		    w = Integer.parseInt(next);
-
-      } catch (NumberFormatException e) {
-      }
-      if(w >= 5 && w <= 11){
-		    parameters.add(w);
-      }
-    }
-  }
-
-  private void color1Input(){
-
-    while (parameters.size() == 2){
-	    System.out.println("\n\n----------------------------\n"+
-                         "Player 1: Enter your color\n"+
-                         "Choose one of the following colors:\n");
-      for (int i=0; i<colorNames.size(); i++) {
-        String name = colorNames.get(i);
-        System.out.print(name.substring(0,1).toUpperCase() +
-                         name.substring(1) + "  ");
-      }
-      System.out.println("\n----------------------------\n");
-	    String next = scan.next().toLowerCase();
-      if (colorNames.contains(next)){
-        parameters.add(colorNames.indexOf(next));
-        firstColor = next;
-      }
-    }
-
-  }
     
-  private void color2Input(){
-    while (parameters.size() == 3){
-	    System.out.println("\n\n----------------------------\n"+
-                         "Player 2: Enter your color"+
-                         "\n----------------------------\n");
-      for (int i=0; i<colorNames.size(); i++) {
-        String name = colorNames.get(i);
-        if (!name.toLowerCase().equals(firstColor)) {
-          System.out.print(name.substring(0,1).toUpperCase() +
-                           name.substring(1) + "  ");
-        }
-      }
-      System.out.println("\n----------------------------\n");
-	    String next = scan.next().toLowerCase();
-      if (colorNames.contains(next) &&
-          !next.equals(firstColor)) {
-        parameters.add(colorNames.indexOf(next));
-      }
-    }
-
-  }
-
-  private void instructions(){
-
-    while (parameters.size() == 4){
-      System.out.println("\n\n\n\n"+
-                         "You are done setting up! \nNow for some instructions:"+
-                         " \n\n" +
-                         "[<-]: Moves arrow left \n" +
-                         "[->]: Moves arrow right \n" +
-                         "[space]: Drops piece\n" +
-                         "[q]: Rotates board left \n" +
-                         "[e]: Rotates board right \n" +
-                         "\n\n\nEnter \"OK\" to start!"
-
-                         );
-      String next = scan.next();
-      if (next.toLowerCase().equals("ok")){
-		    parameters.add(-1);
-
-      }
-    }
-  }
-
-  public boolean startGame(){
-    return(parameters.size() == 5);
-  }
 }
+
