@@ -67,11 +67,11 @@ java FlippyFour
 
 * Choosing colors for pieces
 
+#### Features Added After Demo
+
+* Different rotation modes
+
 ### Planned Features
-
-* Bombs
-
-* ~~A way to save and load games~~ We believe that this feature is unnecessary since most games do not last that long
 
 * A singleplayer mode
 
@@ -81,9 +81,13 @@ java FlippyFour
 
 * Having instructions on playing in gui
 
-* Different rotation modes
+#### Remove/Unadded Features
 
-* Different bomb modes
+* A way to save and load games
+> We believe that this feature is unnecessary since most games do not last that long
+
+* Bombs
+> It won't be FlippyFour anymore - Karen
 
 ### Milestone
 
@@ -107,5 +111,5 @@ Not fixed
 
 
 ## Contributors
-Made by JacKeL  
-Jason Lin and Karen Li
+**Made by JacKeL (Jason Lin and Karen Li)**  
+![alt text](http://www.krugerpark.co.za/images/1jackal-gc590a.jpg "A Jackel")
