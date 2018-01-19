@@ -4,8 +4,12 @@ import java.awt.event.*;
 import java.util.*;
 
 public class betterStartScreen extends JFrame implements ActionListener{
+
+    private Container pane;
     
-    //initialize ArrayList colors for GUI----------------------------------
+    //---------- Lists/ArrayLists for color ---------
+    
+    
     private ArrayList<Color> colors = new ArrayList<Color>(){{
 	    add(Color.RED);
 	    add(new Color(255,165,0));
@@ -17,15 +21,14 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	    add(new Color(138,43,226));
 	    add(new Color(255,20,147));
 	    add(new Color(139,69,19));
-	}};
-    
-
-
-    private Container pane;
-    
-
-
+	}}; 
+   
     private String[] JCBoxColors = new String[] {"red", "orange", "yellow", "green", "blue", "cyan", "magenta", "purple", "pink", "brown"};
+    
+
+    //---------- insert JComboBox content ---------
+    
+    
     private JComboBox<String> colors1 = new JComboBox<String>(JCBoxColors);
     private JComboBox<String> colors2 = new JComboBox<String>(JCBoxColors);
     
@@ -38,24 +41,34 @@ public class betterStartScreen extends JFrame implements ActionListener{
     private JComboBox<String> rotationInput = new JComboBox<String>(rotationType);
 
     
+    //---------- JLabels for clarity---------
     
 
+    private JLabel WELCOME = new JLabel("<html> <br/> Welcome to Flippy-Four! <br/> <br/> </html>");
+    
+    private JLabel COLOR1 = new JLabel("<html> Player 1: Choose your color  </html>");
+    private JLabel COLOR2 = new JLabel("<html> Player 2: Choose your color </html>");
+    private JLabel HEIGHT = new JLabel("<html> Set your board height </html>");
+    private JLabel WIDTH = new JLabel("Set your board width");
+    private JLabel ROTATION = new JLabel("Choose rotation type");
+    private JLabel ERROR = new JLabel("Please choose two different colors.");
+    private JLabel INSTRUCTIONS = new JLabel("<html>"+
+					     "[<-]: Moves arrow left <br/>" +
+					     "[->]: Moves arrow right <br/>" +
+					     "[space]: Drops piece <br/>" +
+					     "[q]: Rotates board left <br/>" +
+					     "[e]: Rotates board right <br/>" +
+					     "</html>" );
+    
+      
 
-    //JLabels for JComboBoxes
-    private JLabel WELCOME;
-    private JLabel error;
-    private JLabel COLOR1;
-    private JLabel COLOR2;
-    private JLabel HEIGHT;
-    private JLabel WIDTH;
-    private JLabel INSTRUCTIONS;
-    private JLabel ROTATION;
+    //---------- button to start game ---------
 
-    //button to start game
+    
     private JButton START;  
     
 
-    
+    //---------- instance variables ---------
     String color1;
     String color2;
     int height;
@@ -76,10 +89,10 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	pane = this.getContentPane();
 	pane.setLayout(new FlowLayout());
 
-        WELCOME = new JLabel("<html> <br/> Welcome to Flippy-Four! <br/> </html>");
+        
 	pane.add(WELCOME);
 
-        COLOR1 = new JLabel("<html> Player 1: Choose your color  </html>");
+        
 	pane.add(COLOR1);
 	
        
@@ -87,7 +100,7 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	colors1.setSelectedIndex(0);
 	pane.add(colors1);
 
-	COLOR2 = new JLabel("<html> Player 2: Choose your color </html>");
+	
 	pane.add(COLOR2);
 
 	
@@ -95,7 +108,7 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	colors2.setSelectedIndex(2);
 	pane.add(colors2);
 
-	HEIGHT = new JLabel("<html> Set your board height </html>");
+	
 	pane.add(HEIGHT);
 
 	
@@ -103,7 +116,7 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	heightInput.setSelectedIndex(1);
 	pane.add(heightInput);
 
-        WIDTH = new JLabel("Set your board width");
+        
 	pane.add(WIDTH);
 	
 	
@@ -111,20 +124,14 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	widthInput.setSelectedIndex(2);
 	pane.add(widthInput);
 
-	ROTATION = new JLabel("Choose rotation type");
+	
 	pane.add(ROTATION);
 	
 
 	pane.add(rotationInput);
 	
 
-        INSTRUCTIONS = new JLabel("<html>"+
-				  "[<-]: Moves arrow left <br/>" +
-				  "[->]: Moves arrow right <br/>" +
-				  "[space]: Drops piece <br/>" +
-				  "[q]: Rotates board left <br/>" +
-				  "[e]: Rotates board right <br/>" +
-				  "</html>" );
+      
 	pane.add(INSTRUCTIONS);
         INSTRUCTIONS.setVisible(true);
 	
@@ -134,9 +141,9 @@ public class betterStartScreen extends JFrame implements ActionListener{
 
 	
 
-        error = new JLabel("Please choose two different colors.");
-	pane.add(error);
-	error.setVisible(false);
+        
+	pane.add(ERROR);
+	ERROR.setVisible(false);
 
 	color1 = "red";
 	color2 = "yellow";
@@ -167,13 +174,13 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	rotation = r.toString();
 
 	if (color1.equals(color2)){
-	    error.setVisible(true);
+	    ERROR.setVisible(true);
 	}
 
 	else {
 	    FlippyFour f = new FlippyFour(boardWidth(), boardHeight(),colors.get(P1_color()), colors.get(P2_color()));
 	    f.setVisible(true);
-	    error.setVisible(false);
+	    ERROR.setVisible(false);
 	}
 	
     }
