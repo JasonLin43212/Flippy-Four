@@ -5,15 +5,43 @@ import java.util.*;
 
 public class betterStartScreen extends JFrame implements ActionListener{
     
-    private ArrayList<String> colorNames;
-    private ArrayList<Color> colors = new ArrayList<Color>();
+
+    private ArrayList<Color> colors = new ArrayList<Color>(){{
+
+        add(Color.RED);
+        add(new Color(255,165,0));
+        add(Color.YELLOW);
+        add(new Color(0,128,0));
+        add(Color.BLUE);
+	add(Color.CYAN);
+        add(Color.MAGENTA);
+        add(new Color(138,43,226));
+        add(new Color(255,20,147));
+        add(new Color(139,69,19));
+	}};
     
     private Container pane;
     private JButton START;
 
-    private String[] colorsList = new String[] {"red", "orange", "yellow", "green", "blue", "cyan", "magenta", "purple", "pink", "brown"};
-    private JComboBox<String> colors1 = new JComboBox<String>(colorsList);
-    private JComboBox<String> colors2 = new JComboBox<String>(colorsList);
+    private ArrayList<String> colorNames = new ArrayList<String>(){{
+	    add("red");
+	    add("orange");
+	    add("yellow");
+	    add("green");
+	    add("blue");
+	    add("cyan");
+	    add("magenta");
+	    add("purple");
+	    add("pink");
+	    add("brown");
+	}};
+
+    
+
+
+    private String[] JCBoxColors = colorNames.toArray( new String[colorNames.size()] );
+    private JComboBox<String> colors1 = new JComboBox<String>(JCBoxColors);
+    private JComboBox<String> colors2 = new JComboBox<String>(JCBoxColors);
     
     private Integer[] dimensions = new Integer[] {5,6,7,8,9,10,11};
     private JComboBox<Integer> heightInput = new JComboBox<Integer>(dimensions);
@@ -48,6 +76,8 @@ public class betterStartScreen extends JFrame implements ActionListener{
 
     
     public betterStartScreen(){
+	   
+	
 	this.setTitle("Flippy Four");
 	this.setSize(275,350);
 	this.setLocation(100,100);
@@ -123,30 +153,8 @@ public class betterStartScreen extends JFrame implements ActionListener{
 
 	height = 6;
 	width = 7;
-
-	colorNames = new ArrayList<String>();
     
-	colorNames.add("red");
-	colorNames.add("orange");
-	colorNames.add("yellow");
-	colorNames.add("green");
-	colorNames.add("blue");
-	colorNames.add("cyan");
-	colorNames.add("magenta");
-	colorNames.add("purple");
-	colorNames.add("pink");
-	colorNames.add("brown");
-
-	colors.add(Color.RED);
-	colors.add(new Color(255,165,0));
-	colors.add(Color.YELLOW);
-	colors.add(new Color(0,128,0));
-	colors.add(Color.BLUE);
-	colors.add(Color.CYAN);
-	colors.add(Color.MAGENTA);
-	colors.add(new Color(138,43,226));
-	colors.add(new Color(255,20,147));
-	colors.add(new Color(139,69,19));
+	
 
 	this.setVisible(true);
     }
@@ -182,11 +190,8 @@ public class betterStartScreen extends JFrame implements ActionListener{
     
     public int P1_color(){return colorNames.indexOf(color1);}
     public int P2_color(){return colorNames.indexOf(color2);}
-
     public int boardHeight(){return height;}
-
     public int boardWidth(){return width;}
-
     public String rotationChoice(){return rotation;}
   
 	
