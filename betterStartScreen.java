@@ -5,41 +5,27 @@ import java.util.*;
 
 public class betterStartScreen extends JFrame implements ActionListener{
     
-
+    //initialize ArrayList colors for GUI----------------------------------
     private ArrayList<Color> colors = new ArrayList<Color>(){{
-
-        add(Color.RED);
-        add(new Color(255,165,0));
-        add(Color.YELLOW);
-        add(new Color(0,128,0));
-        add(Color.BLUE);
-	add(Color.CYAN);
-        add(Color.MAGENTA);
-        add(new Color(138,43,226));
-        add(new Color(255,20,147));
-        add(new Color(139,69,19));
+	    add(Color.RED);
+	    add(new Color(255,165,0));
+	    add(Color.YELLOW);
+	    add(new Color(0,128,0));
+	    add(Color.BLUE);
+	    add(Color.CYAN);
+	    add(Color.MAGENTA);
+	    add(new Color(138,43,226));
+	    add(new Color(255,20,147));
+	    add(new Color(139,69,19));
 	}};
     
+
+
     private Container pane;
-    private JButton START;
-
-    private ArrayList<String> colorNames = new ArrayList<String>(){{
-	    add("red");
-	    add("orange");
-	    add("yellow");
-	    add("green");
-	    add("blue");
-	    add("cyan");
-	    add("magenta");
-	    add("purple");
-	    add("pink");
-	    add("brown");
-	}};
-
     
 
 
-    private String[] JCBoxColors = colorNames.toArray( new String[colorNames.size()] );
+    private String[] JCBoxColors = new String[] {"red", "orange", "yellow", "green", "blue", "cyan", "magenta", "purple", "pink", "brown"};
     private JComboBox<String> colors1 = new JComboBox<String>(JCBoxColors);
     private JComboBox<String> colors2 = new JComboBox<String>(JCBoxColors);
     
@@ -64,8 +50,12 @@ public class betterStartScreen extends JFrame implements ActionListener{
     private JLabel WIDTH;
     private JLabel INSTRUCTIONS;
     private JLabel ROTATION;
+
+    //button to start game
+    private JButton START;  
     
 
+    
     String color1;
     String color2;
     int height;
@@ -188,8 +178,8 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	
     }
     
-    public int P1_color(){return colorNames.indexOf(color1);}
-    public int P2_color(){return colorNames.indexOf(color2);}
+    public int P1_color(){return Arrays.asList(JCBoxColors).indexOf(color1);}
+    public int P2_color(){return Arrays.asList(JCBoxColors).indexOf(color2);}
     public int boardHeight(){return height;}
     public int boardWidth(){return width;}
     public String rotationChoice(){return rotation;}
