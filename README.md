@@ -63,6 +63,8 @@ java FlippyFour
 
 * Different rotation modes
 
+* GUI start menu
+
 ### Planned Features
 
 * A singleplayer mode
@@ -79,7 +81,7 @@ java FlippyFour
 > We believe that this feature is unnecessary since most games do not last that long
 
 * Bombs
-> It won't be FlippyFour anymore - Karen
+> Deviates too much from original game
 
 ### Milestone
 
