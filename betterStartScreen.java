@@ -53,7 +53,7 @@ public class betterStartScreen extends JFrame implements ActionListener{
     private JLabel ROTATION = new JLabel("Choose rotation type");
     private JLabel ERROR = new JLabel("Please choose two different colors.");
     private JLabel INSTRUCTIONS = new JLabel("<html>"+
-					     "[<-]: Moves arrow left <br/>" +
+					     "[<-]: Moves arrow left <br/>" + 
 					     "[->]: Moves arrow right <br/>" +
 					     "[space]: Drops piece <br/>" +
 					     "[q]: Rotates board left <br/>" +
@@ -61,7 +61,6 @@ public class betterStartScreen extends JFrame implements ActionListener{
 					     "</html>" );
     
       
-
     //---------- button to start game ---------
 
     
@@ -133,6 +132,7 @@ public class betterStartScreen extends JFrame implements ActionListener{
     }
 
 
+    //---------- start game when given valid parameters ---------
     public void actionPerformed(ActionEvent e){
 	Object c1 = colors1.getSelectedItem();
 	color1 = c1.toString();
@@ -168,8 +168,7 @@ public class betterStartScreen extends JFrame implements ActionListener{
     public int boardHeight(){return height;}
     public int boardWidth(){return width;}
     public String rotationChoice(){return rotation;}
-  
-	
- 
+
+    
 }
 
