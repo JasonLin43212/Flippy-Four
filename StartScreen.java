@@ -76,7 +76,7 @@ public class StartScreen extends JFrame implements ActionListener{
     
     pane = this.getContentPane();
     panel = new StartScreenPanel();
-    panel.setLayout(new FlowLayout(FlowLayout.CENTER));
+    panel.setLayout(new FlowLayout());
     pane.add(panel);
 
     panel.add(WELCOME);
