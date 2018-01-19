@@ -69,22 +69,21 @@ public class betterStartScreen extends JFrame implements ActionListener{
     
 
     //---------- instance variables ---------
-    String color1;
-    String color2;
-    int height;
-    int width;
-    String rotation;
+    private String color1 = "red";
+    private String color2 = "yellow";
+    private int height = 6;
+    private int width = 7;
+    private String rotation;    
 
-    
 
-    
+    //---------- set up window & add labels/menus/buttons ---------
     public betterStartScreen(){
-	   
-	
+	   	
 	this.setTitle("Flippy Four");
 	this.setSize(275,350);
 	this.setLocation(100,100);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+	
 	
 	pane = this.getContentPane();
 	pane.setLayout(new FlowLayout());
@@ -92,67 +91,44 @@ public class betterStartScreen extends JFrame implements ActionListener{
         
 	pane.add(WELCOME);
 
-        
-	pane.add(COLOR1);
 	
-       
-	//colors1.addActionListener(this);
+	pane.add(COLOR1);
 	colors1.setSelectedIndex(0);
 	pane.add(colors1);
 
 	
 	pane.add(COLOR2);
-
-	
-	//colors2.addActionListener(this);
 	colors2.setSelectedIndex(2);
 	pane.add(colors2);
 
 	
 	pane.add(HEIGHT);
-
-	
-	//heightInput.addActionListener(this);
 	heightInput.setSelectedIndex(1);
 	pane.add(heightInput);
 
         
 	pane.add(WIDTH);
-	
-	
-	//widthInput.addActionListener(this);
 	widthInput.setSelectedIndex(2);
 	pane.add(widthInput);
 
 	
 	pane.add(ROTATION);
-	
-
 	pane.add(rotationInput);
 	
-
       
 	pane.add(INSTRUCTIONS);
         INSTRUCTIONS.setVisible(true);
+	
 	
 	START = new JButton("START");
 	START.addActionListener(this);
 	pane.add(START);
 
-	
-
-        
+	       
 	pane.add(ERROR);
 	ERROR.setVisible(false);
-
-	color1 = "red";
-	color2 = "yellow";
-
-	height = 6;
-	width = 7;
-    
 	
-
+    
 	this.setVisible(true);
     }
 
@@ -178,15 +154,17 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	}
 
 	else {
-	    FlippyFour f = new FlippyFour(boardWidth(), boardHeight(),colors.get(P1_color()), colors.get(P2_color()));
+	    FlippyFour f = new FlippyFour(boardWidth(), boardHeight(),colors.get(getColor1()), colors.get(getColor2()));
 	    f.setVisible(true);
 	    ERROR.setVisible(false);
 	}
 	
     }
+
     
-    public int P1_color(){return Arrays.asList(JCBoxColors).indexOf(color1);}
-    public int P2_color(){return Arrays.asList(JCBoxColors).indexOf(color2);}
+    //---------- getters ---------
+    public int getColor1(){return Arrays.asList(JCBoxColors).indexOf(color1);}
+    public int getColor2(){return Arrays.asList(JCBoxColors).indexOf(color2);}
     public int boardHeight(){return height;}
     public int boardWidth(){return width;}
     public String rotationChoice(){return rotation;}
