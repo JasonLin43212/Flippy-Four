@@ -390,7 +390,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
   public void keyTyped(KeyEvent e){}
   public void keyReleased(KeyEvent e){}
 
-  // ----------------Assessor Methods--------------
+  // ----------------Accessor Methods--------------
 
   public int getBoardHeight() {
     return height;
