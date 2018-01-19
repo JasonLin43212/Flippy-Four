@@ -37,35 +37,27 @@ java FlippyFour
 
 * Displaying the board in GUI
 
-* Inserting pieces into the board in terminal
-
 * Inserting pieces into the board in GUI
 
-* Able to check whether there is a win or a draw
-
-* Restart the game in terminal
+* Declare win/draw
 
 * Restart game in GUI
 
-* Choose the size of board and color of pieces
+* Choose board dimensions
 
-* Rotation of board in terminal
+* Choose piece colors
 
 * Rotation of board in GUI
 
-* Basic terminal instructions
-
-* Basic user input to initialize GUI
+* Start screen to initialize game
 
 * Arrow that indicates the next move
 
 * Animation of pieces dropping
 
-* Win/draw message
+* Start new game
 
 * Disable user input except to start a new game after a game ends
-
-* Choosing colors for pieces
 
 #### Features Added After Demo
 
