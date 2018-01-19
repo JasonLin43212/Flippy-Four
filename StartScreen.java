@@ -6,6 +6,7 @@ import java.util.*;
 public class StartScreen extends JFrame implements ActionListener{
 
   private Container pane;
+  private StartScreenPanel panel;
     
   //---------- Lists/ArrayLists for color ---------
     
@@ -40,95 +41,81 @@ public class StartScreen extends JFrame implements ActionListener{
   private String[] rotationType = new String[] {"Player Only", "Random Rotation", "Set Interval"};
   private JComboBox<String> rotationInput = new JComboBox<String>(rotationType);
 
-    
+  private JCheckBox playerRotateInput = new JCheckBox("Allow Player To Rotate Board");
   //---------- JLabels for clarity---------
     
 
-  private JLabel WELCOME = new JLabel("<html> <br/> Welcome to Flippy-Four! <br/> <br/> </html>");
-    
-  private JLabel COLOR1 = new JLabel("<html> Player 1: Choose your color  </html>");
-  private JLabel COLOR2 = new JLabel("<html> Player 2: Choose your color </html>");
+  private JLabel WELCOME = new JLabel("Welcome to Flippy-Four!");
+  private JLabel COLOR1 = new JLabel("Player 1: Choose your color");
+  private JLabel COLOR2 = new JLabel("Player 2: Choose your color");
   private JLabel HEIGHT = new JLabel("<html> Set your board height </html>");
   private JLabel WIDTH = new JLabel("Set your board width");
   private JLabel ROTATION = new JLabel("Choose rotation type");
   private JLabel ERROR = new JLabel("Please choose two different colors.");
-  private JLabel INSTRUCTIONS = new JLabel("<html>"+
-                                           "[<-]: Moves arrow left <br/>" + 
-                                           "[->]: Moves arrow right <br/>" +
-                                           "[space]: Drops piece <br/>" +
-                                           "[q]: Rotates board left <br/>" +
-                                           "[e]: Rotates board right <br/>" +
-                                           "</html>" );
-    
-      
+  
   //---------- button to start game ---------
 
-    
-  private JButton START;  
-    
+  private JButton START;
 
   //---------- instance variables ---------
   private String color1 = "red";
   private String color2 = "yellow";
   private int height = 6;
   private int width = 7;
-  private String rotation;    
-
+  private String rotation;
 
   //---------- set up window & add labels/menus/buttons ---------
   public StartScreen(){
 	   	
     this.setTitle("Flippy Four");
-    this.setSize(275,350);
+    this.setSize(800,600);
     this.setLocation(100,100);
+    this.setResizable(false);
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	
-	
+    
     pane = this.getContentPane();
-    pane.setLayout(new FlowLayout());
+    panel = new StartScreenPanel();
+    panel.setLayout(new FlowLayout(FlowLayout.CENTER));
+    pane.add(panel);
 
-        
-    pane.add(WELCOME);
-
+    panel.add(WELCOME);
 	
-    pane.add(COLOR1);
+    panel.add(COLOR1);
     colors1.setSelectedIndex(0);
-    pane.add(colors1);
+    panel.add(colors1);
 
 	
-    pane.add(COLOR2);
+    panel.add(COLOR2); 
     colors2.setSelectedIndex(2);
-    pane.add(colors2);
-
+    panel.add(colors2);
+ 
 	
-    pane.add(HEIGHT);
+    panel.add(HEIGHT);
     heightInput.setSelectedIndex(1);
-    pane.add(heightInput);
+    panel.add(heightInput);
 
-        
-    pane.add(WIDTH);
+         
+    panel.add(WIDTH);
     widthInput.setSelectedIndex(2);
-    pane.add(widthInput);
+    panel.add(widthInput);
 
-	
-    pane.add(ROTATION);
-    pane.add(rotationInput);
-	
-      
-    pane.add(INSTRUCTIONS);
-    INSTRUCTIONS.setVisible(true);
-	
-	
+    panel.add(ROTATION);
+    panel.add(rotationInput);
+
+    panel.add(playerRotateInput);
+    
     START = new JButton("START");
     START.addActionListener(this);
-    pane.add(START);
+    panel.add(START);
 
 	       
-    pane.add(ERROR);
+    panel.add(ERROR);
     ERROR.setVisible(false);
 	
     
-    this.setVisible(true);
+    this.setVisible(true);  
+    panel.repaint(); 
   }
 
 
@@ -154,21 +141,18 @@ public class StartScreen extends JFrame implements ActionListener{
     }
 
     else {
-	    FlippyFour f = new FlippyFour(boardWidth(), boardHeight(), colors.get(getColor1()), colors.get(getColor2()), rotationChoice(), true);
+	    FlippyFour f = new FlippyFour(width,
+                                    height,
+                                    colors.get(Arrays.asList(JCBoxColors).
+                                               indexOf(color1)),
+                                    colors.get(Arrays.asList(JCBoxColors).
+                                               indexOf(color2)),
+                                    rotation,
+                                    playerRotateInput.isSelected());
 	    f.setVisible(true);
 	    ERROR.setVisible(false);
     }
 	
   }
 
-    
-  //---------- getters ---------
-  public int getColor1(){return Arrays.asList(JCBoxColors).indexOf(color1);}
-  public int getColor2(){return Arrays.asList(JCBoxColors).indexOf(color2);}
-  public int boardHeight(){return height;}
-  public int boardWidth(){return width;}
-  public String rotationChoice(){return rotation;}
-
-    
 }
-
