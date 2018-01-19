@@ -255,9 +255,9 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     width = data.length;
     isRotated = !isRotated;
     selectorIndex = width/2;
-    if ((rotationMode.equals("Set Interval") && rotationNum%6!=0) ||
-        (rotationMode.equals("Random Rotation") && rotationNum%4!=0) ||
-        rotationMode.equals("None")){
+    if ((rotationMode.equals("Set interval") && rotationNum%6!=0) ||
+        (rotationMode.equals("Random ") && rotationNum%4!=0) ||
+        rotationMode.equals("Player only")){
       isFirstPlayerTurn = !isFirstPlayerTurn;
     }
   }

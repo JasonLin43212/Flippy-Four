@@ -154,7 +154,7 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	}
 
 	else {
-	    FlippyFour f = new FlippyFour(boardWidth(), boardHeight(),colors.get(getColor1()), colors.get(getColor2()));
+	    FlippyFour f = new FlippyFour(boardWidth(), boardHeight(), colors.get(getColor1()), colors.get(getColor2()), rotationChoice(), true);
 	    f.setVisible(true);
 	    ERROR.setVisible(false);
 	}
