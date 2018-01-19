@@ -36,6 +36,7 @@ public class betterStartScreen extends JFrame implements ActionListener{
     String color2;
     int height;
     int width;
+    String rotation;
 
     private boolean StartGame = false;
 
@@ -52,7 +53,7 @@ public class betterStartScreen extends JFrame implements ActionListener{
         WELCOME = new JLabel("<html> <br/> Welcome to Flippy-Four! <br/> </html>");
 	pane.add(WELCOME);
 
-        COLOR1 = new JLabel("<html> <br/>Player 1: Choose your color <br/> </html>");
+        COLOR1 = new JLabel("<html> Player 1: Choose your color  </html>");
 	pane.add(COLOR1);
 	
 	colors1 = new JComboBox<String>(colorsList);
@@ -60,7 +61,7 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	colors1.setSelectedIndex(0);
 	pane.add(colors1);
 
-	COLOR2 = new JLabel("<html> <br/> Player 2: Choose your color <br/> </html>");
+	COLOR2 = new JLabel("<html> Player 2: Choose your color </html>");
 	pane.add(COLOR2);
 
 	colors2 = new JComboBox<String>(colorsList);
@@ -68,7 +69,7 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	colors2.setSelectedIndex(2);
 	pane.add(colors2);
 
-	HEIGHT = new JLabel("<html> <br/> Set your board height </html>");
+	HEIGHT = new JLabel("<html> Set your board height </html>");
 	pane.add(HEIGHT);
 
 	heightInput = new JComboBox<Integer>(dimensions);
@@ -156,7 +157,10 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	height = (int)h;
 
 	Object w = widthInput.getSelectedItem();
-	width = (int)w;	
+	width = (int)w;
+
+	Object r = rotationInput.getSelectedItem();
+	rotation = r.toString();
 
 	if (color1.equals(color2)){
 	    error.setVisible(true);
@@ -178,6 +182,8 @@ public class betterStartScreen extends JFrame implements ActionListener{
     public int boardHeight(){return height;}
 
     public int boardWidth(){return width;}
+
+    public String rotationChoice(){return rotation;}
   
 	
  
