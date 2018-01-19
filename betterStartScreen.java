@@ -4,24 +4,30 @@ import java.awt.event.*;
 import java.util.*;
 
 public class betterStartScreen extends JFrame implements ActionListener{
-    private ArrayList<Integer> parameters;
+    
     private ArrayList<String> colorNames;
     private ArrayList<Color> colors = new ArrayList<Color>();
     
     private Container pane;
     private JButton START;
 
-    private JComboBox<String> colors1;
-    private JComboBox<String> colors2;
     private String[] colorsList = new String[] {"red", "orange", "yellow", "green", "blue", "cyan", "magenta", "purple", "pink", "brown"};
+    private JComboBox<String> colors1 = new JComboBox<String>(colorsList);
+    private JComboBox<String> colors2 = new JComboBox<String>(colorsList);
     
-    private JComboBox<Integer> heightInput;
-    private JComboBox<Integer> widthInput;
-    private JComboBox<String> rotationInput;
+    private Integer[] dimensions = new Integer[] {5,6,7,8,9,10,11};
+    private JComboBox<Integer> heightInput = new JComboBox<Integer>(dimensions);
+    private JComboBox<Integer> widthInput = new JComboBox<Integer>(dimensions);
+
 
     private String[] rotationType = new String[] {"Player only", "Random", "Set interval"};
-    private Integer[] dimensions = new Integer[] {5,6,7,8,9,10,11};
+    private JComboBox<String> rotationInput = new JComboBox<String>(rotationType);
 
+    
+    
+
+
+    //JLabels for JComboBoxes
     private JLabel WELCOME;
     private JLabel error;
     private JLabel COLOR1;
@@ -38,7 +44,7 @@ public class betterStartScreen extends JFrame implements ActionListener{
     int width;
     String rotation;
 
-    private boolean StartGame = false;
+    
 
     
     public betterStartScreen(){
@@ -56,7 +62,7 @@ public class betterStartScreen extends JFrame implements ActionListener{
         COLOR1 = new JLabel("<html> Player 1: Choose your color  </html>");
 	pane.add(COLOR1);
 	
-	colors1 = new JComboBox<String>(colorsList);
+       
 	//colors1.addActionListener(this);
 	colors1.setSelectedIndex(0);
 	pane.add(colors1);
@@ -64,7 +70,7 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	COLOR2 = new JLabel("<html> Player 2: Choose your color </html>");
 	pane.add(COLOR2);
 
-	colors2 = new JComboBox<String>(colorsList);
+	
 	//colors2.addActionListener(this);
 	colors2.setSelectedIndex(2);
 	pane.add(colors2);
@@ -72,7 +78,7 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	HEIGHT = new JLabel("<html> Set your board height </html>");
 	pane.add(HEIGHT);
 
-	heightInput = new JComboBox<Integer>(dimensions);
+	
 	//heightInput.addActionListener(this);
 	heightInput.setSelectedIndex(1);
 	pane.add(heightInput);
@@ -80,7 +86,7 @@ public class betterStartScreen extends JFrame implements ActionListener{
         WIDTH = new JLabel("Set your board width");
 	pane.add(WIDTH);
 	
-	widthInput = new JComboBox<Integer>(dimensions);
+	
 	//widthInput.addActionListener(this);
 	widthInput.setSelectedIndex(2);
 	pane.add(widthInput);
@@ -88,7 +94,7 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	ROTATION = new JLabel("Choose rotation type");
 	pane.add(ROTATION);
 	
-	rotationInput = new JComboBox<String>(rotationType);
+
 	pane.add(rotationInput);
 	
 
@@ -173,8 +179,6 @@ public class betterStartScreen extends JFrame implements ActionListener{
 	}
 	
     }
-
-    public boolean ready(){return StartGame;}
     
     public int P1_color(){return colorNames.indexOf(color1);}
     public int P2_color(){return colorNames.indexOf(color2);}
