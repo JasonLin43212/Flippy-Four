@@ -113,7 +113,7 @@ Not fixed
 
 
 ## Contributors
-**Team JacKeL
+**Team JacKeL**
 * Jason Lin
 * Karen Li
 
