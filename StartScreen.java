@@ -29,10 +29,8 @@ public class StartScreen extends JFrame implements ActionListener{
 
   //---------- insert JComboBox content ---------
     
-    
   private JComboBox<String> colors1 = new JComboBox<String>(JCBoxColors);
   private JComboBox<String> colors2 = new JComboBox<String>(JCBoxColors);
-    
   private Integer[] dimensions = new Integer[] {5,6,7,8,9,10,11};
   private JComboBox<Integer> heightInput = new JComboBox<Integer>(dimensions);
   private JComboBox<Integer> widthInput = new JComboBox<Integer>(dimensions);
@@ -42,6 +40,10 @@ public class StartScreen extends JFrame implements ActionListener{
   private JComboBox<String> rotationInput = new JComboBox<String>(rotationType);
 
   private JCheckBox playerRotateInput = new JCheckBox("Allow Player To Rotate Board");
+  private JCheckBox singleplayerInput = new JCheckBox("Allow SinglePlayer");
+
+  private Integer[] numToWin = new Integer[] {4,5};
+  private JComboBox<Integer> winningInput = new JComboBox<Integer>(numToWin);
   //---------- JLabels for clarity---------
 
   private JLabel WELCOME = new JLabel("Welcome to Flippy-Four!");
@@ -50,6 +52,7 @@ public class StartScreen extends JFrame implements ActionListener{
   private JLabel HEIGHT = new JLabel("Set your board height");
   private JLabel WIDTH = new JLabel("Set your board width");
   private JLabel ROTATION = new JLabel("Choose rotation type");
+  private JLabel WINNUM = new JLabel("Choose the winning number");
   private JLabel ERROR = new JLabel("Please choose two different colors.");
   private JLabel WARNING = new JLabel("Make sure to choose different colors");
   
@@ -69,7 +72,7 @@ public class StartScreen extends JFrame implements ActionListener{
   public StartScreen(){
     
     this.setTitle("Flippy Four");
-    this.setSize(800,600);
+    this.setSize(800,690);
     this.setLocation(100,100);
     this.setResizable(false);
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -91,6 +94,7 @@ public class StartScreen extends JFrame implements ActionListener{
     configureLabel(HEIGHT);
     configureLabel(WIDTH);
     configureLabel(ROTATION);
+    configureLabel(WINNUM);
     configureLabel(ERROR);
     configureLabel(WARNING);
 
@@ -99,6 +103,7 @@ public class StartScreen extends JFrame implements ActionListener{
     configureBox(heightInput);
     configureBox(widthInput);
     configureBox(rotationInput);
+    configureBox(winningInput);
 
     colors1.setSelectedIndex(0);
     colors2.setSelectedIndex(2);
@@ -111,27 +116,35 @@ public class StartScreen extends JFrame implements ActionListener{
     playerRotateInput.setPreferredSize(new Dimension(100,50));
     playerRotateInput.setAlignmentX(Component.CENTER_ALIGNMENT);
     playerRotateInput.setSelected(true);
+    playerRotateInput.setBackground(new Color(135,206,250));
+
+    singleplayerInput.setPreferredSize(new Dimension(100,50));
+    singleplayerInput.setAlignmentX(Component.CENTER_ALIGNMENT);
+    singleplayerInput.setSelected(true);
+    singleplayerInput.setBackground(new Color(135,206,250));
     //For configuring the Start button
-    START.setPreferredSize(new Dimension(100,50));
     START.setAlignmentX(Component.CENTER_ALIGNMENT);
     //Change color of ERROR
     ERROR.setForeground(Color.RED);
 
-    addToPanel(panel,COLOR1);
-    addToPanel(panel,colors1);
-    addToPanel(panel,ERROR);
-    addToPanel(panel,COLOR2);
-    addToPanel(panel,colors2);
-    addToPanel(panel,HEIGHT);
-    addToPanel(panel,heightInput);
-    addToPanel(panel,WIDTH);
-    addToPanel(panel,widthInput);
-    addToPanel(panel,ROTATION);
-    addToPanel(panel,rotationInput);
-    addToPanel(panel,playerRotateInput);
-    addToPanel(panel,START);
-    addToPanel(panel,ERROR);
-    addToPanel(panel,WARNING);
+    addToPanel(COLOR1);
+    addToPanel(colors1);
+    addToPanel(ERROR);
+    addToPanel(COLOR2);
+    addToPanel(colors2);
+    addToPanel(HEIGHT);
+    addToPanel(heightInput);
+    addToPanel(WIDTH);
+    addToPanel(widthInput);
+    addToPanel(ROTATION);
+    addToPanel(rotationInput);
+    addToPanel(WINNUM);
+    addToPanel(winningInput);
+    addToPanel(playerRotateInput);
+    addToPanel(singleplayerInput);
+    addToPanel(START);
+    addToPanel(ERROR);
+    addToPanel(WARNING);
 
     ERROR.setVisible(false);
     this.setVisible(true);
@@ -150,9 +163,9 @@ public class StartScreen extends JFrame implements ActionListener{
     c.setMaximumRowCount(10);
   }
 
-  private void addToPanel(StartScreenPanel s, JComponent c){
-     s.add(Box.createRigidArea(new Dimension(10,5)));
-     s.add(c);
+  private void addToPanel(JComponent c){
+     panel.add(Box.createRigidArea(new Dimension(10,6)));
+     panel.add(c);
   }
   //---------- start game when given valid parameters ---------
   public void actionPerformed(ActionEvent e){
