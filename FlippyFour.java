@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class FlippyFour extends JFrame implements ActionListener, KeyListener{
 
   public static void main(String[]args){
-
     StartScreen input = new StartScreen();
   }
 
@@ -17,6 +16,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
   private int width;
   private int height;
   private int selectorIndex;
+  private int numToWin;
   private Color playerOneColor;
   private Color playerTwoColor;
   private String winState;
@@ -26,6 +26,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
   private String rotationMode;
   private int rotationNum;
   private boolean canPlayerRotate;
+  private boolean isSinglePlayer;
 
   //----------Instance Variables for GUI--------------
 
@@ -51,7 +52,9 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
                      Color playerOneColor,
                      Color playerTwoColor,
                      String rotationMode,
-                     boolean canPlayerRotate){
+                     boolean canPlayerRotate,
+                     boolean isSinglePlayer,
+                     int numToWin){
 
     //For game
     this.height = height;
@@ -60,7 +63,10 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     this.playerTwoColor = playerTwoColor;
     this.rotationMode = rotationMode;
     this.canPlayerRotate = canPlayerRotate;
-    
+    this.isSinglePlayer = isSinglePlayer;
+    this.numToWin = numToWin;
+    System.out.println(numToWin);
+
     isRotated = false;
     selectorIndex = width/2;
     rotationNum = 1;
@@ -170,14 +176,14 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
   private boolean hasWon(int id){
     //checking vertical wins
     for (int i=0; i<width; i++){
-      for (int j=0; j<height-3; j++){
+      for (int j=0; j<height-(numToWin-1); j++){
         if (checkWin(id,i,j,0,1)){
           return true;
         }
       }
     }
     //checking horizontal wins
-    for (int i=0; i<width-3; i++){
+    for (int i=0; i<width-(numToWin-1); i++){
       for (int j=0; j<height; j++){
         if (checkWin(id,i,j,1,0)){
           return true;
@@ -185,16 +191,16 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
       }
     }
     //checking diagonal // wins
-    for (int i=0; i<width-3; i++){
-      for (int j=0; j<height-3; j++){
+    for (int i=0; i<width-(numToWin-1); i++){
+      for (int j=0; j<height-(numToWin-1); j++){
         if (checkWin(id,i,j,1,1)){
           return true;
         }
       }
     }
     //checking diagonal \\ wins
-    for (int i=0; i<width-3; i++){
-      for (int j=height-1; j>2; j--){
+    for (int i=0; i<width-(numToWin-1); i++){
+      for (int j=height-1; j>(numToWin-2); j--){
         if (checkWin(id,i,j,1,-1)){
           return true;
         }
@@ -204,8 +210,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
   }
 
   private boolean checkWin(int id, int x, int y, int xIncrement, int yIncrement){
-    //might change the i<4 to something else for connect 5
-    for (int i=0; i<4; i++){
+    for (int i=0; i<numToWin; i++){
       if (!(data[x+xIncrement*i][y+yIncrement*i].getId() == id)){
         return false;
       }

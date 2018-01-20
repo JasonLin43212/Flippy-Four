@@ -67,6 +67,7 @@ public class StartScreen extends JFrame implements ActionListener{
   private int height = 6;
   private int width = 7;
   private String rotation;
+  private int numberToWin = 4;
 
   //---------- set up window & add labels/menus/buttons ---------
   public StartScreen(){
@@ -120,7 +121,6 @@ public class StartScreen extends JFrame implements ActionListener{
 
     singleplayerInput.setPreferredSize(new Dimension(100,50));
     singleplayerInput.setAlignmentX(Component.CENTER_ALIGNMENT);
-    singleplayerInput.setSelected(true);
     singleplayerInput.setBackground(new Color(135,206,250));
     //For configuring the Start button
     START.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -184,6 +184,9 @@ public class StartScreen extends JFrame implements ActionListener{
     Object r = rotationInput.getSelectedItem();
     rotation = r.toString();
 
+    Object n = winningInput.getSelectedItem();
+    numberToWin = (int)n;
+
     if (color1.equals(color2)){
 	    ERROR.setVisible(true);
       WARNING.setVisible(false);
@@ -196,7 +199,9 @@ public class StartScreen extends JFrame implements ActionListener{
                                     colors.get(Arrays.asList(JCBoxColors).indexOf(color1)),
                                     colors.get(Arrays.asList(JCBoxColors).indexOf(color2)),
                                     rotation,
-                                    playerRotateInput.isSelected());
+                                    playerRotateInput.isSelected(),
+                                    singleplayerInput.isSelected(),
+                                    numberToWin);
 	    f.setVisible(true);
     }
 	
