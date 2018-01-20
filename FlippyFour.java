@@ -32,6 +32,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
 
   private Container pane;
   private JButton newGame;
+  private JButton mainMenu;
   private Board board;
   private int xCenter;
   private int yCenter;
@@ -65,7 +66,6 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     this.canPlayerRotate = canPlayerRotate;
     this.isSinglePlayer = isSinglePlayer;
     this.numToWin = numToWin;
-    System.out.println(numToWin);
 
     isRotated = false;
     selectorIndex = width/2;
@@ -115,11 +115,16 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     newGame.addActionListener(this);
     newGame.setFocusable(false);
 
+    mainMenu = new JButton("Main Menu");
+    mainMenu.addActionListener(this);
+    mainMenu.setFocusable(false);
+    
     //Adding everything onto Gui
     pane = this.getContentPane();
     animation = new Animation(this);
     pane.add(animation);
     animation.add(newGame);
+    animation.add(mainMenu);
     addKeyListener(this);
     timer.start();
   }
@@ -311,7 +316,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     if (s == "New Game" && !isDropping && !animation.getIsRotating()) {
       restartData();
       animation.repaint();
-      if (isRotated) {  
+      if (isRotated) {
         animation.animateRotate("left");
         rotate("left");
       }
@@ -320,6 +325,10 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
       selectorIndex = width/2;
       rotationNum = 1;
       isFirstPlayerTurn = true;
+    }
+    if (s == "Main Menu") {
+      this.dispose();
+      StartScreen input = new StartScreen();
     }
     if (isDropping) {
       dropOnce();
@@ -350,8 +359,33 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
       updateWin();
       animation.repaint();
     }
+    if (!isFirstPlayerTurn &&
+        isSinglePlayer &&
+        !isDropping &&
+        !animation.getIsRotating() &&
+        winState.equals("Continue Game")) {
+      int randomRange = width;
+      if (canPlayerRotate) {
+        randomRange += 2;
+      }
+      int selectedChoice = (int)(Math.random()*randomRange);
+      if (selectedChoice == width) {
+        rotate("left");
+        animation.animateRotate("left");
+      }
+      else if (selectedChoice == width+1) {
+        rotate("right");
+        animation.animateRotate("right");
+      }
+      else {
+        while (isFull(selectedChoice)) {
+          selectedChoice = (int)(Math.random()*width-1);
+        }
+        addPiece(selectedChoice);
+      }
+    }
   }
-   
+
   //------------Key Listener------------
   public void keyPressed(KeyEvent e){
     int key = e.getKeyCode();

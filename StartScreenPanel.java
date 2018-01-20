@@ -33,20 +33,20 @@ public class StartScreenPanel extends JPanel implements ActionListener{
   int[] yBoardCor3 = new int[] {450,500,500,450};
   Board fakeBoard3 = new Board(xBoardCor3,yBoardCor3);
 
-  int dropInt1 = -40;
-  Piece piece1 = makePiece(colors.get((int)(Math.random()*10)));
+  int dropInt1 = 0;
+  Piece piece1 = makePiece(colors.get((int)(Math.random()*10)),true);
 
-  int dropInt2 = -80;
-  Piece piece2 = makePiece(colors.get((int)(Math.random()*10)));
+  int dropInt2 = 40;
+  Piece piece2 = makePiece(colors.get((int)(Math.random()*10)),true);
 
-  int dropInt3 = -120;
-  Piece piece3 = makePiece(colors.get((int)(Math.random()*10)));
+  int dropInt3 = 80;
+  Piece piece3 = makePiece(colors.get((int)(Math.random()*10)),true);
 
-  int dropInt4 = -160;
-  Piece piece4 = makePiece(colors.get((int)(Math.random()*10)));
+  int dropInt4 = 120;
+  Piece piece4 = makePiece(colors.get((int)(Math.random()*10)),true);
 
-  int dropInt5 = -200;
-  Piece piece5 = makePiece(colors.get((int)(Math.random()*10)));
+  int dropInt5 = 160;
+  Piece piece5 = makePiece(colors.get((int)(Math.random()*10)),true);
 
   //------------------Methods-----------------
 
@@ -82,32 +82,38 @@ public class StartScreenPanel extends JPanel implements ActionListener{
     repaint();
   }
 
-  public Piece makePiece(Color color) {
+  public Piece makePiece(Color color, boolean isFirst) {
     int[] xCor = new int[1];
-    int[] yCor = new int[] {-50};
+    int[] yCor;
+    if (isFirst) {
+      yCor = new int[] {800};
+    }
+    else {
+      yCor = new int[] {-50};
+    }
     xCor[0] = (int) (Math.random()*760);
     return new Piece(-1,color,xCor,yCor);
   }
 
   public void updatePieces() {
     if (dropInt1 > 200) {
-      piece1 = makePiece(colors.get((int)(Math.random()*10)));
+      piece1 = makePiece(colors.get((int)(Math.random()*10)),false);
       dropInt1 = 0;
     }
     if (dropInt2 > 200) {
-      piece2 = makePiece(colors.get((int)(Math.random()*10)));
+      piece2 = makePiece(colors.get((int)(Math.random()*10)),false);
       dropInt2 = 0;
     }
     if (dropInt3 > 200) {
-      piece3 = makePiece(colors.get((int)(Math.random()*10)));
+      piece3 = makePiece(colors.get((int)(Math.random()*10)),false);
       dropInt3 = 0;
     }
     if (dropInt4 > 200) {
-      piece4 = makePiece(colors.get((int)(Math.random()*10)));
+      piece4 = makePiece(colors.get((int)(Math.random()*10)),false);
       dropInt4 = 0;
     }
     if (dropInt5 > 200) {
-      piece5 = makePiece(colors.get((int)(Math.random()*10)));
+      piece5 = makePiece(colors.get((int)(Math.random()*10)),false);
       dropInt5 = 0;
     }
 

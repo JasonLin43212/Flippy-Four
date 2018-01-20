@@ -65,15 +65,15 @@ java FlippyFour
 
 * GUI start menu
 
-### Planned Features
-
-* A singleplayer mode
-
 * Colorful start screen
 
 * Start Screen with all features implemented
 
 * Allowing option to have a Connect Five
+
+### Planned Features
+
+* A singleplayer mode
 
 * Having instructions on playing in gui
 
@@ -94,6 +94,8 @@ java FlippyFour
 * Game has win messages (1/14/18)
 
 * More COLORS (1/16/18)
+
+* Colorful start screen (1/20/18)
 
 ### Bugs
 
