@@ -115,6 +115,5 @@ Not fixed
 ## Contributors
 **Made by JacKeL**
 * Jason Lin
-* Karen Li
-{''}
+* Karen Li <br/>
 ![alt text](http://www.krugerpark.co.za/images/1jackal-gc590a.jpg "A Jackel")
