@@ -33,7 +33,7 @@ public class Piece extends RotatableObject{
   }
 
   public void startScreenDrop(){
-    y[0] += 1;
-    yGui[0] += 1;
+    y[0] += 5;
+    yGui[0] += 5;
   }
 }
