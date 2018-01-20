@@ -71,9 +71,9 @@ java FlippyFour
 
 * Allowing option to have a Connect Five
 
-### Planned Features
-
 * A singleplayer mode
+
+### Planned Features
 
 * Having instructions on playing in gui
 
@@ -96,6 +96,8 @@ java FlippyFour
 * More COLORS (1/16/18)
 
 * Colorful start screen (1/20/18)
+
+* A Computer to play against (but not a very skillful computer) (1/20/18)
 
 ### Bugs
 
