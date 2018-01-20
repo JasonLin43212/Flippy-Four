@@ -73,6 +73,8 @@ java FlippyFour
 
 * Start Screen with all features implemented
 
+* Allowing option to have a Connect Five
+
 * Having instructions on playing in gui
 
 #### Remove/Unadded Features

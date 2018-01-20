@@ -24,7 +24,7 @@ public class StartScreen extends JFrame implements ActionListener{
 	    add(new Color(139,69,19));
     }}; 
    
-  private String[] JCBoxColors = new String[] {"red", "orange", "yellow", "green", "blue", "cyan", "magenta", "purple", "pink", "brown"};
+  private String[] JCBoxColors = new String[] {"Red", "Orange", "Yellow", "Green", "Blue", "Cyan", "Magenta", "Purple", "Pink", "Brown"};
     
 
   //---------- insert JComboBox content ---------
@@ -43,12 +43,11 @@ public class StartScreen extends JFrame implements ActionListener{
 
   private JCheckBox playerRotateInput = new JCheckBox("Allow Player To Rotate Board");
   //---------- JLabels for clarity---------
-    
 
   private JLabel WELCOME = new JLabel("Welcome to Flippy-Four!");
   private JLabel COLOR1 = new JLabel("Player 1: Choose your color");
   private JLabel COLOR2 = new JLabel("Player 2: Choose your color");
-  private JLabel HEIGHT = new JLabel("<html> Set your board height </html>");
+  private JLabel HEIGHT = new JLabel("Set your board height");
   private JLabel WIDTH = new JLabel("Set your board width");
   private JLabel ROTATION = new JLabel("Choose rotation type");
   private JLabel ERROR = new JLabel("Please choose two different colors.");
@@ -58,6 +57,7 @@ public class StartScreen extends JFrame implements ActionListener{
   private JButton START;
 
   //---------- instance variables ---------
+  
   private String color1 = "red";
   private String color2 = "yellow";
   private int height = 6;
@@ -66,39 +66,48 @@ public class StartScreen extends JFrame implements ActionListener{
 
   //---------- set up window & add labels/menus/buttons ---------
   public StartScreen(){
-	   	
+    
     this.setTitle("Flippy Four");
-    this.setSize(400,600);
+    this.setSize(800,550);
     this.setLocation(100,100);
     this.setResizable(false);
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	
-    
     pane = this.getContentPane();
     panel = new StartScreenPanel();
     panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
     pane.add(panel);
 
-    WELCOME.setPreferredSize(new Dimension(100,100));
+    WELCOME.setPreferredSize(new Dimension(200,80));
+    WELCOME.setAlignmentX(Component.CENTER_ALIGNMENT);
+    WELCOME.setFont(new Font("Monospaced",Font.BOLD,50));
     panel.add(WELCOME);
-	
+
+    COLOR1.setPreferredSize(new Dimension(100,30));
+    COLOR1.setAlignmentX(Component.CENTER_ALIGNMENT);
     panel.add(COLOR1);
+
     colors1.setSelectedIndex(0);
-    colors1.setMaximumSize(new Dimension(50,9));
-    colors1.setAlignmentX(Component.LEFT_ALIGNMENT);
+    colors1.setMaximumSize(new Dimension(150,100));
+    colors1.setAlignmentX(Component.CENTER_ALIGNMENT);
+    colors1.setMaximumRowCount(10);
     panel.add(colors1);
 
-	
-    panel.add(COLOR2); 
+    COLOR2.setPreferredSize(new Dimension(100,30));
+    COLOR2.setAlignmentX(Component.CENTER_ALIGNMENT);
+    panel.add(COLOR2);
+
     colors2.setSelectedIndex(2);
+    colors2.setMaximumSize(new Dimension(150,100));
+    colors2.setAlignmentX(Component.CENTER_ALIGNMENT);
+    colors2.setMaximumRowCount(10);
     panel.add(colors2);
- 
-	
+
     panel.add(HEIGHT);
     heightInput.setSelectedIndex(1);
     panel.add(heightInput);
 
-         
+
     panel.add(WIDTH);
     widthInput.setSelectedIndex(2);
     panel.add(widthInput);
@@ -107,6 +116,7 @@ public class StartScreen extends JFrame implements ActionListener{
     panel.add(rotationInput);
 
     panel.add(playerRotateInput);
+    playerRotateInput.setSelected(true);
     
     START = new JButton("START");
     START.addActionListener(this);
@@ -115,10 +125,9 @@ public class StartScreen extends JFrame implements ActionListener{
 	       
     panel.add(ERROR);
     ERROR.setVisible(false);
-	
     
-    this.setVisible(true);  
-    panel.repaint(); 
+    this.setVisible(true);
+    panel.repaint();
   }
 
 
@@ -144,12 +153,11 @@ public class StartScreen extends JFrame implements ActionListener{
     }
 
     else {
+      this.dispose();
 	    FlippyFour f = new FlippyFour(width,
                                     height,
-                                    colors.get(Arrays.asList(JCBoxColors).
-                                               indexOf(color1)),
-                                    colors.get(Arrays.asList(JCBoxColors).
-                                               indexOf(color2)),
+                                    colors.get(Arrays.asList(JCBoxColors).indexOf(color1)),
+                                    colors.get(Arrays.asList(JCBoxColors).indexOf(color2)),
                                     rotation,
                                     playerRotateInput.isSelected());
 	    f.setVisible(true);

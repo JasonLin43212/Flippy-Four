@@ -7,7 +7,5 @@ public class StartScreenPanel extends JPanel{
 
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
-    g.setColor(Color.RED);
-    g.fillOval(50,50,50,50);
   }
 }
