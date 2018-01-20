@@ -51,10 +51,11 @@ public class StartScreen extends JFrame implements ActionListener{
   private JLabel WIDTH = new JLabel("Set your board width");
   private JLabel ROTATION = new JLabel("Choose rotation type");
   private JLabel ERROR = new JLabel("Please choose two different colors.");
+  private JLabel WARNING = new JLabel("Make sure to choose different colors");
   
   //---------- button to start game ---------
 
-  private JButton START;
+  private JButton START = new JButton("Start");
 
   //---------- instance variables ---------
   
@@ -68,7 +69,7 @@ public class StartScreen extends JFrame implements ActionListener{
   public StartScreen(){
     
     this.setTitle("Flippy Four");
-    this.setSize(800,550);
+    this.setSize(800,600);
     this.setLocation(100,100);
     this.setResizable(false);
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -78,59 +79,81 @@ public class StartScreen extends JFrame implements ActionListener{
     panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
     pane.add(panel);
 
-    WELCOME.setPreferredSize(new Dimension(200,80));
+    WELCOME.setPreferredSize(new Dimension(200,70));
     WELCOME.setAlignmentX(Component.CENTER_ALIGNMENT);
     WELCOME.setFont(new Font("Monospaced",Font.BOLD,50));
+    panel.add(Box.createRigidArea(new Dimension(10,10)));
     panel.add(WELCOME);
+    panel.add(Box.createRigidArea(new Dimension(10,10)));
 
-    COLOR1.setPreferredSize(new Dimension(100,30));
-    COLOR1.setAlignmentX(Component.CENTER_ALIGNMENT);
-    panel.add(COLOR1);
+    configureLabel(COLOR1);
+    configureLabel(COLOR2);
+    configureLabel(HEIGHT);
+    configureLabel(WIDTH);
+    configureLabel(ROTATION);
+    configureLabel(ERROR);
+    configureLabel(WARNING);
+
+    configureBox(colors1);
+    configureBox(colors2);
+    configureBox(heightInput);
+    configureBox(widthInput);
+    configureBox(rotationInput);
 
     colors1.setSelectedIndex(0);
-    colors1.setMaximumSize(new Dimension(150,100));
-    colors1.setAlignmentX(Component.CENTER_ALIGNMENT);
-    colors1.setMaximumRowCount(10);
-    panel.add(colors1);
-
-    COLOR2.setPreferredSize(new Dimension(100,30));
-    COLOR2.setAlignmentX(Component.CENTER_ALIGNMENT);
-    panel.add(COLOR2);
-
     colors2.setSelectedIndex(2);
-    colors2.setMaximumSize(new Dimension(150,100));
-    colors2.setAlignmentX(Component.CENTER_ALIGNMENT);
-    colors2.setMaximumRowCount(10);
-    panel.add(colors2);
-
-    panel.add(HEIGHT);
     heightInput.setSelectedIndex(1);
-    panel.add(heightInput);
-
-
-    panel.add(WIDTH);
     widthInput.setSelectedIndex(2);
-    panel.add(widthInput);
 
-    panel.add(ROTATION);
-    panel.add(rotationInput);
-
-    panel.add(playerRotateInput);
-    playerRotateInput.setSelected(true);
-    
-    START = new JButton("START");
     START.addActionListener(this);
-    panel.add(START);
 
-	       
-    panel.add(ERROR);
+    //For configuring the checkbox
+    playerRotateInput.setPreferredSize(new Dimension(100,50));
+    playerRotateInput.setAlignmentX(Component.CENTER_ALIGNMENT);
+    playerRotateInput.setSelected(true);
+    //For configuring the Start button
+    START.setPreferredSize(new Dimension(100,50));
+    START.setAlignmentX(Component.CENTER_ALIGNMENT);
+    //Change color of ERROR
+    ERROR.setForeground(Color.RED);
+
+    addToPanel(panel,COLOR1);
+    addToPanel(panel,colors1);
+    addToPanel(panel,ERROR);
+    addToPanel(panel,COLOR2);
+    addToPanel(panel,colors2);
+    addToPanel(panel,HEIGHT);
+    addToPanel(panel,heightInput);
+    addToPanel(panel,WIDTH);
+    addToPanel(panel,widthInput);
+    addToPanel(panel,ROTATION);
+    addToPanel(panel,rotationInput);
+    addToPanel(panel,playerRotateInput);
+    addToPanel(panel,START);
+    addToPanel(panel,ERROR);
+    addToPanel(panel,WARNING);
+
     ERROR.setVisible(false);
-    
     this.setVisible(true);
+
     panel.repaint();
   }
+  
+  private void configureLabel(JLabel j){
+    j.setPreferredSize(new Dimension(100,30));
+    j.setAlignmentX(Component.CENTER_ALIGNMENT);
+  }
 
+  private void configureBox(JComboBox c){
+    c.setMaximumSize(new Dimension(150,25));
+    c.setAlignmentX(Component.CENTER_ALIGNMENT);
+    c.setMaximumRowCount(10);
+  }
 
+  private void addToPanel(StartScreenPanel s, JComponent c){
+     s.add(Box.createRigidArea(new Dimension(10,5)));
+     s.add(c);
+  }
   //---------- start game when given valid parameters ---------
   public void actionPerformed(ActionEvent e){
     Object c1 = colors1.getSelectedItem();
@@ -150,6 +173,7 @@ public class StartScreen extends JFrame implements ActionListener{
 
     if (color1.equals(color2)){
 	    ERROR.setVisible(true);
+      WARNING.setVisible(false);
     }
 
     else {
@@ -161,7 +185,6 @@ public class StartScreen extends JFrame implements ActionListener{
                                     rotation,
                                     playerRotateInput.isSelected());
 	    f.setVisible(true);
-	    ERROR.setVisible(false);
     }
 	
   }

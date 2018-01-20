@@ -69,13 +69,15 @@ java FlippyFour
 
 * A singleplayer mode
 
-* Colorful instruction screen
+* Colorful start screen
 
 * Start Screen with all features implemented
 
 * Allowing option to have a Connect Five
 
 * Having instructions on playing in gui
+
+* Navigation between start screen and game
 
 #### Remove/Unadded Features
 
@@ -107,5 +109,7 @@ Not fixed
 
 
 ## Contributors
-**Made by JacKeL (Jason Lin and Karen Li)**  
+**Made by JacKeL**
+* Jason Lin
+* Karen Li
 ![alt text](http://www.krugerpark.co.za/images/1jackal-gc590a.jpg "A Jackel")
