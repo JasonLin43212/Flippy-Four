@@ -68,7 +68,7 @@ public class StartScreen extends JFrame implements ActionListener{
   public StartScreen(){
 	   	
     this.setTitle("Flippy Four");
-    this.setSize(800,600);
+    this.setSize(400,600);
     this.setLocation(100,100);
     this.setResizable(false);
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -76,13 +76,16 @@ public class StartScreen extends JFrame implements ActionListener{
     
     pane = this.getContentPane();
     panel = new StartScreenPanel();
-    panel.setLayout(new FlowLayout());
+    panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
     pane.add(panel);
 
+    WELCOME.setPreferredSize(new Dimension(100,100));
     panel.add(WELCOME);
 	
     panel.add(COLOR1);
     colors1.setSelectedIndex(0);
+    colors1.setMaximumSize(new Dimension(50,9));
+    colors1.setAlignmentX(Component.LEFT_ALIGNMENT);
     panel.add(colors1);
 
 	
