@@ -109,10 +109,11 @@ Fixed
 
 * Rotating makes the game a draw
 
-Not fixed
-
 * When in 'Set Interval' mode, after fulfilling the amount of pieces to start the rotation, the number of pieces to insert jumps to 6. This doesn't affect the gameplay, however, because it goes back to 5 after rotation is done.
 
+* In random rotation, if the player rotates the board, they get an extra turn.
+
+Not fixed
 
 ## Contributors
 **Team JacKeL**

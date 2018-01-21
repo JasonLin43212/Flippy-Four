@@ -68,6 +68,9 @@ public class StartScreenPanel extends JPanel implements ActionListener{
     fakeBoard2.drawObject(g);
     fakeBoard3.drawObject(g);
     drawPieces(g);
+    g.setColor(Color.BLACK);
+    g.setFont(new Font("Serif",Font.BOLD,11));
+    g.drawString("Made by Jason Lin and Karen Li",590,655);
   }
 
   //----------Action Performed for Timer----------
