@@ -379,7 +379,8 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
       }
       else {
         while (isFull(selectedChoice)) {
-          selectedChoice = (int)(Math.random()*width-1);
+          System.out.println(selectedChoice);
+          selectedChoice = (int)(Math.random()*width);
         }
         addPiece(selectedChoice);
       }
