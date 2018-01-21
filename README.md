@@ -75,10 +75,10 @@ java FlippyFour
 
 * Navigation between start screen and game
 
-### Planned Features
-
 * Having instructions on playing in gui
 
+### Planned Features
+It's done!!!
 #### Remove/Unadded Features
 
 * A way to save and load games
@@ -98,6 +98,8 @@ java FlippyFour
 * Colorful start screen (1/20/18)
 
 * A Computer to play against (but not a very skillful computer) (1/20/18)
+
+* Finished all of the planned features (1/20/18)
 
 ### Bugs
 
