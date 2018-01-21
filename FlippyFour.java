@@ -50,6 +50,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
 
   //---------------Methods---------------
 
+  //Constructor for FlippyFour class
   public FlippyFour (int width,
                      int height,
                      Color playerOneColor,
@@ -131,6 +132,8 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     timer.start();
   }
 
+  //Used just for debugging
+  //Returns the data in 2D array form
   public String toString () {
     String output = "";
     for (int y=height-1; y>=0; y--){
@@ -142,6 +145,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     return output;
   }
 
+  //Converts all the Pieces in data into Empty Pieces
   private void restartData(){
     for (int i=0; i<width; i++){
 	    for (int j=0; j<height; j++){
@@ -150,6 +154,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     }
   }
 
+  //Adds a piece to a specific index
   private void addPiece (int index){
     if (isFirstPlayerTurn) {
       data[index][height-1] = makePiece(1,playerOneColor,index,height-1);
@@ -162,6 +167,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     randomRotations();
   }
 
+  //Updates the winState according to the data
   private void updateWin() {
     boolean one = hasWon(1);
     boolean two = hasWon(2);
@@ -180,6 +186,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     animation.repaint();
   }
 
+  //Checks if a player has won according to the data
   private boolean hasWon(int id){
     //checking vertical wins
     for (int i=0; i<width; i++){
@@ -216,6 +223,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     return false;
   }
 
+  //checks if there are pieces of the same id in a row given the direction and starting point
   private boolean checkWin(int id, int x, int y, int xIncrement, int yIncrement){
     for (int i=0; i<numToWin; i++){
       if (!(data[x+xIncrement*i][y+yIncrement*i].getId() == id)){
@@ -225,6 +233,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     return true;
   }
 
+  //checks if the board is filled up with Pieces
   private boolean isBoardFull() {
     for (int i=0; i<width; i++){
       if (!isFull(i)){
@@ -234,6 +243,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     return true;
   }
 
+  //checks if a certain column is full of Pieces
   private boolean isFull(int index) {
     for (int i=0; i<height; i++) {
       if (data[index][i].getId() == 0) {
@@ -243,6 +253,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     return true;
   }
 
+  //Rotates the board given a direction
   private void rotate(String direction){
     Piece[][] temp = new Piece[height][width];
     if (direction.equals("right")){
@@ -269,6 +280,8 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     }
   }
 
+  //Makes all the pieces in the data drop down by one slot if there
+  //is an empty piece below it
   private void dropOnce(){
     for (int x = 0; x < width; x++){
       for (int y = 1; y < height; y++){
@@ -282,11 +295,13 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     animation.repaint();
   }
 
+  //Starts the animation of Pieces dropping
   public void animateDrop() {
     dropInt = 0;
     isDropping = true;
   }
 
+  //Changes the rotationNum into a different number
   private void randomRotations(){
     if (rotationMode.equals("Set Interval")){
       rotationNum++;
@@ -296,6 +311,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     }
   }
 
+  //Creates an instance of Piece given color, id and position
   private Piece makePiece(int id, Color color, int x, int y) {
     int[] xCor = new int[1];
     int[] yCor = new int[1];
@@ -311,8 +327,10 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
   }
 
   //---------------Action Listener---------------
+
   public void actionPerformed(ActionEvent e) {
     String s = e.getActionCommand();
+    //Controls starting a new game
     if (s == "New Game" && !isDropping && !animation.getIsRotating()) {
       restartData();
       animation.repaint();
@@ -326,39 +344,46 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
       rotationNum = 1;
       isFirstPlayerTurn = true;
     }
+    //Controls going back to the main menu
     if (s == "Main Menu") {
       this.dispose();
       StartScreen input = new StartScreen();
     }
+    //For animating the dropping
     if (isDropping) {
       dropOnce();
       dropInt++;
     }
+    //For things after the pieces are done dropping
     if (dropInt == height){
       isDropping = false;
       animation.repaint();
+      //Rotates the board for "set interval" mode
       if (rotationMode.equals("Set Interval") && rotationNum%6==0){
-         rotate("right");
-         animation.animateRotate("right");
-         rotationNum++;
+        rotate("right");
+        animation.animateRotate("right");
+        rotationNum++;
       }
-       if (rotationMode.equals("Random Rotation") && rotationNum%4==0){
-         int randomInt = (int)(Math.random() * 1000);
-         if (randomInt%2==0){
-           rotate("right");
-           animation.animateRotate("right");
-         }
-         else {
-           rotate("left");
-           animation.animateRotate("left");
-         }
-         rotationNum++;
+      //Rotates the board for "random rotation" mode
+      if (rotationMode.equals("Random Rotation") && rotationNum%4==0){
+        int randomInt = (int)(Math.random() * 1000);
+        if (randomInt%2==0){
+          rotate("right");
+          animation.animateRotate("right");
+        }
+        else {
+          rotate("left");
+          animation.animateRotate("left");
+        }
+        rotationNum++;
       }
     }
+    //Updates the winState of the board after Pieces are done dropping
     if (!isDropping) {
       updateWin();
       animation.repaint();
     }
+    //Controls the computer for singleplayer
     if (!isFirstPlayerTurn &&
         isSinglePlayer &&
         !isDropping &&
@@ -387,25 +412,31 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
   }
 
   //---------------Key Listener---------------
+
   public void keyPressed(KeyEvent e){
     int key = e.getKeyCode();
+    //Stops user input when the game is rotating, dropping, or finished
     if (isDropping || animation.getIsRotating() ||
         !winState.equals("Continue Game")){
       key = -1;
     }
+    //Move piece to the left
     if (key == KeyEvent.VK_LEFT){
       if (selectorIndex > 0) {
         selectorIndex--;
       }
     }
+    //Move piece to the right
     if (key == KeyEvent.VK_RIGHT){
       if (selectorIndex <width-1){
         selectorIndex++;
       }
     }
+    //Drops the pieces down
     if (key == KeyEvent.VK_SPACE && !isFull(selectorIndex)) {
       addPiece(selectorIndex);
     }
+    //Controls rotating left and right
     if (canPlayerRotate) {
       if (key == KeyEvent.VK_Q){
         rotate("left");
@@ -419,7 +450,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     animation.repaint();
   }
 
-  //Just so the file can compile
+  //To avoid compilation errors
   public void keyTyped(KeyEvent e){}
   public void keyReleased(KeyEvent e){}
 
