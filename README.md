@@ -103,7 +103,7 @@ It's done!!!
 
 ### Bugs
 
-####Fixed
+#### Fixed
 
 * GUI rotation being weird
 
