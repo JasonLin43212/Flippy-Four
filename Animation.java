@@ -17,11 +17,13 @@ public class Animation extends JPanel implements ActionListener{
 
   //---------------Methods---------------
 
+  //Constructor for Animation
   public Animation (FlippyFour game) {
     this.game = game;
     timer.start();
   }
 
+  //Draws all the parts of the game
   public void paintComponent(Graphics g){
     //Clears previous drawings
     super.paintComponent(g);
@@ -150,6 +152,7 @@ public class Animation extends JPanel implements ActionListener{
     }
   }
 
+  //Rotates the pieces in the gui depending on direction
   private void rotateOnce(String direction) {
     int xCenter = game.getXCenter();
     int yCenter = game.getYCenter();
@@ -162,6 +165,7 @@ public class Animation extends JPanel implements ActionListener{
     repaint();
   }
 
+  //---------------Action Performed for Timer---------------
   public void actionPerformed(ActionEvent e){
     if (isRotating){
       rotateOnce(rotationalDirection);
@@ -174,12 +178,14 @@ public class Animation extends JPanel implements ActionListener{
     }
   }
 
+  //Starts the rotation animation
   public void animateRotate(String direction){
     rotationalDirection = direction;
     rotateInt = 0;
     isRotating = true;
   }
 
+  //---------------Accessor Method---------------
   public boolean getIsRotating(){
     return isRotating;
   }
