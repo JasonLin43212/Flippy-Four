@@ -169,7 +169,11 @@ public class Animation extends JPanel implements ActionListener{
     //For Set Interval rotation
     if (game.getRotationMode().equals("Set Interval")){
       g.drawString("Pieces To Insert Until Next Rotation:",10,height-60);
-      g.drawString(game.getRotationNum(),300,height-60);
+      String number = game.getRotationNum();
+      if (number.equals("6")) {
+        number = "5";
+      }
+      g.drawString(number,300,height-60);
     }
   }
 
