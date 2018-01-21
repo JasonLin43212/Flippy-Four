@@ -103,7 +103,7 @@ It's done!!!
 
 ### Bugs
 
-Fixed
+#### Fixed
 
 * GUI rotation being weird
 
@@ -113,7 +113,49 @@ Fixed
 
 * In random rotation, if the player rotates the board, they get an extra turn.
 
-Not fixed
+## Playing the game
+
+### About the settings
+
+**Color-** You can choose the color of the pieces for both colors. The options for color are red, orange, yellow, green, blue, cyan, magenta, purple, pink, and brown.
+
+**Height and Width-** You can select the size of your board. The minimum width/height is 5 cells and the maximum is 11 cells.
+
+**Rotation Type-** There are different rotation modes that you can choose.
+* Player Only- In this mode, the board will not rotate by itself. The only way that you can get the board to rotate is if the player chooses to do so.
+* Random Rotation- In this mode, the board will rotate randomly to the left or right. When it rotates, it doesn't count as a turn.
+* Set Interval- In this mode, the board will rotate for every 5 pieces that are placed on the board. Each of these rotations do not count as a turn.
+
+**Winning Number-** This number is the number of pieces in a row you need to have to win.
+
+**Player Rotation-** When this is checked, then the player will be able to rotate the board. If it is unchecked, then the player won't be able to rotate the baord.
+
+**Singleplayer Mode-** When this is checked, you can play against a computer. This computer is not skillful, cannot think properly, and makes random moves. When this is unchecked, you can either play against yourself or with another entity.
+
+### Playing
+
+These instructions are displayed in the game but here they are if you want to look at them.
+
+* ⬅️ Moves the pointer left by one cell.
+* ➡️ Moves the pointer right by one cell.
+* [Space] Drops a piece whereever the point is located
+* [Q] Rotates the board to the left ↪️
+* [E] Rotates the board to the right ↩️
+
+### Different Modes to Try out
+
+Note: You can choose whether you want singleplayer or not.
+
+Name|Width|Height|Rotation Type|Winning Number|Allow Player Rotation
+----|----|----|----|----|----
+Classic Connect Four|6|7|Player Only|4|No
+Classic Flippy Four|6|7|Player Only|4|Yes
+Enhanced Flippy Four|8|9|Player Only|5|Yes
+Classic Random Rotation|6|7|Random Rotation|4|No
+Classic Set Interval|6|7|Set Interval|4|No
+Fill-Up The Board Challenge|11|11|Random Rotation|5|No
+
+You can also choose your own setting and mix and match it however you want!
 
 ## Contributors
 **Team JacKeL**

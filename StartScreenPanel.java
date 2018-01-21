@@ -5,7 +5,8 @@ import java.util.ArrayList;
 
 public class StartScreenPanel extends JPanel implements ActionListener{
 
-  //---------------Other Variables-----------
+  //---------------Variables---------------
+
   private ArrayList<Color> colors = new ArrayList<Color>(){{
       add(new Color(220,20,60));
       add(new Color(255,140,0));
@@ -48,7 +49,7 @@ public class StartScreenPanel extends JPanel implements ActionListener{
   int dropInt5 = 160;
   Piece piece5 = makePiece(colors.get((int)(Math.random()*10)),true);
 
-  //------------------Methods-----------------
+  //---------------Methods---------------
 
   public StartScreenPanel () {
     for (int i=0; i<120; i++){
@@ -73,7 +74,7 @@ public class StartScreenPanel extends JPanel implements ActionListener{
     g.drawString("Made by Jason Lin and Karen Li",590,655);
   }
 
-  //----------Action Performed for Timer----------
+  //---------------Action Performed for Timer---------------
 
   public void actionPerformed(ActionEvent e) {
     updatePieces();

@@ -2,14 +2,14 @@ import java.awt.*;
 
 public abstract class RotatableObject{
 
-  //---------Instance Variables--------
+  //---------------Instance Variables---------------
 
   public double[] x;
   public double[] y;
   public int[] xGui;
   public int[] yGui;
 
-  //-------------Methods--------------
+  //---------------Methods---------------
 
   public RotatableObject (int[] x, int[] y) {
     int numOfPoints = x.length;
@@ -33,7 +33,6 @@ public abstract class RotatableObject{
     if (direction.equals("left")) {
       degrees *= -1;
     }
-
     for (int i=0; i<x.length; i++){
       double usefulX = x[i] - xCenter;
       double usefulY = y[i] - yCenter;
@@ -41,7 +40,6 @@ public abstract class RotatableObject{
         (usefulY*Math.sin(Math.toRadians(degrees))) + xCenter;
       y[i] = (usefulX*Math.sin(Math.toRadians(degrees))) +
         (usefulY*Math.cos(Math.toRadians(degrees))) + yCenter;
-
       xGui[i] = (int) x[i];
       yGui[i] = (int) y[i];
     }

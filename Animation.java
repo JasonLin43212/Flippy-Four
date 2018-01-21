@@ -4,17 +4,18 @@ import java.awt.event.*;
 
 public class Animation extends JPanel implements ActionListener{
 
-  //---------Instance Variables--------
+  //---------------Instance Variables---------------
 
   private FlippyFour game;
   private boolean isRotating;
   private int rotateInt;
   private String rotationalDirection;
 
-  //---------Other Variables---------
+  //---------------Other Variables---------------
 
   Timer timer = new Timer(10,this);
-  //-------------Methods-----------
+
+  //---------------Methods---------------
 
   public Animation (FlippyFour game) {
     this.game = game;
@@ -22,6 +23,7 @@ public class Animation extends JPanel implements ActionListener{
   }
 
   public void paintComponent(Graphics g){
+    //Clears previous drawings
     super.paintComponent(g);
 
     int height = game.getHeight();
@@ -49,7 +51,7 @@ public class Animation extends JPanel implements ActionListener{
       }
     }
 
-    // Drawing the arrow
+    //Drawing the arrow
     if (!(isRotating || game.getIsDropping()) &&
         game.getWinState().equals("Continue Game")) {
       int[] arrowXCor = new int[3];
@@ -113,7 +115,7 @@ public class Animation extends JPanel implements ActionListener{
       g.drawString("Right",73,height-40);
       g.drawString("[Space] = Drop Piece",width-175,height-40);
 
-      //For rotation instructions
+      //Drawing rotation instructions
       if (game.getCanPlayerRotate()){
         int[] leftRotateX = new int[] {5,15,15,30,30,5,5,10,10,25,25,15,15};
         int[] rotateY = new int[] {10,3,8,8,33,33,20,20,28,28,12,12,17};
@@ -136,7 +138,7 @@ public class Animation extends JPanel implements ActionListener{
         g.fillPolygon(rightRotateX,rotateY,13);
       }
 
-      //For Set Interval rotation
+      //Drawing Set Interval Rotation information
       if (game.getRotationMode().equals("Set Interval")){
         g.drawString("Pieces To Insert Until Next Rotation:",10,height-58);
         String number = game.getRotationNum();
@@ -177,6 +179,7 @@ public class Animation extends JPanel implements ActionListener{
     rotateInt = 0;
     isRotating = true;
   }
+
   public boolean getIsRotating(){
     return isRotating;
   }
