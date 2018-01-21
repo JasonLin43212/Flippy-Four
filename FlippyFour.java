@@ -384,9 +384,6 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
         addPiece(selectedChoice);
       }
     }
-    System.out.println(rotationNum);
-    System.out.println(isFirstPlayerTurn);
-    System.out.println(rotationMode);
   }
 
   //------------Key Listener------------
