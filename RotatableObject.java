@@ -27,6 +27,7 @@ public abstract class RotatableObject{
     }
 
     //---------------Abstract Method to be Inherited---------------
+    
     public abstract void drawObject(Graphics g);
     
     //---------------Rotate the Object Left or Right by 90 Degrees---------------
