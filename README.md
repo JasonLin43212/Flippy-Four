@@ -113,6 +113,8 @@ It's done!!!
 
 * In random rotation, if the player rotates the board, they get an extra turn.
 
+* In singleplayer mode, if all of the columns are filled up except the last, the computer will be stuck.
+
 # Playing the game
 
 ## About the settings
