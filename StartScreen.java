@@ -5,11 +5,18 @@ import java.util.*;
 
 public class StartScreen extends JFrame implements ActionListener{
 
+  //---------------Instance Variables---------------
+  
   private Container pane;
   private StartScreenPanel panel;
+  private String color1 = "red";
+  private String color2 = "yellow";
+  private int height = 6;
+  private int width = 7;
+  private String rotation;
+  private int numberToWin = 4;
     
-  //---------- Lists/ArrayLists for color ---------
-    
+  //---------------Colors---------------
     
   private ArrayList<Color> colors = new ArrayList<Color>(){{
 	    add(new Color(220,20,60));
@@ -25,10 +32,9 @@ public class StartScreen extends JFrame implements ActionListener{
     }}; 
    
   private String[] JCBoxColors = new String[] {"Red", "Orange", "Yellow", "Green", "Blue", "Cyan", "Magenta", "Purple", "Pink", "Brown"};
-    
 
-  //---------- insert JComboBox content ---------
-    
+  //---------------JComboBox---------------
+
   private JComboBox<String> colors1 = new JComboBox<String>(JCBoxColors);
   private JComboBox<String> colors2 = new JComboBox<String>(JCBoxColors);
   private Integer[] dimensions = new Integer[] {5,6,7,8,9,10,11};
@@ -44,7 +50,8 @@ public class StartScreen extends JFrame implements ActionListener{
 
   private Integer[] numToWin = new Integer[] {4,5};
   private JComboBox<Integer> winningInput = new JComboBox<Integer>(numToWin);
-  //---------- JLabels for clarity---------
+  
+  //---------------JLabel---------------
 
   private JLabel WELCOME = new JLabel("Welcome to Flippy-Four!");
   private JLabel COLOR1 = new JLabel("Player 1: Choose your color");
@@ -56,22 +63,13 @@ public class StartScreen extends JFrame implements ActionListener{
   private JLabel ERROR = new JLabel("Please choose two different colors.");
   private JLabel WARNING = new JLabel("Make sure to choose different colors");
   
-  //---------- button to start game ---------
+  //---------------JButton---------------
 
   private JButton START = new JButton("Start");
 
-  //---------- instance variables ---------
+  //---------------Methods---------------
   
-  private String color1 = "red";
-  private String color2 = "yellow";
-  private int height = 6;
-  private int width = 7;
-  private String rotation;
-  private int numberToWin = 4;
-
-  //---------- set up window & add labels/menus/buttons ---------
   public StartScreen(){
-    
     this.setTitle("Flippy Four");
     this.setSize(800,690);
     this.setLocation(100,100);
@@ -151,7 +149,7 @@ public class StartScreen extends JFrame implements ActionListener{
 
     panel.repaint();
   }
-  
+
   private void configureLabel(JLabel j){
     j.setPreferredSize(new Dimension(100,30));
     j.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -167,7 +165,8 @@ public class StartScreen extends JFrame implements ActionListener{
      panel.add(Box.createRigidArea(new Dimension(10,6)));
      panel.add(c);
   }
-  //---------- start game when given valid parameters ---------
+  //---------------Action Performed/Game Starter---------------
+  
   public void actionPerformed(ActionEvent e){
     Object c1 = colors1.getSelectedItem();
     color1 = c1.toString();
@@ -202,9 +201,8 @@ public class StartScreen extends JFrame implements ActionListener{
                                     playerRotateInput.isSelected(),
                                     singleplayerInput.isSelected(),
                                     numberToWin);
-	    f.setVisible(true);
+      f.setVisible(true);
     }
-	
   }
 
 }

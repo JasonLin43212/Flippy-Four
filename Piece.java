@@ -2,12 +2,13 @@ import java.awt.*;
 
 public class Piece extends RotatableObject{
 
-  //------Instance Variables--------
+  //---------------Instance Variables---------------
 
   private Color color;
   private int id;
 
-  //------Methods------
+  //---------------Methods---------------
+
   public Piece (int id, Color color, int[] x, int[] y) {
     super(x,y);
     this.color = color;

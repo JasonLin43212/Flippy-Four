@@ -6,11 +6,13 @@ import java.util.Scanner;
 
 public class FlippyFour extends JFrame implements ActionListener, KeyListener{
 
+  //---------------Main Method---------------
+  
   public static void main(String[]args){
     StartScreen input = new StartScreen();
   }
 
-  //----------Instance Variables For Game--------------
+  //---------------Instance Variables For Game---------------
 
   private Piece[][] data;
   private int width;
@@ -28,7 +30,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
   private boolean canPlayerRotate;
   private boolean isSinglePlayer;
 
-  //----------Instance Variables for GUI--------------
+  //---------------Instance Variables for GUI---------------
 
   private Container pane;
   private JButton newGame;
@@ -41,12 +43,12 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
   private int dropInt;
   private boolean isDropping;
 
-  //---------------Other Variables-------------
+  //---------------Other Variables---------------
 
   Color emptyColor = Color.WHITE;
   Timer timer = new Timer(80,this);
 
-  //----------Methods------------
+  //---------------Methods---------------
 
   public FlippyFour (int width,
                      int height,
@@ -72,7 +74,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     rotationNum = 1;
     dropInt = height - 1;
     isDropping = false;
-    
+
     int adjustment = (Math.max(width,height));
     startWidth = (78*adjustment-width*50)/2;
     startHeight = (78*adjustment-height*50)/2;
@@ -118,7 +120,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     mainMenu = new JButton("Main Menu");
     mainMenu.addActionListener(this);
     mainMenu.setFocusable(false);
-    
+
     //Adding everything onto Gui
     pane = this.getContentPane();
     animation = new Animation(this);
@@ -155,8 +157,8 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     else {
       data[index][height-1] = makePiece(2,playerTwoColor,index,height-1);
     }
-    animateDrop();
     isFirstPlayerTurn = !isFirstPlayerTurn;
+    animateDrop();
     randomRotations();
   }
 
@@ -308,9 +310,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     return new Piece(id,color,xCor,yCor);
   }
 
-  
-
-  //------------------Action Listener------------------------
+  //---------------Action Listener---------------
   public void actionPerformed(ActionEvent e) {
     String s = e.getActionCommand();
     if (s == "New Game" && !isDropping && !animation.getIsRotating()) {
@@ -386,7 +386,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
     }
   }
 
-  //------------Key Listener------------
+  //---------------Key Listener---------------
   public void keyPressed(KeyEvent e){
     int key = e.getKeyCode();
     if (isDropping || animation.getIsRotating() ||
@@ -416,7 +416,6 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
         animation.animateRotate("right");
       }
     }
-    //System.out.println(this);
     animation.repaint();
   }
 
@@ -424,7 +423,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
   public void keyTyped(KeyEvent e){}
   public void keyReleased(KeyEvent e){}
 
-  // ----------------Accessor Methods--------------
+  //---------------Accessor Methods---------------
 
   public int getBoardHeight() {
     return height;
