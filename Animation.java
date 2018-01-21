@@ -24,6 +24,21 @@ public class Animation extends JPanel implements ActionListener{
   public void paintComponent(Graphics g){
     super.paintComponent(g);
 
+    int height = game.getHeight();
+    int width = game.getWidth();
+
+    //Drawing background
+    int[] triangle1X = new int[] {0,0,width};
+    int[] triangle1Y = new int[] {0,height-30,height-30};
+    int[] triangle2X = new int[] {0,width,width};
+    int[] triangle2Y = new int[] {0,0,height-30};
+
+    g.setColor(game.getFirstColor().brighter());
+    g.fillPolygon(triangle1X,triangle1Y,3);
+    g.setColor(game.getSecondColor().brighter());
+    g.fillPolygon(triangle2X,triangle2Y,3);
+
+
     //Drawing the board
     game.getBoard().drawObject(g);
 
@@ -80,8 +95,6 @@ public class Animation extends JPanel implements ActionListener{
 
     //Drawing instructions
     if (!isRotating){
-      int height = game.getHeight();
-      int width = game.getWidth();
       int[] leftArrowX = new int[] {5,15,15,30,30,15,15};
       int[] arrowY = new int[] {height-45,
                                 height-55,

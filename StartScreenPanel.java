@@ -7,13 +7,13 @@ public class StartScreenPanel extends JPanel implements ActionListener{
 
   //---------------Other Variables-----------
   private ArrayList<Color> colors = new ArrayList<Color>(){{
-      add(Color.RED);
-      add(new Color(255,165,0));
-      add(Color.YELLOW);
+      add(new Color(220,20,60));
+      add(new Color(255,140,0));
+      add(new Color(220,220,0));
       add(new Color(0,128,0));
-      add(Color.BLUE);
-      add(Color.CYAN);
-      add(Color.MAGENTA);
+      add(new Color(30,144,255));
+      add(new Color(20,230,230));
+      add(new Color(230,20,230));
       add(new Color(138,43,226));
       add(new Color(255,20,147));
       add(new Color(139,69,19));
@@ -64,8 +64,6 @@ public class StartScreenPanel extends JPanel implements ActionListener{
     super.paintComponent(g);
     g.setColor(new Color(135,206,250));
     g.fillRect(0,0,800,800);
-
-    g.setColor(new Color(105,105,105));
     fakeBoard1.drawObject(g);
     fakeBoard2.drawObject(g);
     fakeBoard3.drawObject(g);

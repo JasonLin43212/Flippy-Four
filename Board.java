@@ -7,6 +7,7 @@ public class Board extends RotatableObject {
   }
 
   public void drawObject(Graphics g) {
+    g.setColor(new Color(50,50,50));
     g.fillPolygon(xGui,yGui,x.length);
   }
 }
