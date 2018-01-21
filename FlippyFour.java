@@ -44,7 +44,7 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
   //---------------Other Variables-------------
 
   Color emptyColor = Color.WHITE;
-  Timer timer = new Timer(100,this);
+  Timer timer = new Timer(80,this);
 
   //----------Methods------------
 
