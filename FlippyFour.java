@@ -485,4 +485,16 @@ public class FlippyFour extends JFrame implements ActionListener, KeyListener{
   public String getWinState() {
     return winState;
   }
+
+  public boolean getCanPlayerRotate() {
+    return canPlayerRotate;
+  }
+
+  public String getRotationMode() {
+    return rotationMode;
+  }
+
+  public String getRotationNum() {
+    return 6-(rotationNum%6)+"";
+  }
 }

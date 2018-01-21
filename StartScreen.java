@@ -40,7 +40,7 @@ public class StartScreen extends JFrame implements ActionListener{
   private JComboBox<String> rotationInput = new JComboBox<String>(rotationType);
 
   private JCheckBox playerRotateInput = new JCheckBox("Allow Player To Rotate Board");
-  private JCheckBox singleplayerInput = new JCheckBox("Allow SinglePlayer");
+  private JCheckBox singleplayerInput = new JCheckBox("Single Player Mode");
 
   private Integer[] numToWin = new Integer[] {4,5};
   private JComboBox<Integer> winningInput = new JComboBox<Integer>(numToWin);
@@ -52,7 +52,7 @@ public class StartScreen extends JFrame implements ActionListener{
   private JLabel HEIGHT = new JLabel("Set your board height");
   private JLabel WIDTH = new JLabel("Set your board width");
   private JLabel ROTATION = new JLabel("Choose rotation type");
-  private JLabel WINNUM = new JLabel("Choose the winning number");
+  private JLabel WINNUM = new JLabel("How many in a row to win?");
   private JLabel ERROR = new JLabel("Please choose two different colors.");
   private JLabel WARNING = new JLabel("Make sure to choose different colors");
   

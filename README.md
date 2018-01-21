@@ -73,11 +73,11 @@ java FlippyFour
 
 * A singleplayer mode
 
+* Navigation between start screen and game
+
 ### Planned Features
 
 * Having instructions on playing in gui
-
-* Navigation between start screen and game
 
 #### Remove/Unadded Features
 
@@ -109,7 +109,7 @@ Fixed
 
 Not fixed
 
-*
+* When in 'Set Interval' mode, after fulfilling the amount of pieces to start the rotation, the number of pieces to insert jumps to 6. This doesn't affect the gameplay, however, because it goes back to 5 after rotation is done.
 
 
 ## Contributors

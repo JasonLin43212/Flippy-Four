@@ -77,6 +77,100 @@ public class Animation extends JPanel implements ActionListener{
                    adjustment*78/2 - 85,
                    adjustment*11);
     }
+
+    //Drawing instructions
+    int height = game.getHeight();
+    int width = game.getWidth();
+    int[] leftArrowX = new int[] {5,15,15,30,30,15,15};
+    int[] leftArrowY = new int[] {height-45,
+                                  height-55,
+                                  height-48,
+                                  height-48,
+                                  height-42,
+                                  height-42,
+                                  height-35};
+    int[] rightArrowX = new int[] {145,135,135,120,120,135,135};
+    int[] rightArrowY = new int[] {height-45,
+                                   height-55,
+                                   height-48,
+                                   height-48,
+                                   height-42,
+                                   height-42,
+                                   height-35};
+
+    g.setFont(new Font("Serif",Font.BOLD,14));
+    g.setColor(Color.BLACK);
+    g.fillPolygon(leftArrowX,leftArrowY,7);
+    g.drawString("Left",35,height-40);
+    g.fillPolygon(rightArrowX,rightArrowY,7);
+    g.drawString("Right",73,height-40);
+    g.drawString("[Space] = Drop Piece",150,height-40);
+
+    //For rotation instructions
+    if (game.getCanPlayerRotate()){
+      int[] leftRotateX = new int[] {width-110,
+                                   width-100,
+                                   width-100,
+                                   width-85,
+                                   width-85,
+                                   width-110,
+                                   width-110,
+                                   width-105,
+                                   width-105,
+                                   width-90,
+                                   width-90,
+                                   width-100,
+                                   width-100};
+    int[] leftRotateY = new int[] {height-55,
+                                   height-62,
+                                   height-57,
+                                   height-57,
+                                   height-32,
+                                   height-32,
+                                   height-45,
+                                   height-45,
+                                   height-37,
+                                   height-37,
+                                   height-53,
+                                   height-53,
+                                   height-48};
+    int[] rightRotateX = new int[] {width-15,
+                                    width-25,
+                                    width-25,
+                                    width-40,
+                                    width-40,
+                                    width-15,
+                                    width-15,
+                                    width-20,
+                                    width-20,
+                                    width-35,
+                                    width-35,
+                                    width-25,
+                                    width-25};
+    int[] rightRotateY = new int[] {height-55,
+                                    height-62,
+                                    height-57,
+                                    height-57,
+                                    height-32,
+                                    height-32,
+                                    height-45,
+                                    height-45,
+                                    height-37,
+                                    height-37,
+                                    height-53,
+                                    height-53,
+                                    height-48};
+    g.fillPolygon(leftRotateX,leftRotateY,13);
+    g.drawString("Q",width-80,height-40);
+    g.drawString("E",width-57,height-40);
+    g.fillPolygon(rightRotateX,rightRotateY,13);
+    }
+
+    //For Set Interval rotation
+    if (game.getRotationMode().equals("Set Interval")){
+      g.drawString("Pieces To Insert Until Next Rotation:",10,height-60);
+      g.drawString(game.getRotationNum(),300,height-60);
+    }
   }
 
   private void rotateOnce(String direction) {
