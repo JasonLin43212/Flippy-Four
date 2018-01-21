@@ -3,7 +3,7 @@
 A Connect Four that rotates!
 
 
-## Instructions
+# Instructions
 
 First, clone this repository.
 
@@ -29,9 +29,9 @@ Finally, run the code, follow the instructions and have fun!
 java FlippyFour
 ```
 
-## Development Log
+# Development Log
 
-### Accomplished Features
+## Accomplished Features
 
 * Displaying board in terminal
 
@@ -59,7 +59,7 @@ java FlippyFour
 
 * Disable user input except to start a new game after a game ends
 
-#### Features Added After Demo
+### Features Added After Demo
 
 * Different rotation modes
 
@@ -77,9 +77,9 @@ java FlippyFour
 
 * Having instructions on playing in gui
 
-### Planned Features
+## Planned Features
 It's done!!!
-#### Remove/Unadded Features
+### Remove/Unadded Features
 
 * A way to save and load games
 > We believe that this feature is unnecessary since most games do not last that long
@@ -87,7 +87,7 @@ It's done!!!
 * Bombs
 > Deviates too much from original game
 
-### Milestone
+## Milestone
 
 * Game is playable on Gui (1/12/18)
 
@@ -101,9 +101,9 @@ It's done!!!
 
 * Finished all of the planned features (1/20/18)
 
-### Bugs
+## Bugs
 
-#### Fixed
+### Fixed
 
 * GUI rotation being weird
 
@@ -113,9 +113,9 @@ It's done!!!
 
 * In random rotation, if the player rotates the board, they get an extra turn.
 
-## Playing the game
+# Playing the game
 
-### About the settings
+## About the settings
 
 **Color-** You can choose the color of the pieces for both colors. The options for color are red, orange, yellow, green, blue, cyan, magenta, purple, pink, and brown.
 
@@ -132,7 +132,7 @@ It's done!!!
 
 **Singleplayer Mode-** When this is checked, you can play against a computer. This computer is not skillful, cannot think properly, and makes random moves. When this is unchecked, you can either play against yourself or with another entity.
 
-### Playing
+## Playing
 
 These instructions are displayed in the game but here they are if you want to look at them.
 
@@ -142,7 +142,7 @@ These instructions are displayed in the game but here they are if you want to lo
 * [Q] Rotates the board to the left ↪️
 * [E] Rotates the board to the right ↩️
 
-### Different Modes to Try out
+## Different Modes to Try out
 
 Note: You can choose whether you want singleplayer or not.
 
@@ -157,7 +157,7 @@ Fill-Up The Board Challenge|11|11|Random Rotation|5|No
 
 You can also choose your own setting and mix and match it however you want!
 
-## Contributors
+# Contributors
 **Team JacKeL**
 * Jason Lin
 * Karen Li
