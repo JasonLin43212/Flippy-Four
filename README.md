@@ -143,15 +143,17 @@ These instructions are displayed in the game but here they are if you want to lo
 * [E] Rotates the board to the right ↩️
 
 ### Different Modes to Try out
------ means that it doesn't matter
 
-Name|Width|Height|Rotation Type|Winning Number|Allow Player Rotation|Singleplayer
-----|----|----|----|----|----|----
-Classic Connect Four|6|7|Player Only|4|No|-----
-Classic Flippy Four|6|7|Player Only|4|Yes|-----
-Classic Random Rotation|6|7|Random Rotation|No|-----|-----
-Classic Set Interval|6|7|Set Interval|No|No|-----
-Fill-Up The Board Challenge|11|11|Random Rotation|-----|-----|-----
+Note: You can choose whether you want singleplayer or not.
+
+Name|Width|Height|Rotation Type|Winning Number|Allow Player Rotation
+----|----|----|----|----|----
+Classic Connect Four|6|7|Player Only|4|No
+Classic Flippy Four|6|7|Player Only|4|Yes
+Enhanced Flippy Four|8|9|Player Only|5|Yes
+Classic Random Rotation|6|7|Random Rotation|4|No
+Classic Set Interval|6|7|Set Interval|4|No
+Fill-Up The Board Challenge|11|11|Random Rotation|5|No
 
 You can also choose your own setting and mix and match it however you want!
 
