@@ -51,6 +51,7 @@ public class StartScreenPanel extends JPanel implements ActionListener{
 
   //---------------Methods---------------
 
+  //Constructor for StartScreenPanel
   public StartScreenPanel () {
     for (int i=0; i<120; i++){
       fakeBoard2.rotate("left",600,300);
@@ -61,6 +62,7 @@ public class StartScreenPanel extends JPanel implements ActionListener{
     timer.start();
   }
 
+  //Draws the different parts of the StartScreen
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
     g.setColor(new Color(135,206,250));
@@ -84,7 +86,9 @@ public class StartScreenPanel extends JPanel implements ActionListener{
     repaint();
   }
 
-  public Piece makePiece(Color color, boolean isFirst) {
+  //A makePiece function specific for the StartScreen
+  //Chooses a random x coordinate to drop the pieces
+  private Piece makePiece(Color color, boolean isFirst) {
     int[] xCor = new int[1];
     int[] yCor;
     if (isFirst) {
@@ -97,7 +101,9 @@ public class StartScreenPanel extends JPanel implements ActionListener{
     return new Piece(-1,color,xCor,yCor);
   }
 
-  public void updatePieces() {
+  //Makes the pieces drop and makes new pieces
+  //once a piece has reached the bottom
+  private void updatePieces() {
     if (dropInt1 > 200) {
       piece1 = makePiece(colors.get((int)(Math.random()*10)),false);
       dropInt1 = 0;
@@ -132,7 +138,8 @@ public class StartScreenPanel extends JPanel implements ActionListener{
     dropInt5++;
   }
 
-  public void drawPieces(Graphics g) {
+  //Draws the 5 pieces
+  private void drawPieces(Graphics g) {
     piece1.drawObject(g);
     piece2.drawObject(g);
     piece3.drawObject(g);
