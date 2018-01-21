@@ -148,6 +148,12 @@ These instructions are displayed in the game but here they are if you want to lo
 Name|Width|Height|Rotation Type|Winning Number|Allow Player Rotation|Singleplayer
 ----|----|----|----|----|----|----
 Classic Connect Four|6|7|Player Only|4|No|-----
+Classic Flippy Four|6|7|Player Only|4|Yes|-----
+Classic Random Rotation|6|7|Random Rotation|No|-----
+Classic Set Interval|6|7|Set Interval|No|-----
+Fill-Up The Board Challenge|11|11|Random Rotation|-----|-----
+
+You can also choose your own setting and mix and match it however you want!
 
 ## Contributors
 **Team JacKeL**
