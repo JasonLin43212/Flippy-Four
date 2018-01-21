@@ -79,57 +79,59 @@ public class Animation extends JPanel implements ActionListener{
     }
 
     //Drawing instructions
-    int height = game.getHeight();
-    int width = game.getWidth();
-    int[] leftArrowX = new int[] {5,15,15,30,30,15,15};
-    int[] arrowY = new int[] {height-45,
-                              height-55,
-                              height-48,
-                              height-48,
-                              height-42,
-                              height-42,
-                              height-35};
-    int[] rightArrowX = new int[] {145,135,135,120,120,135,135};
+    if (!isRotating){
+      int height = game.getHeight();
+      int width = game.getWidth();
+      int[] leftArrowX = new int[] {5,15,15,30,30,15,15};
+      int[] arrowY = new int[] {height-45,
+                                height-55,
+                                height-48,
+                                height-48,
+                                height-42,
+                                height-42,
+                                height-35};
+      int[] rightArrowX = new int[] {145,135,135,120,120,135,135};
 
-    g.setFont(new Font("Serif",Font.BOLD,14));
-    g.setColor(Color.BLACK);
-    g.fillPolygon(leftArrowX,arrowY,7);
-    g.drawString("Left",35,height-40);
-    g.fillPolygon(rightArrowX,arrowY,7);
-    g.drawString("Right",73,height-40);
-    g.drawString("[Space] = Drop Piece",150,height-40);
+      g.setFont(new Font("Serif",Font.BOLD,14));
+      g.setColor(Color.BLACK);
+      g.fillPolygon(leftArrowX,arrowY,7);
+      g.drawString("Left",35,height-40);
+      g.fillPolygon(rightArrowX,arrowY,7);
+      g.drawString("Right",73,height-40);
+      g.drawString("[Space] = Drop Piece",width-175,height-40);
 
-    //For rotation instructions
-    if (game.getCanPlayerRotate()){
-      int[] leftRotateX = new int[] {5,15,15,30,30,5,5,10,10,25,25,15,15};
-      int[] rotateY = new int[] {10,3,8,8,33,33,20,20,28,28,12,12,17};
-    int[] rightRotateX = new int[] {width-110,
-                                    width-100,
-                                    width-100,
-                                    width-85,
-                                    width-85,
-                                    width-110,
-                                    width-110,
-                                    width-105,
-                                    width-105,
-                                    width-90,
-                                    width-90,
-                                    width-100,
-                                    width-100};
-    g.fillPolygon(leftRotateX,rotateY,13);
-    g.drawString("Q",width-80,height-40);
-    g.drawString("E",width-57,height-40);
-    g.fillPolygon(rightRotateX,rotateY,13);
-    }
-
-    //For Set Interval rotation
-    if (game.getRotationMode().equals("Set Interval")){
-      g.drawString("Pieces To Insert Until Next Rotation:",10,height-60);
-      String number = game.getRotationNum();
-      if (number.equals("6")) {
-        number = "5";
+      //For rotation instructions
+      if (game.getCanPlayerRotate()){
+        int[] leftRotateX = new int[] {5,15,15,30,30,5,5,10,10,25,25,15,15};
+        int[] rotateY = new int[] {10,3,8,8,33,33,20,20,28,28,12,12,17};
+        int[] rightRotateX = new int[] {width-5,
+                                        width-15,
+                                        width-15,
+                                        width-30,
+                                        width-30,
+                                        width-5,
+                                        width-5,
+                                        width-10,
+                                        width-10,
+                                        width-25,
+                                        width-25,
+                                        width-15,
+                                        width-15};
+        g.fillPolygon(leftRotateX,rotateY,13);
+        g.drawString("Q",35,25);
+        g.drawString("E",width-45,25);
+        g.fillPolygon(rightRotateX,rotateY,13);
       }
-      g.drawString(number,300,height-60);
+
+      //For Set Interval rotation
+      if (game.getRotationMode().equals("Set Interval")){
+        g.drawString("Pieces To Insert Until Next Rotation:",10,height-58);
+        String number = game.getRotationNum();
+        if (number.equals("6")) {
+          number = "5";
+        }
+        g.drawString(number,300,height-58);
+      }
     }
   }
 
