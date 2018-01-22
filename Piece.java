@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Piece extends RotatableObject{
+public class Piece extends RotatableObject {
 
   //---------------Instance Variables---------------
 
@@ -8,27 +8,27 @@ public class Piece extends RotatableObject{
   private int id;
 
   //---------------Methods---------------
-   
+
   //---------------Initialize rotation features, color, and ID---------------
-  public Piece (int id, Color color, int[] x, int[] y) {
-    super(x,y);
+  public Piece(int id, Color color, int[] x, int[] y) {
+    super(x, y);
     this.color = color;
     this.id = id;
   }
 
   //---------------Accessor Methods---------------
-  public int getId () {
+  public int getId() {
     return id;
   }
 
-  public String toString () {
+  public String toString() {
     return "" + id;
   }
 
   //---------------Implement Inherited Method---------------
   public void drawObject(Graphics g) {
     g.setColor(color);
-    g.fillOval(xGui[0],yGui[0],40,40);
+    g.fillOval(xGui[0], yGui[0], 40, 40);
   }
 
   //---------------Dropping Animation ---------------
@@ -37,7 +37,7 @@ public class Piece extends RotatableObject{
     yGui[0] += 50;
   }
 
-  public void startScreenDrop(){
+  public void startScreenDrop() {
     y[0] += 5;
     yGui[0] += 5;
   }
