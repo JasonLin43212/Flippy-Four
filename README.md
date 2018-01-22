@@ -159,6 +159,13 @@ Fill-Up The Board Challenge|11|11|Random Rotation|5|No
 
 You can also choose your own setting and mix and match it however you want!
 
+## Notes on Winning
+
+* It depends on what you set as the amount of pieces in a row needed to win. The four ways to win is by having the pieces aligned vertically, horizontally, and diagonally in both directions.
+* You can also get a draw when the board is completely filled up but none of the pieces meet the conditions to win. A draw can also occur when both players win.
+This can happen when a rotation of the board causes the pieces to align in such a way that both colors have some kind of winning combination.
+* Rotation in the board also can cause a player to "unwin". This can occur during random rotation or set interval rotation when the player places a piece that causes a win. However, the board can rotate in a way that can mess up the win and make the game continue.
+
 # Contributors
 **Team JacKeL**
 * Jason Lin

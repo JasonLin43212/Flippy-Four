@@ -42,7 +42,7 @@ public class StartScreen extends JFrame implements ActionListener{
   private JComboBox<Integer> widthInput = new JComboBox<Integer>(dimensions);
 
 
-  private String[] rotationType = new String[] {"Player Only", "Random Rotation", "Set Interval"};
+  private String[] rotationType = new String[] {"None", "Random Rotation", "Set Interval"};
   private JComboBox<String> rotationInput = new JComboBox<String>(rotationType);
 
   private JCheckBox playerRotateInput = new JCheckBox("Allow Player To Rotate Board");
